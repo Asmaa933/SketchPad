@@ -16,6 +16,8 @@
 		99A71CC428526B8A0060C1DA /* SketchPadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CC328526B8A0060C1DA /* SketchPadUITests.swift */; };
 		99A71CC628526B8A0060C1DA /* SketchPadUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CC528526B8A0060C1DA /* SketchPadUITestsLaunchTests.swift */; };
 		99A71CDA28526F2F0060C1DA /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99A71CD928526F2F0060C1DA /* Colors.xcassets */; };
+		99A71CE82852ADDB0060C1DA /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CE62852ADDB0060C1DA /* DrawingViewController.swift */; };
+		99A71CE92852ADDB0060C1DA /* DrawingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99A71CE72852ADDB0060C1DA /* DrawingViewController.xib */; };
 		99A71CEF2852AE4A0060C1DA /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CEE2852AE4A0060C1DA /* TabBarViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +52,8 @@
 		99A71CC328526B8A0060C1DA /* SketchPadUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchPadUITests.swift; sourceTree = "<group>"; };
 		99A71CC528526B8A0060C1DA /* SketchPadUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchPadUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		99A71CD928526F2F0060C1DA /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		99A71CE62852ADDB0060C1DA /* DrawingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
+		99A71CE72852ADDB0060C1DA /* DrawingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DrawingViewController.xib; sourceTree = "<group>"; };
 		99A71CEE2852AE4A0060C1DA /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				99A71CE32852ADA70060C1DA /* Tabbar */,
+				99A71CE42852ADB00060C1DA /* Drawing */,
 				99A71CA628526B860060C1DA /* ViewController.swift */,
 			);
 			path = Features;
@@ -192,6 +197,15 @@
 				99A71CEE2852AE4A0060C1DA /* TabBarViewController.swift */,
 			);
 			path = Tabbar;
+			sourceTree = "<group>";
+		};
+		99A71CE42852ADB00060C1DA /* Drawing */ = {
+			isa = PBXGroup;
+			children = (
+				99A71CE62852ADDB0060C1DA /* DrawingViewController.swift */,
+				99A71CE72852ADDB0060C1DA /* DrawingViewController.xib */,
+			);
+			path = Drawing;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -299,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				99A71CDA28526F2F0060C1DA /* Colors.xcassets in Resources */,
+				99A71CE92852ADDB0060C1DA /* DrawingViewController.xib in Resources */,
 				99A71CAF28526B8A0060C1DA /* LaunchScreen.storyboard in Resources */,
 				99A71CAC28526B8A0060C1DA /* Assets.xcassets in Resources */,
 			);
@@ -326,6 +341,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				99A71CA728526B870060C1DA /* ViewController.swift in Sources */,
+				99A71CE82852ADDB0060C1DA /* DrawingViewController.swift in Sources */,
 				99A71CA328526B860060C1DA /* AppDelegate.swift in Sources */,
 				99A71CEF2852AE4A0060C1DA /* TabBarViewController.swift in Sources */,
 				99A71CA528526B860060C1DA /* SceneDelegate.swift in Sources */,
