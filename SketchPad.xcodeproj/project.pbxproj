@@ -20,10 +20,11 @@
 		99A71CE92852ADDB0060C1DA /* DrawingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99A71CE72852ADDB0060C1DA /* DrawingViewController.xib */; };
 		99A71CEC2852ADF70060C1DA /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CEA2852ADF70060C1DA /* HistoryViewController.swift */; };
 		99A71CED2852ADF70060C1DA /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99A71CEB2852ADF70060C1DA /* HistoryViewController.xib */; };
-		99A71CEF2852AE4A0060C1DA /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CEE2852AE4A0060C1DA /* TabBarViewController.swift */; };
+		99A71CEF2852AE4A0060C1DA /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CEE2852AE4A0060C1DA /* TabBarCoordinator.swift */; };
 		99A71CF12852AF0C0060C1DA /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CF02852AF0C0060C1DA /* AppColor.swift */; };
 		99A71CF32852AFE30060C1DA /* AppImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CF22852AFE30060C1DA /* AppImage.swift */; };
 		99A71CF52852B4470060C1DA /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CF42852B4470060C1DA /* Tab.swift */; };
+		99A71CF92852B7640060C1DA /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CF82852B7630060C1DA /* Coordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,10 +62,11 @@
 		99A71CE72852ADDB0060C1DA /* DrawingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DrawingViewController.xib; sourceTree = "<group>"; };
 		99A71CEA2852ADF70060C1DA /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		99A71CEB2852ADF70060C1DA /* HistoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
-		99A71CEE2852AE4A0060C1DA /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		99A71CEE2852AE4A0060C1DA /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		99A71CF02852AF0C0060C1DA /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
 		99A71CF22852AFE30060C1DA /* AppImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppImage.swift; sourceTree = "<group>"; };
 		99A71CF42852B4470060C1DA /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
+		99A71CF82852B7630060C1DA /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 		99A71CA128526B860060C1DA /* SketchPad */ = {
 			isa = PBXGroup;
 			children = (
+				99A71CF62852B7350060C1DA /* Helper */,
 				99A71CD228526E600060C1DA /* Delegates */,
 				99A71CD428526EC30060C1DA /* Features */,
 				99A71CD328526EB30060C1DA /* SupportingFiles */,
@@ -207,8 +210,8 @@
 		99A71CE32852ADA70060C1DA /* Tabbar */ = {
 			isa = PBXGroup;
 			children = (
-				99A71CEE2852AE4A0060C1DA /* TabBarViewController.swift */,
 				99A71CF42852B4470060C1DA /* Tab.swift */,
+				99A71CEE2852AE4A0060C1DA /* TabBarCoordinator.swift */,
 			);
 			path = Tabbar;
 			sourceTree = "<group>";
@@ -229,6 +232,22 @@
 				99A71CEB2852ADF70060C1DA /* HistoryViewController.xib */,
 			);
 			path = History;
+			sourceTree = "<group>";
+		};
+		99A71CF62852B7350060C1DA /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				99A71CF72852B7520060C1DA /* SharedProtocols */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		99A71CF72852B7520060C1DA /* SharedProtocols */ = {
+			isa = PBXGroup;
+			children = (
+				99A71CF82852B7630060C1DA /* Coordinator.swift */,
+			);
+			path = SharedProtocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -366,12 +385,13 @@
 			files = (
 				99A71CA728526B870060C1DA /* ViewController.swift in Sources */,
 				99A71CE82852ADDB0060C1DA /* DrawingViewController.swift in Sources */,
+				99A71CF92852B7640060C1DA /* Coordinator.swift in Sources */,
 				99A71CA328526B860060C1DA /* AppDelegate.swift in Sources */,
 				99A71CF12852AF0C0060C1DA /* AppColor.swift in Sources */,
 				99A71CEC2852ADF70060C1DA /* HistoryViewController.swift in Sources */,
 				99A71CF52852B4470060C1DA /* Tab.swift in Sources */,
 				99A71CF32852AFE30060C1DA /* AppImage.swift in Sources */,
-				99A71CEF2852AE4A0060C1DA /* TabBarViewController.swift in Sources */,
+				99A71CEF2852AE4A0060C1DA /* TabBarCoordinator.swift in Sources */,
 				99A71CA528526B860060C1DA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
