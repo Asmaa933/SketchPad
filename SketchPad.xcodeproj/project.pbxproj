@@ -15,6 +15,7 @@
 		99A71CBA28526B8A0060C1DA /* SketchPadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CB928526B8A0060C1DA /* SketchPadTests.swift */; };
 		99A71CC428526B8A0060C1DA /* SketchPadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CC328526B8A0060C1DA /* SketchPadUITests.swift */; };
 		99A71CC628526B8A0060C1DA /* SketchPadUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CC528526B8A0060C1DA /* SketchPadUITestsLaunchTests.swift */; };
+		99A71CDA28526F2F0060C1DA /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99A71CD928526F2F0060C1DA /* Colors.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		99A71CBF28526B8A0060C1DA /* SketchPadUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SketchPadUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		99A71CC328526B8A0060C1DA /* SketchPadUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchPadUITests.swift; sourceTree = "<group>"; };
 		99A71CC528526B8A0060C1DA /* SketchPadUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchPadUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		99A71CD928526F2F0060C1DA /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,12 +99,9 @@
 		99A71CA128526B860060C1DA /* SketchPad */ = {
 			isa = PBXGroup;
 			children = (
-				99A71CA228526B860060C1DA /* AppDelegate.swift */,
-				99A71CA428526B860060C1DA /* SceneDelegate.swift */,
-				99A71CA628526B860060C1DA /* ViewController.swift */,
-				99A71CAB28526B8A0060C1DA /* Assets.xcassets */,
-				99A71CAD28526B8A0060C1DA /* LaunchScreen.storyboard */,
-				99A71CB028526B8A0060C1DA /* Info.plist */,
+				99A71CD228526E600060C1DA /* Delegates */,
+				99A71CD428526EC30060C1DA /* Features */,
+				99A71CD328526EB30060C1DA /* SupportingFiles */,
 			);
 			path = SketchPad;
 			sourceTree = "<group>";
@@ -122,6 +121,66 @@
 				99A71CC528526B8A0060C1DA /* SketchPadUITestsLaunchTests.swift */,
 			);
 			path = SketchPadUITests;
+			sourceTree = "<group>";
+		};
+		99A71CD228526E600060C1DA /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				99A71CA228526B860060C1DA /* AppDelegate.swift */,
+				99A71CA428526B860060C1DA /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		99A71CD328526EB30060C1DA /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				99A71CD828526EEE0060C1DA /* LaunchScreen */,
+				99A71CD628526EDB0060C1DA /* Colors */,
+				99A71CD528526ED40060C1DA /* Assets */,
+				99A71CD728526EE80060C1DA /* Plist */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		99A71CD428526EC30060C1DA /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				99A71CA628526B860060C1DA /* ViewController.swift */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		99A71CD528526ED40060C1DA /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				99A71CAB28526B8A0060C1DA /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		99A71CD628526EDB0060C1DA /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				99A71CD928526F2F0060C1DA /* Colors.xcassets */,
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
+		99A71CD728526EE80060C1DA /* Plist */ = {
+			isa = PBXGroup;
+			children = (
+				99A71CB028526B8A0060C1DA /* Info.plist */,
+			);
+			path = Plist;
+			sourceTree = "<group>";
+		};
+		99A71CD828526EEE0060C1DA /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				99A71CAD28526B8A0060C1DA /* LaunchScreen.storyboard */,
+			);
+			path = LaunchScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,6 +287,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99A71CDA28526F2F0060C1DA /* Colors.xcassets in Resources */,
 				99A71CAF28526B8A0060C1DA /* LaunchScreen.storyboard in Resources */,
 				99A71CAC28526B8A0060C1DA /* Assets.xcassets in Resources */,
 			);
@@ -427,14 +487,14 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QVCZFS2TP2;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SketchPad/Info.plist;
+				INFOPLIST_FILE = SketchPad/SupportingFiles/Plist/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SketchPad;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -458,14 +518,14 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QVCZFS2TP2;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SketchPad/Info.plist;
+				INFOPLIST_FILE = SketchPad/SupportingFiles/Plist/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SketchPad;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
