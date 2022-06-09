@@ -16,6 +16,7 @@
 		99A71CC428526B8A0060C1DA /* SketchPadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CC328526B8A0060C1DA /* SketchPadUITests.swift */; };
 		99A71CC628526B8A0060C1DA /* SketchPadUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CC528526B8A0060C1DA /* SketchPadUITestsLaunchTests.swift */; };
 		99A71CDA28526F2F0060C1DA /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99A71CD928526F2F0060C1DA /* Colors.xcassets */; };
+		99A71CEF2852AE4A0060C1DA /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CEE2852AE4A0060C1DA /* TabBarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		99A71CC328526B8A0060C1DA /* SketchPadUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchPadUITests.swift; sourceTree = "<group>"; };
 		99A71CC528526B8A0060C1DA /* SketchPadUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchPadUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		99A71CD928526F2F0060C1DA /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		99A71CEE2852AE4A0060C1DA /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 		99A71CD428526EC30060C1DA /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				99A71CE32852ADA70060C1DA /* Tabbar */,
 				99A71CA628526B860060C1DA /* ViewController.swift */,
 			);
 			path = Features;
@@ -181,6 +184,14 @@
 				99A71CAD28526B8A0060C1DA /* LaunchScreen.storyboard */,
 			);
 			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
+		99A71CE32852ADA70060C1DA /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				99A71CEE2852AE4A0060C1DA /* TabBarViewController.swift */,
+			);
+			path = Tabbar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,6 +327,7 @@
 			files = (
 				99A71CA728526B870060C1DA /* ViewController.swift in Sources */,
 				99A71CA328526B860060C1DA /* AppDelegate.swift in Sources */,
+				99A71CEF2852AE4A0060C1DA /* TabBarViewController.swift in Sources */,
 				99A71CA528526B860060C1DA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
