@@ -21,7 +21,18 @@ class DrawingViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-
+    
+    private var viewModel: DrawingViewModelProtocol
+    
+    init(viewModel: DrawingViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         handleViewDidLoad()
@@ -32,8 +43,18 @@ class DrawingViewController: UIViewController {
 fileprivate extension DrawingViewController {
     
     func handleViewDidLoad() {
+        bindToViewModel()
         setupAddPhotoButton()
     }
+    
+    func bindToViewModel() {
+        viewModel.statePresenter = self
+    }
+}
+
+//MARK: - AddPhotoButton Helper Methods
+
+fileprivate extension DrawingViewController {
     
     func setupAddPhotoButton() {
         view.backgroundColor = .color(for: .backgroundColor)
@@ -48,17 +69,21 @@ fileprivate extension DrawingViewController {
         }
     }
     
-    #warning("get Image with coordinator")
     func handleButtonTapped() {
-        debugPrint("add button tapped")
+        viewModel.getImage()
     }
     
     func removeAddPhotoButton() {
         addPhotoButton.removeFromSuperview()
     }
+}
+
+//MARK: - SketchView Helper Methods
+fileprivate extension DrawingViewController {
     
-    func setupSketchView() {
+    func setupSketchView(with imageData: Data) {
         view.backgroundColor = .color(for: .sketchBarColor)
+        sketchView.setImage(imageData: imageData)
         view.addSubview(sketchView)
         NSLayoutConstraint.activate([sketchView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                                      sketchView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -68,5 +93,15 @@ fileprivate extension DrawingViewController {
     
     func removeSketchView() {
         sketchView.removeFromSuperview()
+    }
+}
+
+extension DrawingViewController: DrawingStatePresentable {
+    func render(state: DrawingState) {
+        switch state {
+        case .imagePicked(let imageData):
+            self.removeAddPhotoButton()
+            self.setupSketchView(with: imageData)
+        }
     }
 }

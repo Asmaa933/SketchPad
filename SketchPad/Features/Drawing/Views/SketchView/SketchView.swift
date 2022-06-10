@@ -23,4 +23,8 @@ class SketchView: UIView {
         loadNibView()
     }
     
+    func setImage(imageData: Data) {
+        drawingArea.selectedImageData = imageData
+    }
+    
 }
