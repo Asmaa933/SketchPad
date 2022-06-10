@@ -15,6 +15,12 @@ class DrawingViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    private lazy var sketchView: SketchView = {
+        let view = SketchView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +36,7 @@ fileprivate extension DrawingViewController {
     }
     
     func setupAddPhotoButton() {
+        view.backgroundColor = .color(for: .backgroundColor)
         view.addSubview(addPhotoButton)
         NSLayoutConstraint.activate([addPhotoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                                      addPhotoButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
@@ -48,5 +55,18 @@ fileprivate extension DrawingViewController {
     
     func removeAddPhotoButton() {
         addPhotoButton.removeFromSuperview()
+    }
+    
+    func setupSketchView() {
+        view.backgroundColor = .color(for: .sketchBarColor)
+        view.addSubview(sketchView)
+        NSLayoutConstraint.activate([sketchView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                                     sketchView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                                     sketchView.topAnchor.constraint(equalTo: view.topAnchor),
+                                     sketchView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
+    }
+    
+    func removeSketchView() {
+        sketchView.removeFromSuperview()
     }
 }

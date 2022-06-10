@@ -11,12 +11,13 @@ enum AppImage: String {
     case logo
     case drawing = "scribble"
     case history = "paintpalette.fill"
+    case colorPicker
 }
 
 extension AppImage {
     var isSystemImage: Bool {
         switch self {
-        case .logo:
+        case .logo, .colorPicker:
             return false
         default:
             return true

@@ -11,6 +11,7 @@ enum AppColor: String {
     case backgroundColor
     case tintColor
     case tabbarBackgroundColor
+    case sketchBarColor
 }
 
 
