@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		998B026D2852CDF900D58A8F /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B026C2852CDF900D58A8F /* UIViewExtension.swift */; };
+		998B02702852D00800D58A8F /* TitleConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B026F2852D00800D58A8F /* TitleConstant.swift */; };
 		99A71CA328526B860060C1DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CA228526B860060C1DA /* AppDelegate.swift */; };
 		99A71CA528526B860060C1DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CA428526B860060C1DA /* SceneDelegate.swift */; };
 		99A71CA728526B870060C1DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CA628526B860060C1DA /* ViewController.swift */; };
@@ -48,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		998B026C2852CDF900D58A8F /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		998B026F2852D00800D58A8F /* TitleConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleConstant.swift; sourceTree = "<group>"; };
 		99A71C9F28526B860060C1DA /* SketchPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SketchPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99A71CA228526B860060C1DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99A71CA428526B860060C1DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +100,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		998B026E2852CFF800D58A8F /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				998B026F2852D00800D58A8F /* TitleConstant.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		99A71C9628526B860060C1DA = {
 			isa = PBXGroup;
 			children = (
@@ -242,6 +252,7 @@
 		99A71CF62852B7350060C1DA /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				998B026E2852CFF800D58A8F /* Constants */,
 				99A71D002852CD8C0060C1DA /* Extension */,
 				99A71CF72852B7520060C1DA /* SharedProtocols */,
 			);
@@ -399,6 +410,7 @@
 			files = (
 				99A71CA728526B870060C1DA /* ViewController.swift in Sources */,
 				99A71CE82852ADDB0060C1DA /* DrawingViewController.swift in Sources */,
+				998B02702852D00800D58A8F /* TitleConstant.swift in Sources */,
 				99A71CF92852B7640060C1DA /* Coordinator.swift in Sources */,
 				99A71CA328526B860060C1DA /* AppDelegate.swift in Sources */,
 				99A71CF12852AF0C0060C1DA /* AppColor.swift in Sources */,
