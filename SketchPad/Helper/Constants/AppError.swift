@@ -7,6 +7,7 @@
 
 import Foundation
 
-enum AppError: Error {
-    case photoPermissionDenied
+enum AppError: String, Error {
+    case photoPermissionDenied = "Permission Denied, please allow it from it"
+
 }
