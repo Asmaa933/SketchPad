@@ -43,16 +43,12 @@ class DrawingViewController: UIViewController {
 fileprivate extension DrawingViewController {
     
     func handleViewDidLoad() {
-        setupAddPhotoButton()
         bindToViewModel()
+        setupAddPhotoButton()
     }
     
     func bindToViewModel() {
-        viewModel.imageDidPicked = {[weak self] imageData in
-            guard let self = self else { return }
-            self.removeAddPhotoButton()
-            self.setupSketchView(with: imageData)
-        }
+        viewModel.statePresenter = self
     }
 }
 
@@ -97,5 +93,15 @@ fileprivate extension DrawingViewController {
     
     func removeSketchView() {
         sketchView.removeFromSuperview()
+    }
+}
+
+extension DrawingViewController: DrawingStatePresentable {
+    func render(state: DrawingState) {
+        switch state {
+        case .imagePicked(let imageData):
+            self.removeAddPhotoButton()
+            self.setupSketchView(with: imageData)
+        }
     }
 }

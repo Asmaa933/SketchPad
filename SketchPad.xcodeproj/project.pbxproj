@@ -20,6 +20,7 @@
 		998B028E28537A4700D58A8F /* DrawingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B028D28537A4700D58A8F /* DrawingCoordinator.swift */; };
 		998B0291285393BC00D58A8F /* PhotoLibraryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B0290285393BC00D58A8F /* PhotoLibraryManager.swift */; };
 		998B02932853943900D58A8F /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B02922853943900D58A8F /* AppError.swift */; };
+		998B029828539C3B00D58A8F /* DrawingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B029728539C3B00D58A8F /* DrawingState.swift */; };
 		99A71CA328526B860060C1DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CA228526B860060C1DA /* AppDelegate.swift */; };
 		99A71CA528526B860060C1DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CA428526B860060C1DA /* SceneDelegate.swift */; };
 		99A71CA728526B870060C1DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CA628526B860060C1DA /* ViewController.swift */; };
@@ -72,6 +73,7 @@
 		998B028D28537A4700D58A8F /* DrawingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingCoordinator.swift; sourceTree = "<group>"; };
 		998B0290285393BC00D58A8F /* PhotoLibraryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibraryManager.swift; sourceTree = "<group>"; };
 		998B02922853943900D58A8F /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		998B029728539C3B00D58A8F /* DrawingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingState.swift; sourceTree = "<group>"; };
 		99A71C9F28526B860060C1DA /* SketchPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SketchPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99A71CA228526B860060C1DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99A71CA428526B860060C1DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -201,6 +203,14 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		998B029628539C1A00D58A8F /* State */ = {
+			isa = PBXGroup;
+			children = (
+				998B029728539C3B00D58A8F /* DrawingState.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
 		99A71C9628526B860060C1DA = {
 			isa = PBXGroup;
 			children = (
@@ -327,6 +337,7 @@
 		99A71CE42852ADB00060C1DA /* Drawing */ = {
 			isa = PBXGroup;
 			children = (
+				998B029628539C1A00D58A8F /* State */,
 				998B028A285378BD00D58A8F /* Coordinator */,
 				998B02712852DFD200D58A8F /* Views */,
 				99A71CFC2852CC150060C1DA /* ViewController */,
@@ -543,6 +554,7 @@
 				998B026D2852CDF900D58A8F /* UIViewExtension.swift in Sources */,
 				998B02732852E06600D58A8F /* DrawingTopBar.swift in Sources */,
 				99A71CFB2852C0790060C1DA /* AppCoordinator.swift in Sources */,
+				998B029828539C3B00D58A8F /* DrawingState.swift in Sources */,
 				99A71CFF2852CC7C0060C1DA /* FilledButton.swift in Sources */,
 				99A71CA528526B860060C1DA /* SceneDelegate.swift in Sources */,
 			);

@@ -8,21 +8,20 @@
 import Foundation
 
 protocol DrawingViewModelProtocol {
+    var statePresenter: DrawingStatePresentable? { get set }
     func getImage()
-    var imageDidPicked: ((Data) -> Void)? { get set }
 
 }
 
 class DrawingViewModel {
     
     private var coordinator: DrawingCoordinatorProtocol
+    var statePresenter: DrawingStatePresentable?
     var imageDidPicked: ((Data) -> Void)?
     
     init(coordinator: DrawingCoordinatorProtocol) {
         self.coordinator = coordinator
     }
-    
-    
 }
 
 fileprivate extension DrawingViewModel {
@@ -30,7 +29,7 @@ fileprivate extension DrawingViewModel {
     func getImageFromCoordinator() {
         coordinator.imageDidPicked = {[weak self] imageData in
             guard let self = self else { return }
-            self.imageDidPicked?(imageData)
+            self.statePresenter?.render(state: .imagePicked(imageData: imageData))
         }
         coordinator.showImagePicker()
     }
