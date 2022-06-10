@@ -234,8 +234,7 @@
 		99A71CE42852ADB00060C1DA /* Drawing */ = {
 			isa = PBXGroup;
 			children = (
-				99A71CE62852ADDB0060C1DA /* DrawingViewController.swift */,
-				99A71CE72852ADDB0060C1DA /* DrawingViewController.xib */,
+				99A71CFC2852CC150060C1DA /* ViewController */,
 			);
 			path = Drawing;
 			sourceTree = "<group>";
@@ -252,6 +251,7 @@
 		99A71CF62852B7350060C1DA /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				99A71CFD2852CC400060C1DA /* CustomViews */,
 				998B026E2852CFF800D58A8F /* Constants */,
 				99A71D002852CD8C0060C1DA /* Extension */,
 				99A71CF72852B7520060C1DA /* SharedProtocols */,
@@ -265,6 +265,15 @@
 				99A71CF82852B7630060C1DA /* Coordinator.swift */,
 			);
 			path = SharedProtocols;
+			sourceTree = "<group>";
+		};
+		99A71CFC2852CC150060C1DA /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				99A71CE62852ADDB0060C1DA /* DrawingViewController.swift */,
+				99A71CE72852ADDB0060C1DA /* DrawingViewController.xib */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		99A71D002852CD8C0060C1DA /* Extension */ = {
