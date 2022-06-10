@@ -21,7 +21,18 @@ class DrawingViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-
+    
+    private var viewModel: DrawingViewModelProtocol
+    
+    init(viewModel: DrawingViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         handleViewDidLoad()
@@ -33,7 +44,16 @@ fileprivate extension DrawingViewController {
     
     func handleViewDidLoad() {
         setupAddPhotoButton()
+        bindToViewModel()
     }
+    
+    func bindToViewModel() {
+        viewModel.imageDidPicked = {[weak self] imageData in
+            guard let self = self else { return }
+        }
+    }
+}
+
 //MARK: - AddPhotoButton Helper Methods
 
 fileprivate extension DrawingViewController {
@@ -64,7 +84,7 @@ fileprivate extension DrawingViewController {
 //MARK: - SketchView Helper Methods
 fileprivate extension DrawingViewController {
     
-    func setupSketchView() {
+    func setupSketchView(with imageData: Data) {
         view.backgroundColor = .color(for: .sketchBarColor)
         view.addSubview(sketchView)
         NSLayoutConstraint.activate([sketchView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
