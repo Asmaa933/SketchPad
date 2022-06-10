@@ -19,7 +19,6 @@
 		99A71CC628526B8A0060C1DA /* SketchPadUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CC528526B8A0060C1DA /* SketchPadUITestsLaunchTests.swift */; };
 		99A71CDA28526F2F0060C1DA /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99A71CD928526F2F0060C1DA /* Colors.xcassets */; };
 		99A71CE82852ADDB0060C1DA /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CE62852ADDB0060C1DA /* DrawingViewController.swift */; };
-		99A71CE92852ADDB0060C1DA /* DrawingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99A71CE72852ADDB0060C1DA /* DrawingViewController.xib */; };
 		99A71CEC2852ADF70060C1DA /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CEA2852ADF70060C1DA /* HistoryViewController.swift */; };
 		99A71CED2852ADF70060C1DA /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99A71CEB2852ADF70060C1DA /* HistoryViewController.xib */; };
 		99A71CEF2852AE4A0060C1DA /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CEE2852AE4A0060C1DA /* TabBarCoordinator.swift */; };
@@ -65,7 +64,6 @@
 		99A71CC528526B8A0060C1DA /* SketchPadUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchPadUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		99A71CD928526F2F0060C1DA /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		99A71CE62852ADDB0060C1DA /* DrawingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
-		99A71CE72852ADDB0060C1DA /* DrawingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DrawingViewController.xib; sourceTree = "<group>"; };
 		99A71CEA2852ADF70060C1DA /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		99A71CEB2852ADF70060C1DA /* HistoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
 		99A71CEE2852AE4A0060C1DA /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
@@ -273,7 +271,6 @@
 			isa = PBXGroup;
 			children = (
 				99A71CE62852ADDB0060C1DA /* DrawingViewController.swift */,
-				99A71CE72852ADDB0060C1DA /* DrawingViewController.xib */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -399,7 +396,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				99A71CDA28526F2F0060C1DA /* Colors.xcassets in Resources */,
-				99A71CE92852ADDB0060C1DA /* DrawingViewController.xib in Resources */,
 				99A71CAF28526B8A0060C1DA /* LaunchScreen.storyboard in Resources */,
 				99A71CED2852ADF70060C1DA /* HistoryViewController.xib in Resources */,
 				99A71CAC28526B8A0060C1DA /* Assets.xcassets in Resources */,
