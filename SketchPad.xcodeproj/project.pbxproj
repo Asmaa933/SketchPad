@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		993170892853EDEE00573750 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993170882853EDEE00573750 /* UITableViewExtension.swift */; };
 		9931708D2853EE8200573750 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9931708B2853EE8200573750 /* HistoryTableViewCell.swift */; };
 		9931708E2853EE8200573750 /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9931708C2853EE8200573750 /* HistoryTableViewCell.xib */; };
 		99527A562853C82A005609F4 /* HistoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99527A552853C82A005609F4 /* HistoryCoordinator.swift */; };
@@ -72,6 +73,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		993170882853EDEE00573750 /* UITableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		9931708B2853EE8200573750 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		9931708C2853EE8200573750 /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
 		99527A552853C82A005609F4 /* HistoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCoordinator.swift; sourceTree = "<group>"; };
@@ -527,6 +529,7 @@
 			children = (
 				998B026C2852CDF900D58A8F /* UIViewExtension.swift */,
 				998B029928539EC700D58A8F /* UINavigationControllerExtension.swift */,
+				993170882853EDEE00573750 /* UITableViewExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -688,6 +691,7 @@
 				998B028E28537A4700D58A8F /* DrawingCoordinator.swift in Sources */,
 				99A71CF32852AFE30060C1DA /* AppImage.swift in Sources */,
 				998B0288285370D100D58A8F /* DrawingArea.swift in Sources */,
+				993170892853EDEE00573750 /* UITableViewExtension.swift in Sources */,
 				99A71CEF2852AE4A0060C1DA /* TabBarCoordinator.swift in Sources */,
 				998B026D2852CDF900D58A8F /* UIViewExtension.swift in Sources */,
 				998B02732852E06600D58A8F /* DrawingTopBar.swift in Sources */,
