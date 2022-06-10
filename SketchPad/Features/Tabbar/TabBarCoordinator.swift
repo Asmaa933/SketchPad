@@ -24,19 +24,22 @@ class TabBarCoordinator {
 
 fileprivate extension TabBarCoordinator {
     func getTabBarTab(_ tab: Tab) -> UINavigationController {
-        let rootViewController = viewController(for: tab)
-        let navigationController = UINavigationController(rootViewController: rootViewController)
+        let navigationController = UINavigationController()
+        let rootViewController = viewController(for: tab,with: navigationController)
+        navigationController.viewControllers = [rootViewController]
         navigationController.isNavigationBarHidden = true
         navigationController.tabBarItem.title = tab.tabTitle
         navigationController.tabBarItem.image = UIImage.getImage(from: tab.imageName).withRenderingMode(.alwaysTemplate)
         return navigationController
      }
      
-    func viewController(for tab: Tab) -> UIViewController {
+    func viewController(for tab: Tab, with navigationController: UINavigationController) -> UIViewController {
          var viewController = UIViewController()
         switch tab {
         case .drawing:
-            viewController = DrawingViewController()
+            let coordinator = DrawingCoordinator(navigationController: navigationController)
+            let viewModel = DrawingViewModel(coordinator: coordinator)
+            viewController = DrawingViewController(viewModel: viewModel)
         case .history:
             viewController = HistoryViewController()
         }
