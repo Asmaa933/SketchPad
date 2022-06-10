@@ -15,11 +15,9 @@ protocol TabBarCoordinatorProtocol: Coordinator {
 
 class TabBarCoordinator {
    
-    var navigationController: UINavigationController
     var tabBarController: UITabBarController
     
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+    init() {
         tabBarController = UITabBarController()
     }
 }
