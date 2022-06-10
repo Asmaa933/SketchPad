@@ -8,8 +8,9 @@
 import UIKit
 
 protocol DrawingCoordinatorProtocol {
-    func showImagePicker()
     var imageDidPicked: ((Data) -> Void)? { get set }
+    func showImagePicker()
+    func showPermissionDeniedAlert(error: AppError)
 }
 
 class DrawingCoordinator: NSObject {
@@ -22,14 +23,31 @@ class DrawingCoordinator: NSObject {
     }
 }
 
+fileprivate extension DrawingCoordinator {
+    func openSettings() {
+        guard let settingsURL = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(settingsURL) else { return }
+        UIApplication.shared.open(settingsURL)
+    }
+}
+
 extension DrawingCoordinator: DrawingCoordinatorProtocol {
-    
+
     func showImagePicker() {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         imagePickerController.sourceType = .photoLibrary
         imagePickerController.allowsEditing = true
         navigationController.present(imagePickerController, animated: true)
+    }
+    
+    func showPermissionDeniedAlert(error: AppError) {
+        let settingsAction = UIAlertAction(title: TitleConstant.openSettings.rawValue, style: .destructive) {[weak self] _ in
+            guard let self = self else { return }
+            self.openSettings()
+        }
+        let okAlert = UIAlertAction(title: TitleConstant.ok.rawValue, style: .default)
+        navigationController.showAlert(error: error,
+                                       actions: [okAlert,settingsAction])
     }
    
 }
