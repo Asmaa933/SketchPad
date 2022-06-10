@@ -13,6 +13,18 @@ protocol PreviewViewModelProtocol {
 
 class PreviewViewModel {
     
+    private var coordinator: PreviewCoordinatorProtocol
+    private var canEdit: Bool
+    private var imageData: Data
+    
+    init(coordinator: PreviewCoordinatorProtocol,
+         canEdit: Bool,
+         imageData: Data) {
+        self.coordinator = coordinator
+        self.canEdit = canEdit
+        self.imageData = imageData
+    }
+    
 }
 
 extension PreviewViewModel: PreviewViewModelProtocol {
