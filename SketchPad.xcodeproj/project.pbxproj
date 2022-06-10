@@ -25,6 +25,7 @@
 		99A71CF32852AFE30060C1DA /* AppImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CF22852AFE30060C1DA /* AppImage.swift */; };
 		99A71CF52852B4470060C1DA /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CF42852B4470060C1DA /* Tab.swift */; };
 		99A71CF92852B7640060C1DA /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CF82852B7630060C1DA /* Coordinator.swift */; };
+		99A71CFB2852C0790060C1DA /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CFA2852C0790060C1DA /* AppCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		99A71CF22852AFE30060C1DA /* AppImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppImage.swift; sourceTree = "<group>"; };
 		99A71CF42852B4470060C1DA /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		99A71CF82852B7630060C1DA /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		99A71CFA2852C0790060C1DA /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,9 +119,9 @@
 		99A71CA128526B860060C1DA /* SketchPad */ = {
 			isa = PBXGroup;
 			children = (
-				99A71CF62852B7350060C1DA /* Helper */,
 				99A71CD228526E600060C1DA /* Delegates */,
 				99A71CD428526EC30060C1DA /* Features */,
+				99A71CF62852B7350060C1DA /* Helper */,
 				99A71CD328526EB30060C1DA /* SupportingFiles */,
 			);
 			path = SketchPad;
@@ -147,6 +149,7 @@
 			children = (
 				99A71CA228526B860060C1DA /* AppDelegate.swift */,
 				99A71CA428526B860060C1DA /* SceneDelegate.swift */,
+				99A71CFA2852C0790060C1DA /* AppCoordinator.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				99A71CF52852B4470060C1DA /* Tab.swift in Sources */,
 				99A71CF32852AFE30060C1DA /* AppImage.swift in Sources */,
 				99A71CEF2852AE4A0060C1DA /* TabBarCoordinator.swift in Sources */,
+				99A71CFB2852C0790060C1DA /* AppCoordinator.swift in Sources */,
 				99A71CA528526B860060C1DA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -567,7 +571,6 @@
 				INFOPLIST_KEY_CFBundleDisplayName = SketchPad;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
@@ -598,7 +601,6 @@
 				INFOPLIST_KEY_CFBundleDisplayName = SketchPad;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
