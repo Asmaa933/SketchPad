@@ -39,5 +39,10 @@ extension DrawingCoordinator: UIImagePickerControllerDelegate, UINavigationContr
         guard let editedImage = info[.editedImage] as? UIImage,
               let imageData = editedImage.pngData() else { return }
         imageDidPicked?(imageData)
+        navigationController.dismiss(animated: true)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        navigationController.dismiss(animated: true)
     }
 }
