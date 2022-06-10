@@ -40,10 +40,16 @@ fileprivate extension PreviewViewController {
     
     func addPreviewView() {
         view.addSubview(previewSketchView)
+        previewSketchView.delegate = self
         previewSketchView.setImage(with: viewModel.imageData)
         NSLayoutConstraint.activate([previewSketchView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                                      previewSketchView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                                      previewSketchView.topAnchor.constraint(equalTo: view.topAnchor),
                                      previewSketchView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
+    }
+}
+
+extension PreviewViewController: PreviewSketchViewDelegate {
+    func topBarButtonTapped(_ button: PreviewTopBarButton) {
     }
 }

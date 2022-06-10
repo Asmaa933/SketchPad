@@ -7,7 +7,7 @@
 
 import UIKit
 
-fileprivate enum PreviewTopBarButton {
+enum PreviewTopBarButton {
     case back
     case save
     case rotateLeft
@@ -16,6 +16,8 @@ fileprivate enum PreviewTopBarButton {
 
 class PreviewTopBar: UIView {
     
+    var topBarButtonTapped: ((PreviewTopBarButton) -> Void)?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadNibView()
@@ -27,8 +29,8 @@ class PreviewTopBar: UIView {
     }
 
     @IBAction private func backAction(_ sender: UIButton) {
+        topBarButtonTapped?(.back)
     }
-    
     
     @IBAction private func saveAction(_ sender: UIButton) {
     }
