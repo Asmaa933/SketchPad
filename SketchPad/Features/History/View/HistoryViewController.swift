@@ -11,7 +11,7 @@ class HistoryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = .cyan
     }
     
     private var viewModel: HistoryViewModelProtocol
