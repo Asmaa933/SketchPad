@@ -9,8 +9,6 @@ import UIKit
 
 class PreviewViewController: UIViewController {
 
-    @IBOutlet private weak var topBar: PreviewTopBar!
-    @IBOutlet private weak var previewImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
