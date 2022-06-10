@@ -1,5 +1,5 @@
 //
-//  DrawingActionsView.swift
+//  DrawingTopBar.swift
 //  SketchPad
 //
 //  Created by Asmaa Tarek on 10/06/2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-fileprivate enum SketchActionButton {
+fileprivate enum TopBarButton {
     case close
     case undo
     case redo
@@ -15,7 +15,7 @@ fileprivate enum SketchActionButton {
     case done
 }
 
-class DrawingActionsView: UIView {
+class DrawingTopBar: UIView {
     
     @IBOutlet private weak var closeButton: UIButton!
     @IBOutlet private weak var undoButton: UIButton!

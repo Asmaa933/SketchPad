@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		998B026D2852CDF900D58A8F /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B026C2852CDF900D58A8F /* UIViewExtension.swift */; };
 		998B02702852D00800D58A8F /* TitleConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B026F2852D00800D58A8F /* TitleConstant.swift */; };
-		998B02732852E06600D58A8F /* DrawingActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B02722852E06600D58A8F /* DrawingActionsView.swift */; };
-		998B02752852E08200D58A8F /* DrawingActionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 998B02742852E08200D58A8F /* DrawingActionsView.xib */; };
+		998B02732852E06600D58A8F /* DrawingTopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B02722852E06600D58A8F /* DrawingTopBar.swift */; };
+		998B02752852E08200D58A8F /* DrawingTopBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 998B02742852E08200D58A8F /* DrawingTopBar.xib */; };
 		998B027828535CE700D58A8F /* SketchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 998B027728535CE700D58A8F /* SketchView.xib */; };
 		998B027A28535E0900D58A8F /* SketchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B027928535E0900D58A8F /* SketchView.swift */; };
 		99A71CA328526B860060C1DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CA228526B860060C1DA /* AppDelegate.swift */; };
@@ -54,8 +54,8 @@
 /* Begin PBXFileReference section */
 		998B026C2852CDF900D58A8F /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		998B026F2852D00800D58A8F /* TitleConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleConstant.swift; sourceTree = "<group>"; };
-		998B02722852E06600D58A8F /* DrawingActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingActionsView.swift; sourceTree = "<group>"; };
-		998B02742852E08200D58A8F /* DrawingActionsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DrawingActionsView.xib; sourceTree = "<group>"; };
+		998B02722852E06600D58A8F /* DrawingTopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingTopBar.swift; sourceTree = "<group>"; };
+		998B02742852E08200D58A8F /* DrawingTopBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DrawingTopBar.xib; sourceTree = "<group>"; };
 		998B027728535CE700D58A8F /* SketchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SketchView.xib; sourceTree = "<group>"; };
 		998B027928535E0900D58A8F /* SketchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchView.swift; sourceTree = "<group>"; };
 		99A71C9F28526B860060C1DA /* SketchPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SketchPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,7 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				998B027628535CC700D58A8F /* SketchView */,
-				998B027B28535EC400D58A8F /* DrawingActionsView */,
+				998B027B28535EC400D58A8F /* DrawingTopBar */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -134,13 +134,13 @@
 			path = SketchView;
 			sourceTree = "<group>";
 		};
-		998B027B28535EC400D58A8F /* DrawingActionsView */ = {
+		998B027B28535EC400D58A8F /* DrawingTopBar */ = {
 			isa = PBXGroup;
 			children = (
-				998B02722852E06600D58A8F /* DrawingActionsView.swift */,
-				998B02742852E08200D58A8F /* DrawingActionsView.xib */,
+				998B02722852E06600D58A8F /* DrawingTopBar.swift */,
+				998B02742852E08200D58A8F /* DrawingTopBar.xib */,
 			);
-			path = DrawingActionsView;
+			path = DrawingTopBar;
 			sourceTree = "<group>";
 		};
 		99A71C9628526B860060C1DA = {
@@ -433,7 +433,7 @@
 			files = (
 				99A71CDA28526F2F0060C1DA /* Colors.xcassets in Resources */,
 				99A71CAF28526B8A0060C1DA /* LaunchScreen.storyboard in Resources */,
-				998B02752852E08200D58A8F /* DrawingActionsView.xib in Resources */,
+				998B02752852E08200D58A8F /* DrawingTopBar.xib in Resources */,
 				998B027828535CE700D58A8F /* SketchView.xib in Resources */,
 				99A71CED2852ADF70060C1DA /* HistoryViewController.xib in Resources */,
 				99A71CAC28526B8A0060C1DA /* Assets.xcassets in Resources */,
@@ -473,7 +473,7 @@
 				99A71CF32852AFE30060C1DA /* AppImage.swift in Sources */,
 				99A71CEF2852AE4A0060C1DA /* TabBarCoordinator.swift in Sources */,
 				998B026D2852CDF900D58A8F /* UIViewExtension.swift in Sources */,
-				998B02732852E06600D58A8F /* DrawingActionsView.swift in Sources */,
+				998B02732852E06600D58A8F /* DrawingTopBar.swift in Sources */,
 				99A71CFB2852C0790060C1DA /* AppCoordinator.swift in Sources */,
 				99A71CFF2852CC7C0060C1DA /* FilledButton.swift in Sources */,
 				99A71CA528526B860060C1DA /* SceneDelegate.swift in Sources */,
