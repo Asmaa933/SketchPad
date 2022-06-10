@@ -34,6 +34,9 @@ fileprivate extension DrawingViewController {
     func handleViewDidLoad() {
         setupAddPhotoButton()
     }
+//MARK: - AddPhotoButton Helper Methods
+
+fileprivate extension DrawingViewController {
     
     func setupAddPhotoButton() {
         view.backgroundColor = .color(for: .backgroundColor)
@@ -56,6 +59,10 @@ fileprivate extension DrawingViewController {
     func removeAddPhotoButton() {
         addPhotoButton.removeFromSuperview()
     }
+}
+
+//MARK: - SketchView Helper Methods
+fileprivate extension DrawingViewController {
     
     func setupSketchView() {
         view.backgroundColor = .color(for: .sketchBarColor)
