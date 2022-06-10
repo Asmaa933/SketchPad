@@ -28,5 +28,10 @@ class DrawingViewModel {
 extension DrawingViewModel: DrawingViewModelProtocol {
     
     func getImage() {
+        coordinator.imageDidPicked = {[weak self] imageData in
+            guard let self = self else { return }
+            self.imageDidPicked?(imageData)
+        }
+        coordinator.showImagePicker()
     }
 }

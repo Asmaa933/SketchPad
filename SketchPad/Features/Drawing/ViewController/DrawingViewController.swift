@@ -71,9 +71,8 @@ fileprivate extension DrawingViewController {
         }
     }
     
-    #warning("get Image with coordinator")
     func handleButtonTapped() {
-        debugPrint("add button tapped")
+        viewModel.getImage()
     }
     
     func removeAddPhotoButton() {
