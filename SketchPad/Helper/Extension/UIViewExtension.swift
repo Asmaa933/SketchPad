@@ -26,4 +26,16 @@ extension UIView {
         layer.masksToBounds = false
         clipsToBounds = true
     }
+    
+    func loadNibView() {
+        let name = String(describing: type(of: self))
+        let bundle = Bundle(for: type(of: self))
+        let nib = UINib(nibName: name, bundle: bundle)
+        if let nibView = nib.instantiate(withOwner: self, options: nil).first as? UIView {
+            nibView.frame = bounds
+            nibView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            nibView.translatesAutoresizingMaskIntoConstraints = true
+            addSubview(nibView)
+        }
+    }
 }
