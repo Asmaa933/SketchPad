@@ -50,6 +50,8 @@ fileprivate extension DrawingViewController {
     func bindToViewModel() {
         viewModel.imageDidPicked = {[weak self] imageData in
             guard let self = self else { return }
+            self.removeAddPhotoButton()
+            self.setupSketchView(with: imageData)
         }
     }
 }
@@ -85,6 +87,7 @@ fileprivate extension DrawingViewController {
     
     func setupSketchView(with imageData: Data) {
         view.backgroundColor = .color(for: .sketchBarColor)
+        sketchView.setImage(imageData: imageData)
         view.addSubview(sketchView)
         NSLayoutConstraint.activate([sketchView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                                      sketchView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
