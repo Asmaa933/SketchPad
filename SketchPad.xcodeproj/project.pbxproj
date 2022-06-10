@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9931708D2853EE8200573750 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9931708B2853EE8200573750 /* HistoryTableViewCell.swift */; };
+		9931708E2853EE8200573750 /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9931708C2853EE8200573750 /* HistoryTableViewCell.xib */; };
 		99527A562853C82A005609F4 /* HistoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99527A552853C82A005609F4 /* HistoryCoordinator.swift */; };
 		99527A592853E099005609F4 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99527A582853E099005609F4 /* HistoryViewModel.swift */; };
 		99527A5C2853E9BE005609F4 /* SketchHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99527A5B2853E9BD005609F4 /* SketchHistoryView.swift */; };
@@ -70,6 +72,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9931708B2853EE8200573750 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
+		9931708C2853EE8200573750 /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
 		99527A552853C82A005609F4 /* HistoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCoordinator.swift; sourceTree = "<group>"; };
 		99527A582853E099005609F4 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		99527A5B2853E9BD005609F4 /* SketchHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchHistoryView.swift; sourceTree = "<group>"; };
@@ -144,6 +148,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9931708A2853EE6900573750 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				9931708B2853EE8200573750 /* HistoryTableViewCell.swift */,
+				9931708C2853EE8200573750 /* HistoryTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		99527A532853C7D7005609F4 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +184,7 @@
 		99527A5A2853E80B005609F4 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
+				9931708A2853EE6900573750 /* Cell */,
 				99527A5B2853E9BD005609F4 /* SketchHistoryView.swift */,
 				99527A5D2853EA04005609F4 /* SketchHistoryView.xib */,
 			);
@@ -627,6 +641,7 @@
 				998B02752852E08200D58A8F /* DrawingTopBar.xib in Resources */,
 				998B027828535CE700D58A8F /* SketchView.xib in Resources */,
 				998B02A72853A8B300D58A8F /* PreviewTopBar.xib in Resources */,
+				9931708E2853EE8200573750 /* HistoryTableViewCell.xib in Resources */,
 				998B02B32853B08D00D58A8F /* PreviewSketchView.xib in Resources */,
 				998B028528536D0900D58A8F /* DrawingBottomBar.xib in Resources */,
 				99A71CAC28526B8A0060C1DA /* Assets.xcassets in Resources */,
@@ -683,6 +698,7 @@
 				99527A592853E099005609F4 /* HistoryViewModel.swift in Sources */,
 				99A71CA528526B860060C1DA /* SceneDelegate.swift in Sources */,
 				99527A562853C82A005609F4 /* HistoryCoordinator.swift in Sources */,
+				9931708D2853EE8200573750 /* HistoryTableViewCell.swift in Sources */,
 				998B029A28539EC700D58A8F /* UINavigationControllerExtension.swift in Sources */,
 				998B02AA2853A8D300D58A8F /* PreviewViewController.swift in Sources */,
 			);

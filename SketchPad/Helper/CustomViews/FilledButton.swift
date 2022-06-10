@@ -38,6 +38,7 @@ fileprivate extension FilledButton {
         backgroundColor = UIColor.color(for: .tintColor)
         titleLabel?.font = .systemFont(ofSize: 15, weight: .semibold)
         cornerRadius = 8
+        clipsToBounds = true
         addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
     }
     
