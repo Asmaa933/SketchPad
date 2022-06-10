@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yll-ih-GfS" customClass="DrawingToolbar" customModule="SketchPad" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yll-ih-GfS" customClass="DrawingBottomBar" customModule="SketchPad" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="520" width="320" height="48"/>
                     <color key="backgroundColor" systemColor="systemTealColor"/>
                 </view>
