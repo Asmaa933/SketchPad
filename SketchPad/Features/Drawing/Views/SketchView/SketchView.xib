@@ -19,7 +19,7 @@
                     <rect key="frame" x="0.0" y="520" width="320" height="48"/>
                     <color key="backgroundColor" systemColor="systemTealColor"/>
                 </view>
-                <view contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="48" translatesAutoresizingMaskIntoConstraints="NO" id="vLW-cJ-F1z">
+                <view contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="48" translatesAutoresizingMaskIntoConstraints="NO" id="vLW-cJ-F1z" customClass="DrawingActionsView" customModule="SketchPad" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="48"/>
                     <color key="backgroundColor" systemColor="systemTealColor"/>
                 </view>
