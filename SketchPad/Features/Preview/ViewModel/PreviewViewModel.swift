@@ -8,14 +8,14 @@
 import Foundation
 
 protocol PreviewViewModelProtocol {
-    
+    var imageData: Data { get }
 }
 
 class PreviewViewModel {
     
     private var coordinator: PreviewCoordinatorProtocol
     private var canEdit: Bool
-    private var imageData: Data
+    private(set) var imageData: Data
     
     init(coordinator: PreviewCoordinatorProtocol,
          canEdit: Bool,

@@ -46,6 +46,7 @@ fileprivate extension SketchView {
     func setupTopBarCallBack() {
         topBar.topBarButtonTapped = {[weak self] button in
             guard let self = self else { return }
+            self.delegate?.topBarButtonTapped(button)
         }
     }
 }

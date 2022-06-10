@@ -109,6 +109,6 @@ extension DrawingViewController: DrawingStatePresentable {
 
 extension DrawingViewController: SketchViewDelegate {
     func topBarButtonTapped(_ button: DrawingTopBarButton) {
-        
+        viewModel.topBarButtonTapped(button)
     }
 }

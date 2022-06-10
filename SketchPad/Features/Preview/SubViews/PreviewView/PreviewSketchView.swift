@@ -21,4 +21,8 @@ class PreviewSketchView: UIView {
         super.init(coder: coder)
         loadNibView()
     }
+    
+    func setImage(with imageData: Data) {
+        previewImageView.image = UIImage(data: imageData)
+    }
 }

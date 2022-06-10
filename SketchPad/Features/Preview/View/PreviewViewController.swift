@@ -40,6 +40,7 @@ fileprivate extension PreviewViewController {
     
     func addPreviewView() {
         view.addSubview(previewSketchView)
+        previewSketchView.setImage(with: viewModel.imageData)
         NSLayoutConstraint.activate([previewSketchView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                                      previewSketchView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                                      previewSketchView.topAnchor.constraint(equalTo: view.topAnchor),
