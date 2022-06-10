@@ -84,6 +84,7 @@ fileprivate extension DrawingViewController {
     func setupSketchView(with imageData: Data) {
         view.backgroundColor = .color(for: .sketchBarColor)
         sketchView.setImage(imageData: imageData)
+        sketchView.delegate = self
         view.addSubview(sketchView)
         NSLayoutConstraint.activate([sketchView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                                      sketchView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -103,5 +104,11 @@ extension DrawingViewController: DrawingStatePresentable {
             self.removeAddPhotoButton()
             self.setupSketchView(with: imageData)
         }
+    }
+}
+
+extension DrawingViewController: SketchViewDelegate {
+    func topBarButtonTapped(_ button: DrawingTopBarButton) {
+        viewModel.topBarButtonTapped(button)
     }
 }

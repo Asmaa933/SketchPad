@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import UIKit
 
 protocol DrawingViewModelProtocol {
     var statePresenter: DrawingStatePresentable? { get set }
     func getImage()
-
+    func topBarButtonTapped(_ button: DrawingTopBarButton)
 }
 
 class DrawingViewModel {
@@ -49,6 +50,23 @@ extension DrawingViewModel: DrawingViewModelProtocol {
                     self.coordinator.showPermissionDeniedAlert(error: error)
                 }
             }
+        }
+    }
+    
+    func topBarButtonTapped(_ button: DrawingTopBarButton) {
+        switch button {
+        case .close:
+            break
+        case .undo:
+            break
+        case .redo:
+            break
+        case .delete:
+            break
+        case .done:
+            #warning("Capture sketch image and convert to before navigate to preview")
+            guard let dummyImage = UIImage.getImage(from: .drawing).pngData() else { return }
+            coordinator.openPreviewView(with: dummyImage)
         }
     }
 }

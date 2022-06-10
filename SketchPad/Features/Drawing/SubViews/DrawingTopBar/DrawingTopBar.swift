@@ -7,7 +7,7 @@
 
 import UIKit
 
-fileprivate enum TopBarButton {
+enum DrawingTopBarButton {
     case close
     case undo
     case redo
@@ -23,6 +23,8 @@ class DrawingTopBar: UIView {
     @IBOutlet private weak var deleteButton: UIButton!
     @IBOutlet private weak var doneButton: UIButton!
     
+    var topBarButtonTapped: ((DrawingTopBarButton) -> Void)?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadNibView()
@@ -46,5 +48,6 @@ class DrawingTopBar: UIView {
     }
     
     @IBAction private func doneButtonAction(_ sender: UIButton) {
+        topBarButtonTapped?(.done)
     }
 }

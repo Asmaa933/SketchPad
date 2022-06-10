@@ -11,6 +11,7 @@ protocol DrawingCoordinatorProtocol {
     var imageDidPicked: ((Data) -> Void)? { get set }
     func showImagePicker()
     func showPermissionDeniedAlert(error: AppError)
+    func openPreviewView(with imageData: Data)
 }
 
 class DrawingCoordinator: NSObject {
@@ -48,6 +49,16 @@ extension DrawingCoordinator: DrawingCoordinatorProtocol {
         let okAlert = UIAlertAction(title: TitleConstant.ok.rawValue, style: .default)
         navigationController.showAlert(error: error,
                                        actions: [okAlert,settingsAction])
+    }
+    
+    func openPreviewView(with imageData: Data) {
+        let coordinator = PreviewCoordinator(navigationController: navigationController)
+        let viewModel = PreviewViewModel(coordinator: coordinator,
+                                         canEdit: true,
+                                         imageData: imageData)
+        let previewViewController = PreviewViewController(viewModel: viewModel)
+        navigationController.pushViewController(previewViewController,
+                                                animated: true)
     }
    
 }
