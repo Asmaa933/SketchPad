@@ -8,7 +8,7 @@
 import UIKit
 
 protocol PreviewCoordinatorProtocol {
-    
+    func popViewController()
 }
 
 class PreviewCoordinator {
@@ -22,5 +22,7 @@ class PreviewCoordinator {
 }
 
 extension PreviewCoordinator: PreviewCoordinatorProtocol {
-    
+    func popViewController() {
+        navigationController.popViewController(animated: true)
+    }
 }

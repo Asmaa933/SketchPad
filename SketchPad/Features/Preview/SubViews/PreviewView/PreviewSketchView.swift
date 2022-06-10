@@ -21,11 +21,13 @@ class PreviewSketchView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadNibView()
+        handleTopBarCallBack()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         loadNibView()
+        handleTopBarCallBack()
     }
     
     func setImage(with imageData: Data) {

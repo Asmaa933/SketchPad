@@ -9,6 +9,7 @@ import Foundation
 
 protocol PreviewViewModelProtocol {
     var imageData: Data { get }
+    func topBarButtonTapped(_ button: PreviewTopBarButton)
 }
 
 class PreviewViewModel {
@@ -28,5 +29,16 @@ class PreviewViewModel {
 }
 
 extension PreviewViewModel: PreviewViewModelProtocol {
-    
+    func topBarButtonTapped(_ button: PreviewTopBarButton) {
+        switch button {
+        case .back:
+            coordinator.popViewController()
+        case .save:
+            break
+        case .rotateLeft:
+            break
+        case .rotateRight:
+            break
+        }
+    }
 }

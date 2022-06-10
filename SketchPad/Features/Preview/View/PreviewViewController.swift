@@ -51,5 +51,6 @@ fileprivate extension PreviewViewController {
 
 extension PreviewViewController: PreviewSketchViewDelegate {
     func topBarButtonTapped(_ button: PreviewTopBarButton) {
+        viewModel.topBarButtonTapped(button)
     }
 }
