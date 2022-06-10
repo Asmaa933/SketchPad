@@ -9,13 +9,13 @@ import UIKit
 
 
 protocol TabBarCoordinatorProtocol: Coordinator {
-    var tabBarController: UITabBarController { get set }
+    var tabBarController: UITabBarController { get }
 
 }
 
 class TabBarCoordinator {
    
-    var tabBarController: UITabBarController
+    private(set) var tabBarController: UITabBarController
     
     init() {
         tabBarController = UITabBarController()
