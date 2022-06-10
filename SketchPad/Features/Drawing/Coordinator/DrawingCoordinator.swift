@@ -25,8 +25,19 @@ class DrawingCoordinator: NSObject {
 extension DrawingCoordinator: DrawingCoordinatorProtocol {
     
     func showImagePicker() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.allowsEditing = true
+        navigationController.present(imagePickerController, animated: true)
     }
    
 }
 
+extension DrawingCoordinator: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let editedImage = info[.editedImage] as? UIImage,
+              let imageData = editedImage.pngData() else { return }
+        imageDidPicked?(imageData)
+    }
 }
