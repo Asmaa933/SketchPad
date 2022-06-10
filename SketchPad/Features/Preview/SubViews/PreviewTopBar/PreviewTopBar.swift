@@ -7,14 +7,35 @@
 
 import UIKit
 
+fileprivate enum PreviewTopBarButton {
+    case back
+    case save
+    case rotateLeft
+    case rotateRight
+}
+
 class PreviewTopBar: UIView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        loadNibView()
     }
-    */
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        loadNibView()
+    }
 
+    @IBAction private func backAction(_ sender: UIButton) {
+    }
+    
+    
+    @IBAction private func saveAction(_ sender: UIButton) {
+    }
+    
+    @IBAction private func rotateLeftAction(_ sender: UIButton) {
+    }
+    
+    @IBAction private func rotateRightAction(_ sender: UIButton) {
+    }
 }

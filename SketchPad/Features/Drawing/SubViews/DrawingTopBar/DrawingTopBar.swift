@@ -7,7 +7,7 @@
 
 import UIKit
 
-fileprivate enum TopBarButton {
+fileprivate enum DrawingTopBarButton {
     case close
     case undo
     case redo
