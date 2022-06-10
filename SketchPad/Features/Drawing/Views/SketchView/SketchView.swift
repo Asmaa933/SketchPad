@@ -8,7 +8,11 @@
 import UIKit
 
 class SketchView: UIView {
-
+    
+    @IBOutlet private weak var topBar: DrawingTopBar!
+    @IBOutlet private weak var drawingArea: DrawingArea!
+    @IBOutlet private weak var bottomBar: DrawingBottomBar!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadNibView()

@@ -15,6 +15,7 @@
 		998B027A28535E0900D58A8F /* SketchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B027928535E0900D58A8F /* SketchView.swift */; };
 		998B028328536CF900D58A8F /* DrawingBottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B028228536CF800D58A8F /* DrawingBottomBar.swift */; };
 		998B028528536D0900D58A8F /* DrawingBottomBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 998B028428536D0900D58A8F /* DrawingBottomBar.xib */; };
+		998B0288285370D100D58A8F /* DrawingArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B0287285370D100D58A8F /* DrawingArea.swift */; };
 		99A71CA328526B860060C1DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CA228526B860060C1DA /* AppDelegate.swift */; };
 		99A71CA528526B860060C1DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CA428526B860060C1DA /* SceneDelegate.swift */; };
 		99A71CA728526B870060C1DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CA628526B860060C1DA /* ViewController.swift */; };
@@ -62,6 +63,7 @@
 		998B027928535E0900D58A8F /* SketchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchView.swift; sourceTree = "<group>"; };
 		998B028228536CF800D58A8F /* DrawingBottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingBottomBar.swift; sourceTree = "<group>"; };
 		998B028428536D0900D58A8F /* DrawingBottomBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DrawingBottomBar.xib; sourceTree = "<group>"; };
+		998B0287285370D100D58A8F /* DrawingArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingArea.swift; sourceTree = "<group>"; };
 		99A71C9F28526B860060C1DA /* SketchPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SketchPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99A71CA228526B860060C1DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99A71CA428526B860060C1DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 			children = (
 				998B027628535CC700D58A8F /* SketchView */,
 				998B027B28535EC400D58A8F /* DrawingTopBar */,
+				998B02862853709A00D58A8F /* DrawingArea */,
 				998B028128536CC600D58A8F /* DrawingBottomBar */,
 			);
 			path = Views;
@@ -155,6 +158,14 @@
 				998B028428536D0900D58A8F /* DrawingBottomBar.xib */,
 			);
 			path = DrawingBottomBar;
+			sourceTree = "<group>";
+		};
+		998B02862853709A00D58A8F /* DrawingArea */ = {
+			isa = PBXGroup;
+			children = (
+				998B0287285370D100D58A8F /* DrawingArea.swift */,
+			);
+			path = DrawingArea;
 			sourceTree = "<group>";
 		};
 		99A71C9628526B860060C1DA = {
@@ -487,6 +498,7 @@
 				99A71CEC2852ADF70060C1DA /* HistoryViewController.swift in Sources */,
 				99A71CF52852B4470060C1DA /* Tab.swift in Sources */,
 				99A71CF32852AFE30060C1DA /* AppImage.swift in Sources */,
+				998B0288285370D100D58A8F /* DrawingArea.swift in Sources */,
 				99A71CEF2852AE4A0060C1DA /* TabBarCoordinator.swift in Sources */,
 				998B026D2852CDF900D58A8F /* UIViewExtension.swift in Sources */,
 				998B02732852E06600D58A8F /* DrawingTopBar.swift in Sources */,
