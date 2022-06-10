@@ -44,9 +44,12 @@ fileprivate extension TabBarCoordinator {
      }
     
     func prepareTabBarController(with tabControllers: [UIViewController]) {
+        let attributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 13)]
+        UITabBarItem.appearance().setTitleTextAttributes(attributes, for: .normal)
+        UITabBar.appearance().tintColor = .color(for: .tintColor)
         tabBarController.setViewControllers(tabControllers, animated: true)
         tabBarController.tabBar.backgroundColor = UIColor.color(for: .tabbarBackgroundColor)
-        UITabBar.appearance().tintColor = .color(for: .tintColor)
+        
     }
 }
 
