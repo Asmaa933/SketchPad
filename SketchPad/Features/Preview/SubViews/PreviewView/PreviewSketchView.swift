@@ -12,4 +12,13 @@ class PreviewSketchView: UIView {
     @IBOutlet private weak var topBar: PreviewTopBar!
     @IBOutlet private weak var previewImageView: UIImageView!
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        loadNibView()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        loadNibView()
+    }
 }
