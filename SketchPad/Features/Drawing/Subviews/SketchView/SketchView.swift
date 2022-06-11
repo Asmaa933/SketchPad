@@ -10,6 +10,8 @@ import UIKit
 protocol SketchViewDelegate: AnyObject {
     func topBarButtonTapped(_ button: DrawingTopBarButton)
     func didTouch(at point: CGPoint, eventType: TouchEvent)
+    func bottomBarActionFired(_ action: BottomBarAction)
+    func doneButtonTapped(imageData: Data?)
 }
 
 class SketchView: UIView {
@@ -40,6 +42,13 @@ class SketchView: UIView {
         drawingArea.set(lines: lines)
     }
     
+    func set(color: UIColor) {
+        bottomBar.colorChanged(to: color)
+    }
+    
+    func toggleMode(isDelete: Bool) {
+        #warning("To do hide buttons ")
+    }
 }
 
 fileprivate extension SketchView {
@@ -47,11 +56,21 @@ fileprivate extension SketchView {
     func setupCallbacks() {
         setupTopBarCallback()
         setupDrawingCallback()
+        setupBottomBarCallback()
     }
     
     func setupTopBarCallback() {
         topBar.topBarButtonTapped = {[weak self] button in
             guard let self = self else { return }
+            self.handleTopBarButtonCallBack(button)
+        }
+    }
+    
+    func handleTopBarButtonCallBack(_ button: DrawingTopBarButton) {
+        switch button {
+        case .done:
+            self.delegate?.doneButtonTapped(imageData: drawingArea.getCurrentImageData())
+        default:
             self.delegate?.topBarButtonTapped(button)
         }
     }
@@ -62,4 +81,12 @@ fileprivate extension SketchView {
             self.delegate?.didTouch(at: touch.point, eventType: touch.event)
         }
     }
+    
+    func setupBottomBarCallback() {
+        bottomBar.callBack = {[weak self] action in
+            guard let self = self else { return }
+            self.delegate?.bottomBarActionFired(action)
+        }
+    }
+    
 }

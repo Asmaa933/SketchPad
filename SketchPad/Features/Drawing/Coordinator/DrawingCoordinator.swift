@@ -9,15 +9,18 @@ import UIKit
 
 protocol DrawingCoordinatorProtocol {
     var imageDidPicked: ((Data) -> Void)? { get set }
+    var colorDidPicked: ((UIColor) -> Void)? { get set }
     func showImagePicker()
     func showPermissionDeniedAlert(error: AppError)
     func openPreviewView(with imageData: Data)
+    func showColorPicker(currentColor: UIColor)
 }
 
 class DrawingCoordinator: NSObject {
     
     private var navigationController: UINavigationController
     var imageDidPicked: ((Data) -> Void)?
+    var colorDidPicked: ((UIColor) -> Void)?
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -60,6 +63,16 @@ extension DrawingCoordinator: DrawingCoordinatorProtocol {
         navigationController.pushViewController(previewViewController,
                                                 animated: true)
     }
+    
+    func showColorPicker(currentColor: UIColor) {
+        let colorPickerController = UIColorPickerViewController()
+        colorPickerController.delegate = self
+        colorPickerController.modalPresentationStyle = .popover
+        colorPickerController.supportsAlpha = false
+        colorPickerController.selectedColor = currentColor
+        navigationController.present(colorPickerController,
+                                     animated: true)
+    }
    
 }
 
@@ -73,5 +86,11 @@ extension DrawingCoordinator: UIImagePickerControllerDelegate, UINavigationContr
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         navigationController.dismiss(animated: true)
+    }
+}
+
+extension DrawingCoordinator: UIColorPickerViewControllerDelegate {
+    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
+        colorDidPicked?(viewController.selectedColor)
     }
 }

@@ -109,12 +109,28 @@ extension DrawingViewController: StatePresentable {
             
         case .draw(let lines):
             sketchView.draw(lines: lines)
+            
+        case .colorChanged(let newColor):
+            sketchView.set(color: newColor)
+            
+        case .close:
+            self.removeSketchView()
+            self.setupAddPhotoButton()
+            
+        case .deleteMode(let isOn):
+            if isOn {
+                view.showToast(with: TitleConstant.deleteModeOn.rawValue)
+                sketchView.toggleMode(isDelete: true)
+            } else {
+                view.showToast(with: TitleConstant.drawingModeOn.rawValue)
+                sketchView.toggleMode(isDelete: false)
+            }
         }
     }
 }
 
 extension DrawingViewController: SketchViewDelegate {
-   
+
     func topBarButtonTapped(_ button: DrawingTopBarButton) {
         viewModel.topBarButtonTapped(button)
     }
@@ -123,4 +139,11 @@ extension DrawingViewController: SketchViewDelegate {
         viewModel.didTouchImage(at: point, eventType: eventType)
     }
     
+    func bottomBarActionFired(_ action: BottomBarAction) {
+        viewModel.bottomBarActionFired(action)
+    }
+    
+    func doneButtonTapped(imageData: Data?) {
+        viewModel.doneButtonTapped(imageData: imageData)
+    }
 }

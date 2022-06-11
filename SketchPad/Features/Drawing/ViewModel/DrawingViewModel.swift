@@ -18,18 +18,20 @@ protocol DrawingViewModelProtocol {
     func getImage()
     func topBarButtonTapped(_ button: DrawingTopBarButton)
     func didTouchImage(at point: CGPoint, eventType: TouchEvent)
+    func bottomBarActionFired(_ action: BottomBarAction)
+    func doneButtonTapped(imageData: Data?)
 }
 
 class DrawingViewModel {
     
     private var coordinator: DrawingCoordinatorProtocol
     private lazy var linesInfo = [LineInfo]()
-    private var currentColor: UIColor = .red
+    private lazy var deletedLines = [LineInfo]()
+    private var currentColor: UIColor = .black
     private var currentThickness: CGFloat = 20
     private var currentMode: Mode = .drawing
     
     var statePresenter: StatePresentable?
-    var imageDidPicked: ((Data) -> Void)?
     
     init(coordinator: DrawingCoordinatorProtocol) {
         self.coordinator = coordinator
@@ -68,17 +70,41 @@ extension DrawingViewModel: DrawingViewModelProtocol {
     func topBarButtonTapped(_ button: DrawingTopBarButton) {
         switch button {
         case .close:
-            break
+            #warning("show warrning")
+            linesInfo.removeAll()
+            statePresenter?.render(state: DrawingState.close, mapping: DrawingState.self)
+            
         case .undo:
-            break
+            guard let lastLine = linesInfo.popLast() else { return }
+            deletedLines.append(lastLine)
+            statePresenter?.render(state: DrawingState.draw(lines: linesInfo),
+                                   mapping: DrawingState.self)
         case .redo:
-            break
+            guard let firstDeletedLine = deletedLines.popLast() else { return }
+            linesInfo.append(firstDeletedLine)
+            statePresenter?.render(state: DrawingState.draw(lines: linesInfo),
+                                   mapping: DrawingState.self)
         case .delete:
-            break
+            guard currentMode == .drawing, !linesInfo.isEmpty else { return }
+            currentMode = .delete
+            statePresenter?.render(state: DrawingState.deleteMode(isOn: true),
+                                   mapping: DrawingState.self)
+    
         case .done:
-            #warning("Capture sketch image and convert to before navigate to preview")
-            guard let dummyImage = UIImage.getImage(from: .drawing).pngData() else { return }
-            coordinator.openPreviewView(with: dummyImage)
+          break
+        }
+    }
+    
+    func doneButtonTapped(imageData: Data?) {
+        switch currentMode {
+        case .drawing:
+            guard let imageData = imageData else { return }
+            coordinator.openPreviewView(with: imageData)
+            
+        case .delete:
+            currentMode = .drawing
+            statePresenter?.render(state: DrawingState.deleteMode(isOn: false),
+                                   mapping: DrawingState.self)
         }
     }
     
@@ -92,6 +118,22 @@ extension DrawingViewModel: DrawingViewModelProtocol {
             touchEnded(at: point)
         }
     }
+    
+    func bottomBarActionFired(_ action: BottomBarAction) {
+        switch action {
+        case .slider(let newValue):
+            currentThickness = newValue
+        case .colorPicker:
+            coordinator.colorDidPicked = {[weak self] color in
+                guard let self = self else { return }
+                self.currentColor = color
+                self.statePresenter?.render(state: DrawingState.colorChanged(newColor: color),
+                                            mapping: DrawingState.self)
+            }
+            coordinator.showColorPicker(currentColor: currentColor)
+        }
+    }
+    
 }
 
 fileprivate extension DrawingViewModel {
@@ -108,7 +150,16 @@ fileprivate extension DrawingViewModel {
                                     pointsCount: 1)
             linesInfo.append(lineInfo)
         case .delete:
-            break
+            guard currentMode == .delete, !linesInfo.isEmpty else { return }
+            for index in 0..<linesInfo.reversed().count {
+                if linesInfo[index].path.hasPoint(point, lineWidth: linesInfo[index].lineWidth) {
+                    deletedLines.append(linesInfo[index])
+                    linesInfo.remove(at: index)
+                    statePresenter?.render(state: DrawingState.draw(lines: linesInfo),
+                                          mapping: DrawingState.self)
+                    break
+                }
+            }
         }
     }
     

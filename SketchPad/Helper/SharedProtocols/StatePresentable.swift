@@ -6,12 +6,16 @@
 //
 
 import Foundation
+import UIKit.UIColor
 
 protocol AppState {}
 
 enum DrawingState: AppState {
     case imagePicked(imageData: Data)
     case draw(lines: [LineInfo])
+    case colorChanged(newColor: UIColor)
+    case close
+    case deleteMode(isOn: Bool)
     
 }
 

@@ -10,7 +10,6 @@ import UIKit
 extension UIImageView {
     
     func drawLinesOnImage(_ lines: [LineInfo]) {
-        guard !lines.isEmpty else { return }
         let size = calculateSize()
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         image?.draw(in: CGRect(origin: .zero, size: size))
