@@ -18,18 +18,18 @@ protocol DrawingViewModelProtocol {
     func getImage()
     func topBarButtonTapped(_ button: DrawingTopBarButton)
     func didTouchImage(at point: CGPoint, eventType: TouchEvent)
+    func bottomBarActionFired(_ action: BottomBarAction)
 }
 
 class DrawingViewModel {
     
     private var coordinator: DrawingCoordinatorProtocol
     private lazy var linesInfo = [LineInfo]()
-    private var currentColor: UIColor = .red
+    private var currentColor: UIColor = .black
     private var currentThickness: CGFloat = 20
     private var currentMode: Mode = .drawing
     
     var statePresenter: StatePresentable?
-    var imageDidPicked: ((Data) -> Void)?
     
     init(coordinator: DrawingCoordinatorProtocol) {
         self.coordinator = coordinator
@@ -90,6 +90,21 @@ extension DrawingViewModel: DrawingViewModelProtocol {
             touchMoved(at: point)
         case .ended:
             touchEnded(at: point)
+        }
+    }
+    
+    func bottomBarActionFired(_ action: BottomBarAction) {
+        switch action {
+        case .slider(let newValue):
+            currentThickness = newValue
+        case .colorPicker:
+            coordinator.colorDidPicked = {[weak self] color in
+                guard let self = self else { return }
+                self.currentColor = color
+                self.statePresenter?.render(state: DrawingState.colorChanged(newColor: color),
+                                            mapping: DrawingState.self)
+            }
+            coordinator.showColorPicker(currentColor: currentColor)
         }
     }
 }

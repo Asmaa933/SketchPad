@@ -39,4 +39,8 @@ class DrawingBottomBar: UIView {
         thicknessSlider.setValue(roundedValue, animated: false)
         callBack?(.slider(newValue: CGFloat(Int(roundedValue))))
     }
+    
+    func colorChanged(to color: UIColor) {
+        colorPickerButton.backgroundColor = color
+    }
 }

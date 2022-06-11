@@ -109,6 +109,9 @@ extension DrawingViewController: StatePresentable {
             
         case .draw(let lines):
             sketchView.draw(lines: lines)
+            
+        case .colorChanged(let newColor):
+            sketchView.set(color: newColor)
         }
     }
 }
@@ -121,6 +124,10 @@ extension DrawingViewController: SketchViewDelegate {
     
     func didTouch(at point: CGPoint, eventType: TouchEvent) {
         viewModel.didTouchImage(at: point, eventType: eventType)
+    }
+    
+    func bottomBarActionFired(_ action: BottomBarAction) {
+        viewModel.bottomBarActionFired(action)
     }
     
 }

@@ -10,6 +10,7 @@ import UIKit
 protocol SketchViewDelegate: AnyObject {
     func topBarButtonTapped(_ button: DrawingTopBarButton)
     func didTouch(at point: CGPoint, eventType: TouchEvent)
+    func bottomBarActionFired(_ action: BottomBarAction)
 }
 
 class SketchView: UIView {
@@ -40,6 +41,9 @@ class SketchView: UIView {
         drawingArea.set(lines: lines)
     }
     
+    func set(color: UIColor) {
+        bottomBar.colorChanged(to: color)
+    }
 }
 
 fileprivate extension SketchView {
@@ -47,6 +51,7 @@ fileprivate extension SketchView {
     func setupCallbacks() {
         setupTopBarCallback()
         setupDrawingCallback()
+        setupBottomBarCallback()
     }
     
     func setupTopBarCallback() {
@@ -60,6 +65,13 @@ fileprivate extension SketchView {
         drawingArea.didTouchCallback = {[weak self] touch in
             guard let self = self else { return }
             self.delegate?.didTouch(at: touch.point, eventType: touch.event)
+        }
+    }
+    
+    func setupBottomBarCallback() {
+        bottomBar.callBack = {[weak self] action in
+            guard let self = self else { return }
+            self.delegate?.bottomBarActionFired(action)
         }
     }
 }

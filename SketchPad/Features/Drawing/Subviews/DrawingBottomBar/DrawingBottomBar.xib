@@ -20,7 +20,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minValue="20" maxValue="70" translatesAutoresizingMaskIntoConstraints="NO" id="wTX-bz-0Er">
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minValue="20" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="wTX-bz-0Er">
                     <rect key="frame" x="48" y="23" width="164" height="31"/>
                     <color key="minimumTrackTintColor" name="tintColor"/>
                     <connections>
