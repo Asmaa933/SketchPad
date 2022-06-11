@@ -33,6 +33,10 @@ class PreviewSketchView: UIView {
     func setImage(with imageData: Data) {
         previewImageView.image = UIImage(data: imageData)
     }
+    
+    func rotateImage(by angle: CGFloat) {
+        previewImageView.image = previewImageView.image?.rotate(by: angle)
+    }
 }
 
 fileprivate extension PreviewSketchView {

@@ -36,8 +36,10 @@ class PreviewTopBar: UIView {
     }
     
     @IBAction private func rotateLeftAction(_ sender: UIButton) {
+        topBarButtonTapped?(.rotateLeft)
     }
     
     @IBAction private func rotateRightAction(_ sender: UIButton) {
+        topBarButtonTapped?(.rotateRight)
     }
 }
