@@ -21,4 +21,12 @@ class EnterNameViewModel {
 }
 
 extension EnterNameViewModel: EnterNameViewModelProtocol {
+    func handleAlertAction(_ action: NameAlertAction) {
+        switch action {
+        case .save(let imageName):
+            break
+        case .cancel:
+            break
+        }
+    }
 }
