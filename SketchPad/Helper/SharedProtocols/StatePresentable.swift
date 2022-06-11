@@ -15,7 +15,7 @@ enum DrawingState: AppState {
     case draw(lines: [LineInfo])
     case colorChanged(newColor: UIColor)
     case close
-    case deleteMode
+    case deleteMode(isOn: Bool)
     
 }
 

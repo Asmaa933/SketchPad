@@ -69,6 +69,7 @@ extension DrawingViewModel: DrawingViewModelProtocol {
     func topBarButtonTapped(_ button: DrawingTopBarButton) {
         switch button {
         case .close:
+            #warning("show warrning")
             linesInfo.removeAll()
             statePresenter?.render(state: DrawingState.close, mapping: DrawingState.self)
             
@@ -85,13 +86,22 @@ extension DrawingViewModel: DrawingViewModelProtocol {
         case .delete:
             guard currentMode == .drawing, !linesInfo.isEmpty else { return }
             currentMode = .delete
-            statePresenter?.render(state: DrawingState.deleteMode,
+            statePresenter?.render(state: DrawingState.deleteMode(isOn: true),
                                    mapping: DrawingState.self)
     
         case .done:
-            #warning("Capture sketch image and convert to before navigate to preview")
-            guard let dummyImage = UIImage.getImage(from: .drawing).pngData() else { return }
-            coordinator.openPreviewView(with: dummyImage)
+            switch currentMode {
+            case .drawing:
+                #warning("Capture sketch image and convert to before navigate to preview")
+                guard let dummyImage = UIImage.getImage(from: .drawing).pngData() else { return }
+                coordinator.openPreviewView(with: dummyImage)
+                
+            case .delete:
+                currentMode = .drawing
+                statePresenter?.render(state: DrawingState.deleteMode(isOn: false),
+                                       mapping: DrawingState.self)
+            }
+   
         }
     }
     

@@ -117,9 +117,14 @@ extension DrawingViewController: StatePresentable {
             self.removeSketchView()
             self.setupAddPhotoButton()
             
-        case .deleteMode:
-            view.showToast(with: TitleConstant.deleteModeOn.rawValue)
-            sketchView.toggleMode(isDelete: true)
+        case .deleteMode(let isOn):
+            if isOn {
+                view.showToast(with: TitleConstant.deleteModeOn.rawValue)
+                sketchView.toggleMode(isDelete: true)
+            } else {
+                view.showToast(with: TitleConstant.drawingModeOn.rawValue)
+                sketchView.toggleMode(isDelete: false)
+            }
         }
     }
 }
