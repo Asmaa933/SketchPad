@@ -15,6 +15,7 @@
 		99527A592853E099005609F4 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99527A582853E099005609F4 /* HistoryViewModel.swift */; };
 		99527A5C2853E9BE005609F4 /* SketchHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99527A5B2853E9BD005609F4 /* SketchHistoryView.swift */; };
 		99527A5E2853EA04005609F4 /* SketchHistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99527A5D2853EA04005609F4 /* SketchHistoryView.xib */; };
+		997D6C6E2854BF37000A2AEE /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997D6C6D2854BF37000A2AEE /* UIImageViewExtension.swift */; };
 		998B026D2852CDF900D58A8F /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B026C2852CDF900D58A8F /* UIViewExtension.swift */; };
 		998B02702852D00800D58A8F /* TitleConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B026F2852D00800D58A8F /* TitleConstant.swift */; };
 		998B02732852E06600D58A8F /* DrawingTopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B02722852E06600D58A8F /* DrawingTopBar.swift */; };
@@ -82,6 +83,7 @@
 		99527A582853E099005609F4 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		99527A5B2853E9BD005609F4 /* SketchHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchHistoryView.swift; sourceTree = "<group>"; };
 		99527A5D2853EA04005609F4 /* SketchHistoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SketchHistoryView.xib; sourceTree = "<group>"; };
+		997D6C6D2854BF37000A2AEE /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		998B026C2852CDF900D58A8F /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		998B026F2852D00800D58A8F /* TitleConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleConstant.swift; sourceTree = "<group>"; };
 		998B02722852E06600D58A8F /* DrawingTopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingTopBar.swift; sourceTree = "<group>"; };
@@ -533,6 +535,7 @@
 				998B026C2852CDF900D58A8F /* UIViewExtension.swift */,
 				998B029928539EC700D58A8F /* UINavigationControllerExtension.swift */,
 				993170882853EDEE00573750 /* UITableViewExtension.swift */,
+				997D6C6D2854BF37000A2AEE /* UIImageViewExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -690,6 +693,7 @@
 				998B02B12853B07F00D58A8F /* PreviewSketchView.swift in Sources */,
 				99A71CEC2852ADF70060C1DA /* HistoryViewController.swift in Sources */,
 				998B0291285393BC00D58A8F /* PhotoLibraryManager.swift in Sources */,
+				997D6C6E2854BF37000A2AEE /* UIImageViewExtension.swift in Sources */,
 				998B02AE2853A92000D58A8F /* PreviewCoordinator.swift in Sources */,
 				99A71CF52852B4470060C1DA /* Tab.swift in Sources */,
 				998B028E28537A4700D58A8F /* DrawingCoordinator.swift in Sources */,
