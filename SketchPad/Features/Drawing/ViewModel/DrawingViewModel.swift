@@ -8,6 +8,11 @@
 import Foundation
 import UIKit
 
+enum Mode {
+    case drawing
+    case delete
+}
+
 protocol DrawingViewModelProtocol {
     var statePresenter: StatePresentable? { get set }
     func getImage()
@@ -18,6 +23,11 @@ protocol DrawingViewModelProtocol {
 class DrawingViewModel {
     
     private var coordinator: DrawingCoordinatorProtocol
+    private lazy var linesInfo = [LineInfo]()
+    private var currentColor: UIColor = .black
+    private var currentThickness: CGFloat = 20
+    private var currentMode: Mode = .drawing
+    
     var statePresenter: StatePresentable?
     var imageDidPicked: ((Data) -> Void)?
     
@@ -73,6 +83,49 @@ extension DrawingViewModel: DrawingViewModelProtocol {
     }
     
     func didTouchImage(at point: CGPoint, eventType: TouchEvent) {
-        debugPrint("didTouch at \(point) eventType \(eventType) ")
+        switch eventType {
+        case .began:
+            touchBegan(at: point)
+        case .moved:
+            touchMoved(at: point)
+        case .ended:
+            touchEnded(at: point)
+        }
+    }
+}
+
+fileprivate extension DrawingViewModel {
+    
+    func touchBegan(at point: CGPoint) {
+        switch currentMode {
+        case .drawing:
+            let path = UIBezierPath()
+            path.lineWidth = currentThickness
+            path.move(to: point)
+            let lineInfo = LineInfo(lineColor: currentColor,
+                                    path: path,
+                                    pointsCount: 1)
+            linesInfo.append(lineInfo)
+        case .delete:
+            break
+        }
+    }
+    
+    func touchMoved(at point: CGPoint) {
+        guard currentMode == .drawing,
+              var lastLine = linesInfo.last else { return }
+        lastLine.path.addLine(to: point)
+        lastLine.pointsCount = lastLine.pointsCount + 1
+        lastLine.isLine = true
+    }
+    
+    func touchEnded(at point: CGPoint) {
+        guard currentMode == .drawing, var lastLine = linesInfo.last else { return }
+        if lastLine.pointsCount == 1 {
+            lastLine.path = UIBezierPath(ovalIn: CGRect(x: point.x,
+                                                        y: point.y,
+                                                        width: currentThickness,
+                                                        height: currentThickness))
+        }
     }
 }
