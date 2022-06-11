@@ -68,7 +68,8 @@ extension DrawingViewModel: DrawingViewModelProtocol {
     func topBarButtonTapped(_ button: DrawingTopBarButton) {
         switch button {
         case .close:
-            break
+            linesInfo.removeAll()
+            statePresenter?.render(state: DrawingState.close, mapping: DrawingState.self)
         case .undo:
             break
         case .redo:

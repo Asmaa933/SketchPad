@@ -14,6 +14,7 @@ enum DrawingState: AppState {
     case imagePicked(imageData: Data)
     case draw(lines: [LineInfo])
     case colorChanged(newColor: UIColor)
+    case close
     
 }
 

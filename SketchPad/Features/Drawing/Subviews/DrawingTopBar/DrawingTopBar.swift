@@ -36,6 +36,7 @@ class DrawingTopBar: UIView {
     }
     
     @IBAction private func closeButtonAction(_ sender: UIButton) {
+        topBarButtonTapped?(.close)
     }
     
     @IBAction private func undoButtonAction(_ sender: UIButton) {

@@ -112,6 +112,10 @@ extension DrawingViewController: StatePresentable {
             
         case .colorChanged(let newColor):
             sketchView.set(color: newColor)
+            
+        case .close:
+            self.removeSketchView()
+            self.setupAddPhotoButton()
         }
     }
 }
