@@ -19,6 +19,10 @@ enum DrawingState: AppState {
     
 }
 
+enum PreviewState: AppState {
+    case rotate(angle: CGFloat)
+}
+
 protocol StatePresentable {
     func render<T: AppState>(state: T, mapping: T.Type)
 }

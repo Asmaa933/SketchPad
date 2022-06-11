@@ -28,6 +28,7 @@ class PreviewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.statePresenter = self
         handleViewDidLoad()
     }
     
@@ -56,5 +57,15 @@ extension PreviewViewController: PreviewSketchViewDelegate {
     
     func saveButtonTapped(imageData: Data?) {
         viewModel.saveButtonTapped(imageData: imageData)
+    }
+}
+
+extension PreviewViewController: StatePresentable {
+    func render<T>(state: T, mapping: T.Type) where T : AppState {
+        guard let previewState = state as? PreviewState  else { return }
+        switch previewState {
+        case .rotate(let angle):
+            previewSketchView.rotateImage(by: angle)
+        }
     }
 }

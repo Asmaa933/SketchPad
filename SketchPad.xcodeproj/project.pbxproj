@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9902C5BC2855402900498CD8 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9902C5BB2855402900498CD8 /* UIImage.swift */; };
 		993170892853EDEE00573750 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993170882853EDEE00573750 /* UITableViewExtension.swift */; };
 		9931708D2853EE8200573750 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9931708B2853EE8200573750 /* HistoryTableViewCell.swift */; };
 		9931708E2853EE8200573750 /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9931708C2853EE8200573750 /* HistoryTableViewCell.xib */; };
@@ -79,6 +80,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9902C5BB2855402900498CD8 /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		993170882853EDEE00573750 /* UITableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		9931708B2853EE8200573750 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		9931708C2853EE8200573750 /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
@@ -556,6 +558,7 @@
 				993170882853EDEE00573750 /* UITableViewExtension.swift */,
 				997D6C6D2854BF37000A2AEE /* UIImageExtension.swift */,
 				993BF3262854E960004F9E4B /* UIBezierPathExtension.swift */,
+				9902C5BB2855402900498CD8 /* UIImage.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -740,6 +743,7 @@
 				99A71CFF2852CC7C0060C1DA /* FilledButton.swift in Sources */,
 				99527A592853E099005609F4 /* HistoryViewModel.swift in Sources */,
 				993BF33028552F0C004F9E4B /* SketchHistory.xcdatamodeld in Sources */,
+				9902C5BC2855402900498CD8 /* UIImage.swift in Sources */,
 				99A71CA528526B860060C1DA /* SceneDelegate.swift in Sources */,
 				99527A562853C82A005609F4 /* HistoryCoordinator.swift in Sources */,
 				9931708D2853EE8200573750 /* HistoryTableViewCell.swift in Sources */,
