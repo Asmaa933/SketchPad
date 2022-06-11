@@ -130,7 +130,7 @@ extension DrawingViewController: StatePresentable {
 }
 
 extension DrawingViewController: SketchViewDelegate {
-   
+
     func topBarButtonTapped(_ button: DrawingTopBarButton) {
         viewModel.topBarButtonTapped(button)
     }
@@ -143,4 +143,7 @@ extension DrawingViewController: SketchViewDelegate {
         viewModel.bottomBarActionFired(action)
     }
     
+    func doneButtonTapped(imageData: Data?) {
+        viewModel.doneButtonTapped(imageData: imageData)
+    }
 }

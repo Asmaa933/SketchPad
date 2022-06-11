@@ -11,6 +11,7 @@ protocol SketchViewDelegate: AnyObject {
     func topBarButtonTapped(_ button: DrawingTopBarButton)
     func didTouch(at point: CGPoint, eventType: TouchEvent)
     func bottomBarActionFired(_ action: BottomBarAction)
+    func doneButtonTapped(imageData: Data?)
 }
 
 class SketchView: UIView {
@@ -61,6 +62,15 @@ fileprivate extension SketchView {
     func setupTopBarCallback() {
         topBar.topBarButtonTapped = {[weak self] button in
             guard let self = self else { return }
+            self.handleTopBarButtonCallBack(button)
+        }
+    }
+    
+    func handleTopBarButtonCallBack(_ button: DrawingTopBarButton) {
+        switch button {
+        case .done:
+            self.delegate?.doneButtonTapped(imageData: drawingArea.getCurrentImageData())
+        default:
             self.delegate?.topBarButtonTapped(button)
         }
     }
@@ -78,4 +88,5 @@ fileprivate extension SketchView {
             self.delegate?.bottomBarActionFired(action)
         }
     }
+    
 }

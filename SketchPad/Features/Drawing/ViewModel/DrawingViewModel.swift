@@ -19,6 +19,7 @@ protocol DrawingViewModelProtocol {
     func topBarButtonTapped(_ button: DrawingTopBarButton)
     func didTouchImage(at point: CGPoint, eventType: TouchEvent)
     func bottomBarActionFired(_ action: BottomBarAction)
+    func doneButtonTapped(imageData: Data?)
 }
 
 class DrawingViewModel {
@@ -90,18 +91,20 @@ extension DrawingViewModel: DrawingViewModelProtocol {
                                    mapping: DrawingState.self)
     
         case .done:
-            switch currentMode {
-            case .drawing:
-                #warning("Capture sketch image and convert to before navigate to preview")
-                guard let dummyImage = UIImage.getImage(from: .drawing).pngData() else { return }
-                coordinator.openPreviewView(with: dummyImage)
-                
-            case .delete:
-                currentMode = .drawing
-                statePresenter?.render(state: DrawingState.deleteMode(isOn: false),
-                                       mapping: DrawingState.self)
-            }
-   
+          break
+        }
+    }
+    
+    func doneButtonTapped(imageData: Data?) {
+        switch currentMode {
+        case .drawing:
+            guard let imageData = imageData else { return }
+            coordinator.openPreviewView(with: imageData)
+            
+        case .delete:
+            currentMode = .drawing
+            statePresenter?.render(state: DrawingState.deleteMode(isOn: false),
+                                   mapping: DrawingState.self)
         }
     }
     
@@ -130,6 +133,7 @@ extension DrawingViewModel: DrawingViewModelProtocol {
             coordinator.showColorPicker(currentColor: currentColor)
         }
     }
+    
 }
 
 fileprivate extension DrawingViewModel {

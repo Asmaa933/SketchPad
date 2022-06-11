@@ -42,6 +42,8 @@ class DrawingArea: UIImageView {
         drawLinesOnImage(lines)
     }
     
+    func getCurrentImageData() -> Data? { image?.pngData() }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         didTouches(touches, type: .began)
     }
