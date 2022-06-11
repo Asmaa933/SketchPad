@@ -9,6 +9,7 @@ import UIKit
 
 protocol PreviewSketchViewDelegate: AnyObject {
     func topBarButtonTapped(_ button: PreviewTopBarButton)
+    func saveButtonTapped(imageData: Data?)
 }
 
 class PreviewSketchView: UIView {
@@ -21,13 +22,13 @@ class PreviewSketchView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadNibView()
-        handleTopBarCallBack()
+        setupTopBarCallBack()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         loadNibView()
-        handleTopBarCallBack()
+        setupTopBarCallBack()
     }
     
     func setImage(with imageData: Data) {
@@ -40,9 +41,19 @@ class PreviewSketchView: UIView {
 }
 
 fileprivate extension PreviewSketchView {
-    func handleTopBarCallBack() {
+    func setupTopBarCallBack() {
         topBar.topBarButtonTapped = {[weak self] button in
             guard let self = self else { return }
+            self.handleTapBarCallBack(button)
+        }
+    }
+    
+    func handleTapBarCallBack( _ button: PreviewTopBarButton) {
+        switch button {
+        case .save:
+            let imageData = previewImageView.image?.pngData()
+            self.delegate?.saveButtonTapped(imageData: imageData)
+        default:
             self.delegate?.topBarButtonTapped(button)
         }
     }

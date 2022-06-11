@@ -54,6 +54,10 @@ extension PreviewViewController: PreviewSketchViewDelegate {
     func topBarButtonTapped(_ button: PreviewTopBarButton) {
         viewModel.topBarButtonTapped(button)
     }
+    
+    func saveButtonTapped(imageData: Data?) {
+        viewModel.saveButtonTapped(imageData: imageData)
+    }
 }
 
 extension PreviewViewController: StatePresentable {

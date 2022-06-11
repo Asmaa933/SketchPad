@@ -13,11 +13,13 @@
 		9931708E2853EE8200573750 /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9931708C2853EE8200573750 /* HistoryTableViewCell.xib */; };
 		9931709128542DFE00573750 /* LineInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9931709028542DFE00573750 /* LineInfo.swift */; };
 		993BF3272854E960004F9E4B /* UIBezierPathExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993BF3262854E960004F9E4B /* UIBezierPathExtension.swift */; };
+		993BF32D28552EC7004F9E4B /* CachingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993BF32C28552EC7004F9E4B /* CachingManager.swift */; };
+		993BF33028552F0C004F9E4B /* SketchHistory.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 993BF32E28552F0C004F9E4B /* SketchHistory.xcdatamodeld */; };
 		99527A562853C82A005609F4 /* HistoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99527A552853C82A005609F4 /* HistoryCoordinator.swift */; };
 		99527A592853E099005609F4 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99527A582853E099005609F4 /* HistoryViewModel.swift */; };
 		99527A5C2853E9BE005609F4 /* SketchHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99527A5B2853E9BD005609F4 /* SketchHistoryView.swift */; };
 		99527A5E2853EA04005609F4 /* SketchHistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99527A5D2853EA04005609F4 /* SketchHistoryView.xib */; };
-		997D6C6E2854BF37000A2AEE /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997D6C6D2854BF37000A2AEE /* UIImageViewExtension.swift */; };
+		997D6C6E2854BF37000A2AEE /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997D6C6D2854BF37000A2AEE /* UIImageExtension.swift */; };
 		998B026D2852CDF900D58A8F /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B026C2852CDF900D58A8F /* UIViewExtension.swift */; };
 		998B02702852D00800D58A8F /* TitleConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B026F2852D00800D58A8F /* TitleConstant.swift */; };
 		998B02732852E06600D58A8F /* DrawingTopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B02722852E06600D58A8F /* DrawingTopBar.swift */; };
@@ -57,6 +59,7 @@
 		99A71CF92852B7640060C1DA /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CF82852B7630060C1DA /* Coordinator.swift */; };
 		99A71CFB2852C0790060C1DA /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CFA2852C0790060C1DA /* AppCoordinator.swift */; };
 		99A71CFF2852CC7C0060C1DA /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CFE2852CC7C0060C1DA /* FilledButton.swift */; };
+		99F6618D285537AB008DA790 /* Sketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F6618C285537AB008DA790 /* Sketch.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,11 +86,13 @@
 		9931708C2853EE8200573750 /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
 		9931709028542DFE00573750 /* LineInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineInfo.swift; sourceTree = "<group>"; };
 		993BF3262854E960004F9E4B /* UIBezierPathExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBezierPathExtension.swift; sourceTree = "<group>"; };
+		993BF32C28552EC7004F9E4B /* CachingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachingManager.swift; sourceTree = "<group>"; };
+		993BF32F28552F0C004F9E4B /* SketchHistory.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SketchHistory.xcdatamodel; sourceTree = "<group>"; };
 		99527A552853C82A005609F4 /* HistoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCoordinator.swift; sourceTree = "<group>"; };
 		99527A582853E099005609F4 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		99527A5B2853E9BD005609F4 /* SketchHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchHistoryView.swift; sourceTree = "<group>"; };
 		99527A5D2853EA04005609F4 /* SketchHistoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SketchHistoryView.xib; sourceTree = "<group>"; };
-		997D6C6D2854BF37000A2AEE /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		997D6C6D2854BF37000A2AEE /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		998B026C2852CDF900D58A8F /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		998B026F2852D00800D58A8F /* TitleConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleConstant.swift; sourceTree = "<group>"; };
 		998B02722852E06600D58A8F /* DrawingTopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingTopBar.swift; sourceTree = "<group>"; };
@@ -131,6 +136,7 @@
 		99A71CF82852B7630060C1DA /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		99A71CFA2852C0790060C1DA /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		99A71CFE2852CC7C0060C1DA /* FilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButton.swift; sourceTree = "<group>"; };
+		99F6618C285537AB008DA790 /* Sketch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sketch.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +179,14 @@
 				9931709028542DFE00573750 /* LineInfo.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		993BF32B28552EB9004F9E4B /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				993BF32E28552F0C004F9E4B /* SketchHistory.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		99527A532853C7D7005609F4 /* View */ = {
@@ -284,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				998B0290285393BC00D58A8F /* PhotoLibraryManager.swift */,
+				993BF32C28552EC7004F9E4B /* CachingManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -291,6 +306,7 @@
 		998B029B2853A77000D58A8F /* Preview */ = {
 			isa = PBXGroup;
 			children = (
+				99F6618B2855379C008DA790 /* Model */,
 				998B02AC2853A90E00D58A8F /* Coordinator */,
 				998B02A22853A86300D58A8F /* Subviews */,
 				998B029C2853A77E00D58A8F /* View */,
@@ -411,6 +427,7 @@
 		99A71CD328526EB30060C1DA /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				993BF32B28552EB9004F9E4B /* CoreData */,
 				99A71CD828526EEE0060C1DA /* LaunchScreen */,
 				99A71CD628526EDB0060C1DA /* Colors */,
 				99A71CD528526ED40060C1DA /* Assets */,
@@ -539,11 +556,19 @@
 				998B026C2852CDF900D58A8F /* UIViewExtension.swift */,
 				998B029928539EC700D58A8F /* UINavigationControllerExtension.swift */,
 				993170882853EDEE00573750 /* UITableViewExtension.swift */,
-				997D6C6D2854BF37000A2AEE /* UIImageViewExtension.swift */,
+				997D6C6D2854BF37000A2AEE /* UIImageExtension.swift */,
 				993BF3262854E960004F9E4B /* UIBezierPathExtension.swift */,
 				9902C5BB2855402900498CD8 /* UIImage.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		99F6618B2855379C008DA790 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				99F6618C285537AB008DA790 /* Sketch.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -687,6 +712,7 @@
 				99A71CE82852ADDB0060C1DA /* DrawingViewController.swift in Sources */,
 				998B02702852D00800D58A8F /* TitleConstant.swift in Sources */,
 				998B028C285378D800D58A8F /* DrawingViewModel.swift in Sources */,
+				99F6618D285537AB008DA790 /* Sketch.swift in Sources */,
 				998B027A28535E0900D58A8F /* SketchView.swift in Sources */,
 				99A71CF92852B7640060C1DA /* Coordinator.swift in Sources */,
 				998B028328536CF900D58A8F /* DrawingBottomBar.swift in Sources */,
@@ -700,10 +726,11 @@
 				99A71CEC2852ADF70060C1DA /* HistoryViewController.swift in Sources */,
 				998B0291285393BC00D58A8F /* PhotoLibraryManager.swift in Sources */,
 				993BF3272854E960004F9E4B /* UIBezierPathExtension.swift in Sources */,
-				997D6C6E2854BF37000A2AEE /* UIImageViewExtension.swift in Sources */,
+				997D6C6E2854BF37000A2AEE /* UIImageExtension.swift in Sources */,
 				998B02AE2853A92000D58A8F /* PreviewCoordinator.swift in Sources */,
 				99A71CF52852B4470060C1DA /* Tab.swift in Sources */,
 				998B028E28537A4700D58A8F /* DrawingCoordinator.swift in Sources */,
+				993BF32D28552EC7004F9E4B /* CachingManager.swift in Sources */,
 				99A71CF32852AFE30060C1DA /* AppImage.swift in Sources */,
 				998B0288285370D100D58A8F /* DrawingArea.swift in Sources */,
 				993170892853EDEE00573750 /* UITableViewExtension.swift in Sources */,
@@ -715,6 +742,7 @@
 				998B02A52853A8A000D58A8F /* PreviewTopBar.swift in Sources */,
 				99A71CFF2852CC7C0060C1DA /* FilledButton.swift in Sources */,
 				99527A592853E099005609F4 /* HistoryViewModel.swift in Sources */,
+				993BF33028552F0C004F9E4B /* SketchHistory.xcdatamodeld in Sources */,
 				9902C5BC2855402900498CD8 /* UIImage.swift in Sources */,
 				99A71CA528526B860060C1DA /* SceneDelegate.swift in Sources */,
 				99527A562853C82A005609F4 /* HistoryCoordinator.swift in Sources */,
@@ -1058,6 +1086,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		993BF32E28552F0C004F9E4B /* SketchHistory.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				993BF32F28552F0C004F9E4B /* SketchHistory.xcdatamodel */,
+			);
+			currentVersion = 993BF32F28552F0C004F9E4B /* SketchHistory.xcdatamodel */;
+			path = SketchHistory.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 99A71C9728526B860060C1DA /* Project object */;
 }
