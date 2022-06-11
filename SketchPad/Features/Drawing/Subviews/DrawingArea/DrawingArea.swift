@@ -7,29 +7,36 @@
 
 import UIKit
 
-class DrawingArea: UIImageView {
+class DrawingArea: UIView {
     
-    var selectedImageData = Data() {
-        didSet {
-            image = UIImage(data: selectedImageData)
-        }
-    }
+    private lazy var imageView: UIImageView = {
+       let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        contentMode = .scaleAspectFit
+        return imageView
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupImage()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupImage()
+    }
+    
+    func setupView(with imageData: Data) {
+        backgroundColor = .darkGray
+        imageView.image = UIImage(data: imageData)
+        addSubview(imageView)
+        let heightRatio = frame.size.width * 1.3
+        NSLayoutConstraint.activate([imageView.widthAnchor.constraint(equalTo: widthAnchor),
+                                     imageView.heightAnchor.constraint(equalToConstant: heightRatio),
+                                     imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+                                     imageView.centerYAnchor.constraint(equalTo: centerYAnchor)])
     }
 }
 
 fileprivate extension DrawingArea {
     
-    func setupImage() {
-        contentMode = .scaleAspectFit
-        backgroundColor = .darkGray
-    }
+   
 }

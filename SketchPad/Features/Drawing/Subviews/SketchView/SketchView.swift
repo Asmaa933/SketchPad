@@ -32,7 +32,7 @@ class SketchView: UIView {
     }
     
     func setImage(imageData: Data) {
-        drawingArea.selectedImageData = imageData
+        drawingArea.setupView(with: imageData)
     }
     
 }
