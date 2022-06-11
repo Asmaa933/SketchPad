@@ -51,9 +51,7 @@ extension PreviewViewModel: PreviewViewModelProtocol {
     
     func saveButtonTapped(imageData: Data?) {
         guard let imageData = imageData else { return }
-        let sketch: Sketch = Sketch(imageName: "xxxx",
-                                    imageData: imageData,
-                                    createdAt: Date())
-        cachingManager.saveIntoCoreData(item: sketch)
+        let sketch = Sketch(imageData: imageData, createdAt: Date())
+        coordinator.presentEnterNameViewController(with: sketch)
     }
 }

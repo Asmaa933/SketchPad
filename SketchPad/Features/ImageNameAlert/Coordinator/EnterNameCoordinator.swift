@@ -8,7 +8,7 @@
 import UIKit
 
 protocol EnterNameCoordinatorProtocol {
-    
+    func cancelAlert()
 }
 
 class EnterNameCoordinator {
@@ -22,5 +22,7 @@ class EnterNameCoordinator {
 }
 
 extension EnterNameCoordinator: EnterNameCoordinatorProtocol {
-
+    func cancelAlert() {
+        navigationController.dismiss(animated: true)
+    }
 }

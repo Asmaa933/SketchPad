@@ -177,8 +177,8 @@
 		9902C5BD285541C800498CD8 /* ImageNameAlert */ = {
 			isa = PBXGroup;
 			children = (
-				9902C5C92855476A00498CD8 /* SubView */,
 				9902C5C42855456E00498CD8 /* Coordinator */,
+				9902C5C92855476A00498CD8 /* SubView */,
 				9902C5C22855454300498CD8 /* View */,
 				9902C5C32855456300498CD8 /* ViewModel */,
 			);
@@ -496,8 +496,8 @@
 				99A71CE32852ADA70060C1DA /* Tabbar */,
 				99A71CE42852ADB00060C1DA /* Drawing */,
 				998B029B2853A77000D58A8F /* Preview */,
-				99A71CE52852ADB70060C1DA /* History */,
 				9902C5BD285541C800498CD8 /* ImageNameAlert */,
+				99A71CE52852ADB70060C1DA /* History */,
 			);
 			path = Features;
 			sourceTree = "<group>";

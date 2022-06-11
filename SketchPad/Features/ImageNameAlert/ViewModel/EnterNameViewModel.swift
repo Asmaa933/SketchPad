@@ -15,7 +15,7 @@ class EnterNameViewModel {
   
     private var coordinator: EnterNameCoordinatorProtocol
     
-    init(coordinator: EnterNameCoordinatorProtocol) {
+    init(coordinator: EnterNameCoordinatorProtocol, sketch: Sketch) {
         self.coordinator = coordinator
     }
 }
@@ -26,7 +26,7 @@ extension EnterNameViewModel: EnterNameViewModelProtocol {
         case .save(let imageName):
             break
         case .cancel:
-            break
+            coordinator.cancelAlert()
         }
     }
 }
