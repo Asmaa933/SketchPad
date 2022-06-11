@@ -24,7 +24,7 @@ class DrawingViewModel {
     
     private var coordinator: DrawingCoordinatorProtocol
     private lazy var linesInfo = [LineInfo]()
-    private var currentColor: UIColor = .black
+    private var currentColor: UIColor = .red
     private var currentThickness: CGFloat = 20
     private var currentMode: Mode = .drawing
     
@@ -113,21 +113,23 @@ fileprivate extension DrawingViewModel {
     
     func touchMoved(at point: CGPoint) {
         guard currentMode == .drawing,
-              var lastLine = linesInfo.last else { return }
+              var lastLine = linesInfo.popLast() else { return }
         lastLine.path.addLine(to: point)
         lastLine.pointsCount = lastLine.pointsCount + 1
         lastLine.isLine = true
+        linesInfo.append(lastLine)
         statePresenter?.render(state: DrawingState.draw(lines: linesInfo),
                                mapping: DrawingState.self)
     }
     
     func touchEnded(at point: CGPoint) {
-        guard currentMode == .drawing, var lastLine = linesInfo.last else { return }
-        if lastLine.pointsCount == 1 {
+        guard currentMode == .drawing else { return }
+        if linesInfo.last?.pointsCount == 1, var lastLine = linesInfo.popLast() {
             lastLine.path = UIBezierPath(ovalIn: CGRect(x: point.x,
                                                         y: point.y,
                                                         width: currentThickness,
                                                         height: currentThickness))
+            linesInfo.append(lastLine)
             statePresenter?.render(state: DrawingState.draw(lines: linesInfo),
                                    mapping: DrawingState.self)
         }
