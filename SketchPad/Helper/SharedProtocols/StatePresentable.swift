@@ -23,6 +23,10 @@ enum PreviewState: AppState {
     case rotate(angle: CGFloat)
 }
 
+enum EnterNameState: AppState {
+    case showError(error: AppError)
+}
+
 protocol StatePresentable {
     func render<T: AppState>(state: T, mapping: T.Type)
 }

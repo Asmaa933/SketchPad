@@ -50,7 +50,7 @@ extension DrawingCoordinator: DrawingCoordinatorProtocol {
             self.openSettings()
         }
         let okAlert = UIAlertAction(title: TitleConstant.ok.rawValue, style: .default)
-        navigationController.showAlert(error: error,
+        navigationController.showAlert(message: error.rawValue,
                                        actions: [okAlert,settingsAction])
     }
     

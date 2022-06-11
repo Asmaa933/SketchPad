@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EnterNameAlert" customModule="SketchPad" customModuleProvider="target">
+            <connections>
+                <outlet property="nameTextField" destination="ugk-ar-Ojr" id="KmP-fr-8Ji"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="7cP-0B-hf0">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="191"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter image name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wAq-yK-XUF">
+                    <rect key="frame" x="15" y="16" width="389" height="20.5"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <color key="textColor" name="sketchBarColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ugk-ar-Ojr">
+                    <rect key="frame" x="15" y="56.5" width="384" height="34"/>
+                    <color key="textColor" name="sketchBarColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Uak-KP-Stm">
+                    <rect key="frame" x="20" y="120.5" width="374" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hmh-y5-2Q9">
+                            <rect key="frame" x="0.0" y="0.0" width="177" height="50"/>
+                            <color key="backgroundColor" name="tintColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="82i-PB-pOA"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="Save">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="10"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="saveAction:" destination="-1" eventType="touchUpInside" id="61d-kF-jWu"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="68c-0l-Yih" userLabel="Cancel">
+                            <rect key="frame" x="197" y="0.0" width="177" height="50"/>
+                            <color key="backgroundColor" systemColor="systemRedColor"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="Cancel">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="10"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="cancelAction:" destination="-1" eventType="touchUpInside" id="Iu4-O0-i5M"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="kUC-jQ-1DA"/>
+            <color key="backgroundColor" name="backgroundColor"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="wAq-yK-XUF" secondAttribute="trailing" constant="10" id="1Tn-3j-FPZ"/>
+                <constraint firstItem="Uak-KP-Stm" firstAttribute="leading" secondItem="7cP-0B-hf0" secondAttribute="leading" constant="20" id="4PJ-tP-fsj"/>
+                <constraint firstItem="ugk-ar-Ojr" firstAttribute="leading" secondItem="7cP-0B-hf0" secondAttribute="leading" constant="15" id="598-kv-ky8"/>
+                <constraint firstItem="wAq-yK-XUF" firstAttribute="leading" secondItem="7cP-0B-hf0" secondAttribute="leading" constant="15" id="8Ie-Uh-tbq"/>
+                <constraint firstItem="kUC-jQ-1DA" firstAttribute="bottom" secondItem="Uak-KP-Stm" secondAttribute="bottom" constant="20.5" id="AZL-76-a4E"/>
+                <constraint firstItem="ugk-ar-Ojr" firstAttribute="top" secondItem="wAq-yK-XUF" secondAttribute="bottom" constant="20" id="CHa-66-i5X"/>
+                <constraint firstAttribute="trailing" secondItem="ugk-ar-Ojr" secondAttribute="trailing" constant="15" id="N98-aM-aT6"/>
+                <constraint firstAttribute="trailing" secondItem="Uak-KP-Stm" secondAttribute="trailing" constant="20" id="Np4-fR-oNb"/>
+                <constraint firstItem="wAq-yK-XUF" firstAttribute="top" secondItem="7cP-0B-hf0" secondAttribute="top" constant="16" id="oQa-er-3Ck"/>
+                <constraint firstItem="Uak-KP-Stm" firstAttribute="top" secondItem="ugk-ar-Ojr" secondAttribute="bottom" constant="30" id="qO7-Kn-7KQ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                    <real key="value" value="10"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="47.826086956521742" y="-203.23660714285714"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="backgroundColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="sketchBarColor">
+            <color red="0.26100000739097595" green="0.26100000739097595" blue="0.26100000739097595" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="tintColor">
+            <color red="0.0" green="0.5899999737739563" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

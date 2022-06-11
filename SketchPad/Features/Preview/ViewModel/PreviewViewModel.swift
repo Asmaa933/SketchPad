@@ -19,17 +19,14 @@ class PreviewViewModel {
     private var coordinator: PreviewCoordinatorProtocol
     private var canEdit: Bool
     private(set) var imageData: Data
-    private var cachingManager: CachingManager
     var statePresenter: StatePresentable?
     
     init(coordinator: PreviewCoordinatorProtocol,
          canEdit: Bool,
-         imageData: Data,
-         cachingManager: CachingManager = .shared) {
+         imageData: Data) {
         self.coordinator = coordinator
         self.canEdit = canEdit
         self.imageData = imageData
-        self.cachingManager = cachingManager
     }
 }
 
@@ -51,9 +48,7 @@ extension PreviewViewModel: PreviewViewModelProtocol {
     
     func saveButtonTapped(imageData: Data?) {
         guard let imageData = imageData else { return }
-        let sketch: Sketch = Sketch(imageName: "xxxx",
-                                    imageData: imageData,
-                                    createdAt: Date())
-        cachingManager.saveIntoCoreData(item: sketch)
+        let sketch = Sketch(imageData: imageData, createdAt: Date())
+        coordinator.presentEnterNameViewController(with: sketch)
     }
 }

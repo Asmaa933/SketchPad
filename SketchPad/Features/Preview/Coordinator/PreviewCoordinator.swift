@@ -9,6 +9,7 @@ import UIKit
 
 protocol PreviewCoordinatorProtocol {
     func popViewController()
+    func presentEnterNameViewController(with sketchData: Sketch)
 }
 
 class PreviewCoordinator {
@@ -24,5 +25,13 @@ class PreviewCoordinator {
 extension PreviewCoordinator: PreviewCoordinatorProtocol {
     func popViewController() {
         navigationController.popViewController(animated: true)
+    }
+    
+    func presentEnterNameViewController(with sketchData: Sketch) {
+        let coordinator = EnterNameCoordinator(navigationController: navigationController)
+        let viewModel = EnterNameViewModel(coordinator: coordinator, sketch: sketchData)
+        let enterNameViewController = EnterNameViewController(viewModel: viewModel)
+        enterNameViewController.modalPresentationStyle = .overCurrentContext
+        navigationController.present(enterNameViewController, animated: true)
     }
 }

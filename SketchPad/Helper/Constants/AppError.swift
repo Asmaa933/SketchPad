@@ -9,5 +9,7 @@ import Foundation
 
 enum AppError: String, Error {
     case photoPermissionDenied = "Permission Denied, please allow it from it"
+    case enterName = "Please enter image name"
+    case generalError = "Something went wrong, try again"
 
 }

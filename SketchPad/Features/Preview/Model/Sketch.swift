@@ -8,7 +8,7 @@
 import Foundation
 
 struct Sketch {
-    let imageName: String
     let imageData: Data
     let createdAt: Date
+    var imageName: String = ""
 }

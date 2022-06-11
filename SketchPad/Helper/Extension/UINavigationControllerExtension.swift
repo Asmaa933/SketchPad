@@ -8,8 +8,7 @@
 import UIKit
 
 extension UINavigationController {
-    func showAlert(error: AppError, actions: [UIAlertAction]) {
-        let message = error.rawValue
+    func showAlert(message: String, actions: [UIAlertAction]) {
         let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
         actions.forEach { action in
             alert.addAction(action)
