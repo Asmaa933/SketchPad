@@ -117,6 +117,8 @@ fileprivate extension DrawingViewModel {
         lastLine.path.addLine(to: point)
         lastLine.pointsCount = lastLine.pointsCount + 1
         lastLine.isLine = true
+        statePresenter?.render(state: DrawingState.draw(lines: linesInfo),
+                               mapping: DrawingState.self)
     }
     
     func touchEnded(at point: CGPoint) {
@@ -126,6 +128,8 @@ fileprivate extension DrawingViewModel {
                                                         y: point.y,
                                                         width: currentThickness,
                                                         height: currentThickness))
+            statePresenter?.render(state: DrawingState.draw(lines: linesInfo),
+                                   mapping: DrawingState.self)
         }
     }
 }

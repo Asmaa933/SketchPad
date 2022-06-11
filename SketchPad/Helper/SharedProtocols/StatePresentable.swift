@@ -11,6 +11,7 @@ protocol AppState {}
 
 enum DrawingState: AppState {
     case imagePicked(imageData: Data)
+    case draw(lines: [LineInfo])
     
 }
 

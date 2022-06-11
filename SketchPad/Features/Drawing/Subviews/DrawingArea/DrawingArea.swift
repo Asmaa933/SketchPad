@@ -23,6 +23,8 @@ class DrawingArea: UIView {
         return imageView
     }()
     
+    private lazy var lines = [LineInfo]()
+    
     var didTouchCallback: (((point: CGPoint, event: TouchEvent)) -> Void)?
     
     override init(frame: CGRect) {
@@ -42,6 +44,24 @@ class DrawingArea: UIView {
                                      imageView.heightAnchor.constraint(equalToConstant: heightRatio),
                                      imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
                                      imageView.centerYAnchor.constraint(equalTo: centerYAnchor)])
+    }
+    
+    func set(lines: [LineInfo]) {
+        self.lines = lines
+        self.setNeedsDisplay()
+    }
+    
+    override func draw(_ rect: CGRect) {
+        guard !lines.isEmpty else { return }
+        for line in lines {
+            if line.isLine {
+                line.lineColor.setStroke()
+                line.path.stroke()
+            } else {
+                line.lineColor.setFill()
+                line.path.fill()
+            }
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

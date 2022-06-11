@@ -103,9 +103,12 @@ extension DrawingViewController: StatePresentable {
         guard let drawingState = state as? DrawingState  else { return }
         switch drawingState {
             
-        case .imagePicked(imageData: let imageData):
+        case .imagePicked(let imageData):
             self.removeAddPhotoButton()
             self.setupSketchView(with: imageData)
+            
+        case .draw(let lines):
+            sketchView.draw(lines: lines)
         }
     }
 }

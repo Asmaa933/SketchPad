@@ -36,6 +36,10 @@ class SketchView: UIView {
         drawingArea.setupView(with: imageData)
     }
     
+    func draw(lines: [LineInfo]) {
+        drawingArea.set(lines: lines)
+    }
+    
 }
 
 fileprivate extension SketchView {
