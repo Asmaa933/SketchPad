@@ -60,6 +60,7 @@ fileprivate extension EnterNameViewModel {
     func handleSaveResult(result: Result<Bool,Error>) {
         switch result {
         case .success:
+            PhotoLibraryManager().saveIntoPhoto(imageData: sketch.imageData)
             coordinator.showSavedSuccessfully(message: TitleConstant.sketchSaved)
         case .failure:
             statePresenter?.render(state: EnterNameState.showError(error: .generalError),

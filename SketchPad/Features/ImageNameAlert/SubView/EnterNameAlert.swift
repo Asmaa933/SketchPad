@@ -28,6 +28,11 @@ class EnterNameAlert: UIView {
         loadNibView()
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.addShadow()
+    }
+    
     @IBAction private func saveAction(_ sender: UIButton) {
         nameTextField.resignFirstResponder()
         callBack?(.save(imageName: nameTextField.text ?? ""))
