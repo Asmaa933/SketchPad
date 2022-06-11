@@ -8,16 +8,27 @@
 import Foundation
 import UIKit
 
+enum Mode {
+    case drawing
+    case delete
+}
+
 protocol DrawingViewModelProtocol {
-    var statePresenter: DrawingStatePresentable? { get set }
+    var statePresenter: StatePresentable? { get set }
     func getImage()
     func topBarButtonTapped(_ button: DrawingTopBarButton)
+    func didTouchImage(at point: CGPoint, eventType: TouchEvent)
 }
 
 class DrawingViewModel {
     
     private var coordinator: DrawingCoordinatorProtocol
-    var statePresenter: DrawingStatePresentable?
+    private lazy var linesInfo = [LineInfo]()
+    private var currentColor: UIColor = .red
+    private var currentThickness: CGFloat = 20
+    private var currentMode: Mode = .drawing
+    
+    var statePresenter: StatePresentable?
     var imageDidPicked: ((Data) -> Void)?
     
     init(coordinator: DrawingCoordinatorProtocol) {
@@ -30,7 +41,8 @@ fileprivate extension DrawingViewModel {
     func getImageFromCoordinator() {
         coordinator.imageDidPicked = {[weak self] imageData in
             guard let self = self else { return }
-            self.statePresenter?.render(state: .imagePicked(imageData: imageData))
+            self.statePresenter?.render(state: .imagePicked(imageData: imageData),
+                                        mapping: DrawingState.self)
         }
         coordinator.showImagePicker()
     }
@@ -67,6 +79,60 @@ extension DrawingViewModel: DrawingViewModelProtocol {
             #warning("Capture sketch image and convert to before navigate to preview")
             guard let dummyImage = UIImage.getImage(from: .drawing).pngData() else { return }
             coordinator.openPreviewView(with: dummyImage)
+        }
+    }
+    
+    func didTouchImage(at point: CGPoint, eventType: TouchEvent) {
+        switch eventType {
+        case .began:
+            touchBegan(at: point)
+        case .moved:
+            touchMoved(at: point)
+        case .ended:
+            touchEnded(at: point)
+        }
+    }
+}
+
+fileprivate extension DrawingViewModel {
+    
+    func touchBegan(at point: CGPoint) {
+        switch currentMode {
+        case .drawing:
+            let path = UIBezierPath()
+            path.lineWidth = currentThickness
+            path.move(to: point)
+            let lineInfo = LineInfo(lineColor: currentColor,
+                                    lineWidth: currentThickness,
+                                    path: path,
+                                    pointsCount: 1)
+            linesInfo.append(lineInfo)
+        case .delete:
+            break
+        }
+    }
+    
+    func touchMoved(at point: CGPoint) {
+        guard currentMode == .drawing,
+              var lastLine = linesInfo.popLast() else { return }
+        lastLine.path.addLine(to: point)
+        lastLine.pointsCount = lastLine.pointsCount + 1
+        lastLine.isLine = true
+        linesInfo.append(lastLine)
+        statePresenter?.render(state: DrawingState.draw(lines: linesInfo),
+                               mapping: DrawingState.self)
+    }
+    
+    func touchEnded(at point: CGPoint) {
+        guard currentMode == .drawing else { return }
+        if linesInfo.last?.pointsCount == 1, var lastLine = linesInfo.popLast() {
+            lastLine.path = UIBezierPath(ovalIn: CGRect(x: point.x,
+                                                        y: point.y,
+                                                        width: currentThickness,
+                                                        height: currentThickness))
+            linesInfo.append(lastLine)
+            statePresenter?.render(state: DrawingState.draw(lines: linesInfo),
+                                   mapping: DrawingState.self)
         }
     }
 }

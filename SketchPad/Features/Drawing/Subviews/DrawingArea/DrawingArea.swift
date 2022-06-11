@@ -7,29 +7,53 @@
 
 import UIKit
 
+enum TouchEvent {
+    case began
+    case moved
+    case ended
+}
+
 class DrawingArea: UIImageView {
-    
-    var selectedImageData = Data() {
-        didSet {
-            image = UIImage(data: selectedImageData)
-        }
-    }
+        
+    var didTouchCallback: (((point: CGPoint, event: TouchEvent)) -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupImage()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupImage()
+    }
+    
+    func setupView(with imageData: Data) {
+        isUserInteractionEnabled = true
+        backgroundColor = .clear
+        contentMode = .scaleAspectFit
+        image = UIImage(data: imageData)
+    }
+    
+    func set(lines: [LineInfo]) {
+        drawLinesOnImage(lines)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        didTouches(touches, type: .began)
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        didTouches(touches, type: .moved)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        didTouches(touches, type: .ended)
     }
 }
 
 fileprivate extension DrawingArea {
     
-    func setupImage() {
-        contentMode = .scaleAspectFit
-        backgroundColor = .darkGray
+    func didTouches(_ touches: Set<UITouch>, type: TouchEvent) {
+        guard let touch = touches.first else { return }
+        let currentPoint = touch.location(in: self)
+        didTouchCallback?((currentPoint, type))
     }
 }

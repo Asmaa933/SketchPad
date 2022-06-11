@@ -97,18 +97,30 @@ fileprivate extension DrawingViewController {
     }
 }
 
-extension DrawingViewController: DrawingStatePresentable {
-    func render(state: DrawingState) {
-        switch state {
+extension DrawingViewController: StatePresentable {
+    
+    func render<T>(state: T, mapping: T.Type) where T : AppState {
+        guard let drawingState = state as? DrawingState  else { return }
+        switch drawingState {
+            
         case .imagePicked(let imageData):
             self.removeAddPhotoButton()
             self.setupSketchView(with: imageData)
+            
+        case .draw(let lines):
+            sketchView.draw(lines: lines)
         }
     }
 }
 
 extension DrawingViewController: SketchViewDelegate {
+   
     func topBarButtonTapped(_ button: DrawingTopBarButton) {
         viewModel.topBarButtonTapped(button)
     }
+    
+    func didTouch(at point: CGPoint, eventType: TouchEvent) {
+        viewModel.didTouchImage(at: point, eventType: eventType)
+    }
+    
 }
