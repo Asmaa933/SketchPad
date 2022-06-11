@@ -39,7 +39,7 @@ class DrawingArea: UIImageView {
     
     func set(lines: [LineInfo]) {
         image = UIImage(data: imageData)
-        self.image = image?.drawLinesOnImage(lines)
+        drawLinesOnImage(lines)
     }
     
     func getCurrentImageData() -> Data? { image?.pngData() }

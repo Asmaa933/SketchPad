@@ -8,28 +8,22 @@
 import UIKit
 
 extension UIImage {
-    
-    func drawLinesOnImage(_ lines: [LineInfo]) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(size, false, 0)
-        draw(in: CGRect(origin: .zero, size: size))
-        if let drawContext = UIGraphicsGetCurrentContext() {
-            for line in lines {
-                drawContext.addPath(line.path.cgPath)
-                drawContext.setLineWidth(line.lineWidth)
-                if line.isLine {
-                    drawContext.setStrokeColor(line.lineColor.cgColor)
-                    drawContext.strokePath()
-                } else {
-                    drawContext.setFillColor(line.lineColor.cgColor)
-                    drawContext.fillPath()
-                }
-            }
-            let sketchedImage = UIGraphicsGetImageFromCurrentImageContext()
+    func rotate(by angle: CGFloat) -> UIImage {
+        let rotatedSize = CGRect(origin: .zero, size: size)
+            .applying(CGAffineTransform(rotationAngle: CGFloat(angle)))
+            .integral.size
+        UIGraphicsBeginImageContext(rotatedSize)
+        if let context = UIGraphicsGetCurrentContext() {
+            let origin = CGPoint(x: rotatedSize.width / 2.0,
+                                 y: rotatedSize.height / 2.0)
+            context.translateBy(x: origin.x, y: origin.y)
+            context.rotate(by: angle)
+            draw(in: CGRect(x: -origin.y, y: -origin.x,
+                            width: size.width, height: size.height))
+            let rotatedImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
-            return sketchedImage ?? self
-        } else {
-            debugPrint("DrawContext is nil")
-            return self
+            return rotatedImage ?? self
         }
+        return self
     }
 }

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9902C5BC2855402900498CD8 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9902C5BB2855402900498CD8 /* UIImage.swift */; };
+		9902C5BC2855402900498CD8 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9902C5BB2855402900498CD8 /* UIImageExtension.swift */; };
 		9902C5C02855420400498CD8 /* EnterNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9902C5BE2855420400498CD8 /* EnterNameViewController.swift */; };
 		9902C5C62855458500498CD8 /* EnterNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9902C5C52855458500498CD8 /* EnterNameViewModel.swift */; };
 		9902C5C8285545B100498CD8 /* EnterNameCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9902C5C7285545B100498CD8 /* EnterNameCoordinator.swift */; };
@@ -24,7 +24,7 @@
 		99527A592853E099005609F4 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99527A582853E099005609F4 /* HistoryViewModel.swift */; };
 		99527A5C2853E9BE005609F4 /* SketchHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99527A5B2853E9BD005609F4 /* SketchHistoryView.swift */; };
 		99527A5E2853EA04005609F4 /* SketchHistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99527A5D2853EA04005609F4 /* SketchHistoryView.xib */; };
-		997D6C6E2854BF37000A2AEE /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997D6C6D2854BF37000A2AEE /* UIImageExtension.swift */; };
+		997D6C6E2854BF37000A2AEE /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997D6C6D2854BF37000A2AEE /* UIImageViewExtension.swift */; };
 		998B026D2852CDF900D58A8F /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B026C2852CDF900D58A8F /* UIViewExtension.swift */; };
 		998B02702852D00800D58A8F /* TitleConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B026F2852D00800D58A8F /* TitleConstant.swift */; };
 		998B02732852E06600D58A8F /* DrawingTopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B02722852E06600D58A8F /* DrawingTopBar.swift */; };
@@ -85,7 +85,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9902C5BB2855402900498CD8 /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		9902C5BB2855402900498CD8 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		9902C5BE2855420400498CD8 /* EnterNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterNameViewController.swift; sourceTree = "<group>"; };
 		9902C5C52855458500498CD8 /* EnterNameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterNameViewModel.swift; sourceTree = "<group>"; };
 		9902C5C7285545B100498CD8 /* EnterNameCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterNameCoordinator.swift; sourceTree = "<group>"; };
@@ -102,7 +102,7 @@
 		99527A582853E099005609F4 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		99527A5B2853E9BD005609F4 /* SketchHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchHistoryView.swift; sourceTree = "<group>"; };
 		99527A5D2853EA04005609F4 /* SketchHistoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SketchHistoryView.xib; sourceTree = "<group>"; };
-		997D6C6D2854BF37000A2AEE /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		997D6C6D2854BF37000A2AEE /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		998B026C2852CDF900D58A8F /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		998B026F2852D00800D58A8F /* TitleConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleConstant.swift; sourceTree = "<group>"; };
 		998B02722852E06600D58A8F /* DrawingTopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingTopBar.swift; sourceTree = "<group>"; };
@@ -611,9 +611,9 @@
 				998B026C2852CDF900D58A8F /* UIViewExtension.swift */,
 				998B029928539EC700D58A8F /* UINavigationControllerExtension.swift */,
 				993170882853EDEE00573750 /* UITableViewExtension.swift */,
-				997D6C6D2854BF37000A2AEE /* UIImageExtension.swift */,
+				997D6C6D2854BF37000A2AEE /* UIImageViewExtension.swift */,
 				993BF3262854E960004F9E4B /* UIBezierPathExtension.swift */,
-				9902C5BB2855402900498CD8 /* UIImage.swift */,
+				9902C5BB2855402900498CD8 /* UIImageExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -784,7 +784,7 @@
 				99A71CEC2852ADF70060C1DA /* HistoryViewController.swift in Sources */,
 				998B0291285393BC00D58A8F /* PhotoLibraryManager.swift in Sources */,
 				993BF3272854E960004F9E4B /* UIBezierPathExtension.swift in Sources */,
-				997D6C6E2854BF37000A2AEE /* UIImageExtension.swift in Sources */,
+				997D6C6E2854BF37000A2AEE /* UIImageViewExtension.swift in Sources */,
 				998B02AE2853A92000D58A8F /* PreviewCoordinator.swift in Sources */,
 				99A71CF52852B4470060C1DA /* Tab.swift in Sources */,
 				998B028E28537A4700D58A8F /* DrawingCoordinator.swift in Sources */,
@@ -803,7 +803,7 @@
 				9902C5C8285545B100498CD8 /* EnterNameCoordinator.swift in Sources */,
 				99527A592853E099005609F4 /* HistoryViewModel.swift in Sources */,
 				993BF33028552F0C004F9E4B /* SketchHistory.xcdatamodeld in Sources */,
-				9902C5BC2855402900498CD8 /* UIImage.swift in Sources */,
+				9902C5BC2855402900498CD8 /* UIImageExtension.swift in Sources */,
 				99A71CA528526B860060C1DA /* SceneDelegate.swift in Sources */,
 				99527A562853C82A005609F4 /* HistoryCoordinator.swift in Sources */,
 				9931708D2853EE8200573750 /* HistoryTableViewCell.swift in Sources */,
