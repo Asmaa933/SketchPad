@@ -11,4 +11,5 @@ enum TitleConstant: String {
     case addPhoto = "+ Add Photo"
     case ok = "Ok"
     case openSettings = "Open Settings"
+    case deleteModeOn = "Delete mode is on"
 }
