@@ -12,6 +12,7 @@ protocol DrawingViewModelProtocol {
     var statePresenter: StatePresentable? { get set }
     func getImage()
     func topBarButtonTapped(_ button: DrawingTopBarButton)
+    func didTouchImage(at point: CGPoint, eventType: TouchEvent)
 }
 
 class DrawingViewModel {
@@ -69,5 +70,9 @@ extension DrawingViewModel: DrawingViewModelProtocol {
             guard let dummyImage = UIImage.getImage(from: .drawing).pngData() else { return }
             coordinator.openPreviewView(with: dummyImage)
         }
+    }
+    
+    func didTouchImage(at point: CGPoint, eventType: TouchEvent) {
+        debugPrint("didTouch at \(point) eventType \(eventType) ")
     }
 }

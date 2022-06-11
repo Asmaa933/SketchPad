@@ -9,6 +9,7 @@ import UIKit
 
 protocol SketchViewDelegate: AnyObject {
     func topBarButtonTapped(_ button: DrawingTopBarButton)
+    func didTouch(at point: CGPoint, eventType: TouchEvent)
 }
 
 class SketchView: UIView {
@@ -22,13 +23,13 @@ class SketchView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadNibView()
-        setupCallBacks()
+        setupCallbacks()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         loadNibView()
-        setupCallBacks()
+        setupCallbacks()
     }
     
     func setImage(imageData: Data) {
@@ -39,14 +40,22 @@ class SketchView: UIView {
 
 fileprivate extension SketchView {
     
-    func setupCallBacks() {
-        setupTopBarCallBack()
+    func setupCallbacks() {
+        setupTopBarCallback()
+        setupDrawingCallback()
     }
     
-    func setupTopBarCallBack() {
+    func setupTopBarCallback() {
         topBar.topBarButtonTapped = {[weak self] button in
             guard let self = self else { return }
             self.delegate?.topBarButtonTapped(button)
+        }
+    }
+    
+    func setupDrawingCallback() {
+        drawingArea.didTouchCallback = {[weak self] touch in
+            guard let self = self else { return }
+            self.delegate?.didTouch(at: touch.point, eventType: touch.event)
         }
     }
 }

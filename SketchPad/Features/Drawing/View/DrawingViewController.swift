@@ -111,7 +111,13 @@ extension DrawingViewController: StatePresentable {
 }
 
 extension DrawingViewController: SketchViewDelegate {
+   
     func topBarButtonTapped(_ button: DrawingTopBarButton) {
         viewModel.topBarButtonTapped(button)
     }
+    
+    func didTouch(at point: CGPoint, eventType: TouchEvent) {
+        viewModel.didTouchImage(at: point, eventType: eventType)
+    }
+    
 }
