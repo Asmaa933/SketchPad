@@ -44,6 +44,10 @@ class SketchView: UIView {
     func set(color: UIColor) {
         bottomBar.colorChanged(to: color)
     }
+    
+    func toggleMode(isDelete: Bool) {
+        #warning("To do hide buttons ")
+    }
 }
 
 fileprivate extension SketchView {

@@ -71,6 +71,7 @@ extension DrawingViewModel: DrawingViewModelProtocol {
         case .close:
             linesInfo.removeAll()
             statePresenter?.render(state: DrawingState.close, mapping: DrawingState.self)
+            
         case .undo:
             guard let lastLine = linesInfo.popLast() else { return }
             deletedLines.append(lastLine)
@@ -82,7 +83,11 @@ extension DrawingViewModel: DrawingViewModelProtocol {
             statePresenter?.render(state: DrawingState.draw(lines: linesInfo),
                                    mapping: DrawingState.self)
         case .delete:
-            break
+            guard currentMode == .drawing, !linesInfo.isEmpty else { return }
+            currentMode = .delete
+            statePresenter?.render(state: DrawingState.deleteMode,
+                                   mapping: DrawingState.self)
+    
         case .done:
             #warning("Capture sketch image and convert to before navigate to preview")
             guard let dummyImage = UIImage.getImage(from: .drawing).pngData() else { return }
@@ -131,7 +136,16 @@ fileprivate extension DrawingViewModel {
                                     pointsCount: 1)
             linesInfo.append(lineInfo)
         case .delete:
-            break
+            guard currentMode == .delete, !linesInfo.isEmpty else { return }
+            for index in 0..<linesInfo.reversed().count {
+                if linesInfo[index].path.hasPoint(point, lineWidth: linesInfo[index].lineWidth) {
+                    deletedLines.append(linesInfo[index])
+                    linesInfo.remove(at: index)
+                    statePresenter?.render(state: DrawingState.draw(lines: linesInfo),
+                                          mapping: DrawingState.self)
+                    break
+                }
+            }
         }
     }
     

@@ -48,6 +48,7 @@ class DrawingTopBar: UIView {
     }
     
     @IBAction private func deleteButtonAction(_ sender: UIButton) {
+        topBarButtonTapped?(.delete)
     }
     
     @IBAction private func doneButtonAction(_ sender: UIButton) {
