@@ -44,6 +44,7 @@ class DrawingTopBar: UIView {
     }
     
     @IBAction private func redoButtonAction(_ sender: UIButton) {
+        topBarButtonTapped?(.redo)
     }
     
     @IBAction private func deleteButtonAction(_ sender: UIButton) {

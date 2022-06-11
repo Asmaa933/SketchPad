@@ -77,7 +77,10 @@ extension DrawingViewModel: DrawingViewModelProtocol {
             statePresenter?.render(state: DrawingState.draw(lines: linesInfo),
                                    mapping: DrawingState.self)
         case .redo:
-            break
+            guard let firstDeletedLine = deletedLines.popLast() else { return }
+            linesInfo.append(firstDeletedLine)
+            statePresenter?.render(state: DrawingState.draw(lines: linesInfo),
+                                   mapping: DrawingState.self)
         case .delete:
             break
         case .done:
