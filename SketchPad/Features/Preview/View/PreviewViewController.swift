@@ -28,6 +28,7 @@ class PreviewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.statePresenter = self
         handleViewDidLoad()
     }
     
@@ -52,5 +53,15 @@ fileprivate extension PreviewViewController {
 extension PreviewViewController: PreviewSketchViewDelegate {
     func topBarButtonTapped(_ button: PreviewTopBarButton) {
         viewModel.topBarButtonTapped(button)
+    }
+}
+
+extension PreviewViewController: StatePresentable {
+    func render<T>(state: T, mapping: T.Type) where T : AppState {
+        guard let previewState = state as? PreviewState  else { return }
+        switch previewState {
+        case .rotate(let angle):
+            previewSketchView.rotateImage(by: angle)
+        }
     }
 }

@@ -9,6 +9,7 @@ import Foundation
 
 protocol PreviewViewModelProtocol {
     var imageData: Data { get }
+    var statePresenter: StatePresentable? { get set }
     func topBarButtonTapped(_ button: PreviewTopBarButton)
 }
 
@@ -17,6 +18,7 @@ class PreviewViewModel {
     private var coordinator: PreviewCoordinatorProtocol
     private var canEdit: Bool
     private(set) var imageData: Data
+    var statePresenter: StatePresentable?
     
     init(coordinator: PreviewCoordinatorProtocol,
          canEdit: Bool,
@@ -36,9 +38,11 @@ extension PreviewViewModel: PreviewViewModelProtocol {
         case .save:
             break
         case .rotateLeft:
-            break
+            statePresenter?.render(state: PreviewState.rotate(angle: -.pi / 2),
+                                               mapping: PreviewState.self)
         case .rotateRight:
-            break
+            statePresenter?.render(state: PreviewState.rotate(angle: .pi / 2),
+                                               mapping: PreviewState.self)
         }
     }
 }
