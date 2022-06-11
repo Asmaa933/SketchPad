@@ -36,6 +36,7 @@ fileprivate extension CachingManager {
     func mapToCoreDataModel(item: Sketch) -> CachedSketch? {
         guard let context = getCoreDataObject() else { return nil }
         let cachedSketch = CachedSketch(context: context)
+        cachedSketch.id = UUID()
         cachedSketch.imageData = item.imageData
         cachedSketch.imageName = item.imageName
         cachedSketch.createdAt = item.createdAt
