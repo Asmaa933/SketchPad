@@ -12,6 +12,7 @@
 		9931708E2853EE8200573750 /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9931708C2853EE8200573750 /* HistoryTableViewCell.xib */; };
 		9931709128542DFE00573750 /* LineInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9931709028542DFE00573750 /* LineInfo.swift */; };
 		993BF3272854E960004F9E4B /* UIBezierPathExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993BF3262854E960004F9E4B /* UIBezierPathExtension.swift */; };
+		993BF33028552F0C004F9E4B /* SketchHistory.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 993BF32E28552F0C004F9E4B /* SketchHistory.xcdatamodeld */; };
 		99527A562853C82A005609F4 /* HistoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99527A552853C82A005609F4 /* HistoryCoordinator.swift */; };
 		99527A592853E099005609F4 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99527A582853E099005609F4 /* HistoryViewModel.swift */; };
 		99527A5C2853E9BE005609F4 /* SketchHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99527A5B2853E9BD005609F4 /* SketchHistoryView.swift */; };
@@ -81,6 +82,7 @@
 		9931708C2853EE8200573750 /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
 		9931709028542DFE00573750 /* LineInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineInfo.swift; sourceTree = "<group>"; };
 		993BF3262854E960004F9E4B /* UIBezierPathExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBezierPathExtension.swift; sourceTree = "<group>"; };
+		993BF32F28552F0C004F9E4B /* SketchHistory.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SketchHistory.xcdatamodel; sourceTree = "<group>"; };
 		99527A552853C82A005609F4 /* HistoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCoordinator.swift; sourceTree = "<group>"; };
 		99527A582853E099005609F4 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		99527A5B2853E9BD005609F4 /* SketchHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchHistoryView.swift; sourceTree = "<group>"; };
@@ -171,6 +173,14 @@
 				9931709028542DFE00573750 /* LineInfo.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		993BF32B28552EB9004F9E4B /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				993BF32E28552F0C004F9E4B /* SketchHistory.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		99527A532853C7D7005609F4 /* View */ = {
@@ -409,6 +419,7 @@
 		99A71CD328526EB30060C1DA /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				993BF32B28552EB9004F9E4B /* CoreData */,
 				99A71CD828526EEE0060C1DA /* LaunchScreen */,
 				99A71CD628526EDB0060C1DA /* Colors */,
 				99A71CD528526ED40060C1DA /* Assets */,
@@ -712,6 +723,7 @@
 				998B02A52853A8A000D58A8F /* PreviewTopBar.swift in Sources */,
 				99A71CFF2852CC7C0060C1DA /* FilledButton.swift in Sources */,
 				99527A592853E099005609F4 /* HistoryViewModel.swift in Sources */,
+				993BF33028552F0C004F9E4B /* SketchHistory.xcdatamodeld in Sources */,
 				99A71CA528526B860060C1DA /* SceneDelegate.swift in Sources */,
 				99527A562853C82A005609F4 /* HistoryCoordinator.swift in Sources */,
 				9931708D2853EE8200573750 /* HistoryTableViewCell.swift in Sources */,
@@ -1054,6 +1066,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		993BF32E28552F0C004F9E4B /* SketchHistory.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				993BF32F28552F0C004F9E4B /* SketchHistory.xcdatamodel */,
+			);
+			currentVersion = 993BF32F28552F0C004F9E4B /* SketchHistory.xcdatamodel */;
+			path = SketchHistory.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 99A71C9728526B860060C1DA /* Project object */;
 }
