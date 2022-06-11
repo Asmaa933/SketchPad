@@ -11,6 +11,7 @@ import UIKit.UIColor
 
 struct LineInfo {
     let lineColor: UIColor
+    let lineWidth: CGFloat
     var path: UIBezierPath
     var pointsCount: Int
     var isLine: Bool = false

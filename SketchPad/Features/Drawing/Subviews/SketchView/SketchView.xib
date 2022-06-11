@@ -30,25 +30,25 @@
                     <color key="backgroundColor" systemColor="systemTealColor"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ge8-1x-RkD" customClass="DrawingArea" customModule="SketchPad" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="48" width="320" height="472"/>
+                    <rect key="frame" x="0.0" y="142" width="320" height="284"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="Ge8-1x-RkD" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="6dQ-CU-fjL"/>
                 <constraint firstItem="vLW-cJ-F1z" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="7Ow-Wb-m1j"/>
                 <constraint firstItem="yll-ih-GfS" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="AfE-rQ-MPF"/>
-                <constraint firstItem="Ge8-1x-RkD" firstAttribute="top" secondItem="vLW-cJ-F1z" secondAttribute="bottom" id="BcA-rH-DBw"/>
                 <constraint firstItem="yll-ih-GfS" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="M2H-5H-zYR"/>
-                <constraint firstItem="yll-ih-GfS" firstAttribute="top" secondItem="Ge8-1x-RkD" secondAttribute="bottom" id="NIT-9Q-CAV"/>
                 <constraint firstItem="vLW-cJ-F1z" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="P2i-Kq-E37"/>
+                <constraint firstItem="Ge8-1x-RkD" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Tmj-3j-TJq"/>
                 <constraint firstItem="yll-ih-GfS" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="XqT-zj-86O"/>
                 <constraint firstItem="vLW-cJ-F1z" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.15" id="Zq7-1X-70z"/>
                 <constraint firstItem="yll-ih-GfS" firstAttribute="height" secondItem="vLW-cJ-F1z" secondAttribute="height" id="bXn-LA-Eac"/>
                 <constraint firstItem="vLW-cJ-F1z" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="dQt-oG-gwM"/>
-                <constraint firstItem="Ge8-1x-RkD" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="txq-RV-fLl"/>
+                <constraint firstItem="Ge8-1x-RkD" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="gFF-is-M5M"/>
+                <constraint firstItem="Ge8-1x-RkD" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="xiC-u2-Owg"/>
+                <constraint firstItem="Ge8-1x-RkD" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.5" id="yjS-45-ViJ"/>
             </constraints>
             <point key="canvasLocation" x="138.75" y="82.394366197183103"/>
         </view>

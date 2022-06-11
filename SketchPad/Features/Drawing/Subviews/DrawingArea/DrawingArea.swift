@@ -13,18 +13,8 @@ enum TouchEvent {
     case ended
 }
 
-class DrawingArea: UIView {
-    
-    private lazy var imageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.isUserInteractionEnabled = true
-        contentMode = .scaleAspectFit
-        return imageView
-    }()
-    
-    private lazy var lines = [LineInfo]()
-    
+class DrawingArea: UIImageView {
+        
     var didTouchCallback: (((point: CGPoint, event: TouchEvent)) -> Void)?
     
     override init(frame: CGRect) {
@@ -36,32 +26,14 @@ class DrawingArea: UIView {
     }
     
     func setupView(with imageData: Data) {
-        backgroundColor = .darkGray
-        imageView.image = UIImage(data: imageData)
-        addSubview(imageView)
-        let heightRatio = frame.size.width * 1.3
-        NSLayoutConstraint.activate([imageView.widthAnchor.constraint(equalTo: widthAnchor),
-                                     imageView.heightAnchor.constraint(equalToConstant: heightRatio),
-                                     imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-                                     imageView.centerYAnchor.constraint(equalTo: centerYAnchor)])
+        isUserInteractionEnabled = true
+        backgroundColor = .clear
+        contentMode = .scaleAspectFit
+        image = UIImage(data: imageData)
     }
     
     func set(lines: [LineInfo]) {
-        self.lines = lines
-        self.setNeedsDisplay()
-    }
-    
-    override func draw(_ rect: CGRect) {
-        guard !lines.isEmpty else { return }
-        for line in lines {
-            if line.isLine {
-                line.lineColor.setStroke()
-                line.path.stroke()
-            } else {
-                line.lineColor.setFill()
-                line.path.fill()
-            }
-        }
+        drawLinesOnImage(lines)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -80,8 +52,8 @@ class DrawingArea: UIView {
 fileprivate extension DrawingArea {
     
     func didTouches(_ touches: Set<UITouch>, type: TouchEvent) {
-        guard let touch = touches.first, touch.view == imageView else { return }
-        let currentPoint = touch.location(in: imageView)
+        guard let touch = touches.first else { return }
+        let currentPoint = touch.location(in: self)
         didTouchCallback?((currentPoint, type))
     }
 }

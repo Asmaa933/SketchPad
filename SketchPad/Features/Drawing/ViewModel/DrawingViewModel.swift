@@ -103,6 +103,7 @@ fileprivate extension DrawingViewModel {
             path.lineWidth = currentThickness
             path.move(to: point)
             let lineInfo = LineInfo(lineColor: currentColor,
+                                    lineWidth: currentThickness,
                                     path: path,
                                     pointsCount: 1)
             linesInfo.append(lineInfo)
