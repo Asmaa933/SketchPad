@@ -16,6 +16,11 @@ enum TouchEvent {
 class DrawingArea: UIImageView {
         
     var didTouchCallback: (((point: CGPoint, event: TouchEvent)) -> Void)?
+    private var imageData = Data() {
+        didSet {
+            image = UIImage(data: imageData)
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,10 +34,11 @@ class DrawingArea: UIImageView {
         isUserInteractionEnabled = true
         backgroundColor = .clear
         contentMode = .scaleAspectFit
-        image = UIImage(data: imageData)
+        self.imageData = imageData
     }
     
     func set(lines: [LineInfo]) {
+        image = UIImage(data: imageData)
         drawLinesOnImage(lines)
     }
     

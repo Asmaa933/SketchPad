@@ -40,6 +40,7 @@ class DrawingTopBar: UIView {
     }
     
     @IBAction private func undoButtonAction(_ sender: UIButton) {
+        topBarButtonTapped?(.undo)
     }
     
     @IBAction private func redoButtonAction(_ sender: UIButton) {

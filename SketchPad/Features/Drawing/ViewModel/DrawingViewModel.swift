@@ -25,6 +25,7 @@ class DrawingViewModel {
     
     private var coordinator: DrawingCoordinatorProtocol
     private lazy var linesInfo = [LineInfo]()
+    private lazy var deletedLines = [LineInfo]()
     private var currentColor: UIColor = .black
     private var currentThickness: CGFloat = 20
     private var currentMode: Mode = .drawing
@@ -71,7 +72,10 @@ extension DrawingViewModel: DrawingViewModelProtocol {
             linesInfo.removeAll()
             statePresenter?.render(state: DrawingState.close, mapping: DrawingState.self)
         case .undo:
-            break
+            guard let lastLine = linesInfo.popLast() else { return }
+            deletedLines.append(lastLine)
+            statePresenter?.render(state: DrawingState.draw(lines: linesInfo),
+                                   mapping: DrawingState.self)
         case .redo:
             break
         case .delete:
