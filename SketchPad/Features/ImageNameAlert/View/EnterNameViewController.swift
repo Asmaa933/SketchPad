@@ -39,8 +39,19 @@ fileprivate extension EnterNameViewController {
     func handleViewDidLoad() {
         view.backgroundColor = .black.withAlphaComponent(0.3)
         viewModel.statePresenter = self
+        addTapGestureToView()
         setupNameAlert()
         setupCallBack()
+    }
+    
+    func addTapGestureToView() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissView))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func dismissView() {
+        viewModel.handleAlertAction(.cancel)
     }
     
     func setupNameAlert() {
