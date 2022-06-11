@@ -10,6 +10,7 @@ import Foundation
 protocol PreviewViewModelProtocol {
     var imageData: Data { get }
     func topBarButtonTapped(_ button: PreviewTopBarButton)
+    func saveButtonTapped(imageData: Data?)
 }
 
 class PreviewViewModel {
@@ -17,15 +18,17 @@ class PreviewViewModel {
     private var coordinator: PreviewCoordinatorProtocol
     private var canEdit: Bool
     private(set) var imageData: Data
+    private var cachingManager: CachingManager
     
     init(coordinator: PreviewCoordinatorProtocol,
          canEdit: Bool,
-         imageData: Data) {
+         imageData: Data,
+         cachingManager: CachingManager = .shared) {
         self.coordinator = coordinator
         self.canEdit = canEdit
         self.imageData = imageData
+        self.cachingManager = cachingManager
     }
-    
 }
 
 extension PreviewViewModel: PreviewViewModelProtocol {
@@ -40,5 +43,13 @@ extension PreviewViewModel: PreviewViewModelProtocol {
         case .rotateRight:
             break
         }
+    }
+    
+    func saveButtonTapped(imageData: Data?) {
+        guard let imageData = imageData else { return }
+        let sketch: Sketch = Sketch(imageName: "xxxx",
+                                    imageData: imageData,
+                                    createdAt: Date())
+        cachingManager.saveIntoCoreData(item: sketch)
     }
 }
