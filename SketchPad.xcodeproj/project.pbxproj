@@ -12,6 +12,7 @@
 		9931708E2853EE8200573750 /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9931708C2853EE8200573750 /* HistoryTableViewCell.xib */; };
 		9931709128542DFE00573750 /* LineInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9931709028542DFE00573750 /* LineInfo.swift */; };
 		993BF3272854E960004F9E4B /* UIBezierPathExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993BF3262854E960004F9E4B /* UIBezierPathExtension.swift */; };
+		993BF32D28552EC7004F9E4B /* CachingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993BF32C28552EC7004F9E4B /* CachingManager.swift */; };
 		993BF33028552F0C004F9E4B /* SketchHistory.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 993BF32E28552F0C004F9E4B /* SketchHistory.xcdatamodeld */; };
 		99527A562853C82A005609F4 /* HistoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99527A552853C82A005609F4 /* HistoryCoordinator.swift */; };
 		99527A592853E099005609F4 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99527A582853E099005609F4 /* HistoryViewModel.swift */; };
@@ -57,6 +58,7 @@
 		99A71CF92852B7640060C1DA /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CF82852B7630060C1DA /* Coordinator.swift */; };
 		99A71CFB2852C0790060C1DA /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CFA2852C0790060C1DA /* AppCoordinator.swift */; };
 		99A71CFF2852CC7C0060C1DA /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CFE2852CC7C0060C1DA /* FilledButton.swift */; };
+		99F6618D285537AB008DA790 /* Sketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F6618C285537AB008DA790 /* Sketch.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +84,7 @@
 		9931708C2853EE8200573750 /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
 		9931709028542DFE00573750 /* LineInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineInfo.swift; sourceTree = "<group>"; };
 		993BF3262854E960004F9E4B /* UIBezierPathExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBezierPathExtension.swift; sourceTree = "<group>"; };
+		993BF32C28552EC7004F9E4B /* CachingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachingManager.swift; sourceTree = "<group>"; };
 		993BF32F28552F0C004F9E4B /* SketchHistory.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SketchHistory.xcdatamodel; sourceTree = "<group>"; };
 		99527A552853C82A005609F4 /* HistoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCoordinator.swift; sourceTree = "<group>"; };
 		99527A582853E099005609F4 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
@@ -131,6 +134,7 @@
 		99A71CF82852B7630060C1DA /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		99A71CFA2852C0790060C1DA /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		99A71CFE2852CC7C0060C1DA /* FilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButton.swift; sourceTree = "<group>"; };
+		99F6618C285537AB008DA790 /* Sketch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sketch.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,6 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				998B0290285393BC00D58A8F /* PhotoLibraryManager.swift */,
+				993BF32C28552EC7004F9E4B /* CachingManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -299,6 +304,7 @@
 		998B029B2853A77000D58A8F /* Preview */ = {
 			isa = PBXGroup;
 			children = (
+				99F6618B2855379C008DA790 /* Model */,
 				998B02AC2853A90E00D58A8F /* Coordinator */,
 				998B02A22853A86300D58A8F /* Subviews */,
 				998B029C2853A77E00D58A8F /* View */,
@@ -554,6 +560,14 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		99F6618B2855379C008DA790 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				99F6618C285537AB008DA790 /* Sketch.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -695,6 +709,7 @@
 				99A71CE82852ADDB0060C1DA /* DrawingViewController.swift in Sources */,
 				998B02702852D00800D58A8F /* TitleConstant.swift in Sources */,
 				998B028C285378D800D58A8F /* DrawingViewModel.swift in Sources */,
+				99F6618D285537AB008DA790 /* Sketch.swift in Sources */,
 				998B027A28535E0900D58A8F /* SketchView.swift in Sources */,
 				99A71CF92852B7640060C1DA /* Coordinator.swift in Sources */,
 				998B028328536CF900D58A8F /* DrawingBottomBar.swift in Sources */,
@@ -712,6 +727,7 @@
 				998B02AE2853A92000D58A8F /* PreviewCoordinator.swift in Sources */,
 				99A71CF52852B4470060C1DA /* Tab.swift in Sources */,
 				998B028E28537A4700D58A8F /* DrawingCoordinator.swift in Sources */,
+				993BF32D28552EC7004F9E4B /* CachingManager.swift in Sources */,
 				99A71CF32852AFE30060C1DA /* AppImage.swift in Sources */,
 				998B0288285370D100D58A8F /* DrawingArea.swift in Sources */,
 				993170892853EDEE00573750 /* UITableViewExtension.swift in Sources */,
