@@ -34,12 +34,18 @@ extension EnterNameViewModel: EnterNameViewModelProtocol {
         case .save(let imageName):
             if validate(imageName: imageName) {
                 sketch.imageName = imageName
-                cachingManager.saveIntoCoreData(item: sketch)
+                cachingManager.saveIntoCache(item: sketch) { [weak self] result in
+                    guard let self = self else { return }
+                    self.handleSaveResult(result: result)
+                }
             }
         case .cancel:
             coordinator.cancelAlert()
         }
     }
+}
+
+fileprivate extension EnterNameViewModel {
     
     func validate(imageName: String) -> Bool {
         if imageName.isEmpty {
@@ -48,6 +54,16 @@ extension EnterNameViewModel: EnterNameViewModelProtocol {
             return false
         } else {
             return true
+        }
+    }
+    
+    func handleSaveResult(result: Result<Bool,Error>) {
+        switch result {
+        case .success:
+            coordinator.showSavedSuccessfully(message: TitleConstant.sketchSaved)
+        case .failure:
+            statePresenter?.render(state: EnterNameState.showError(error: .generalError),
+                                   mapping: EnterNameState.self)
         }
     }
 }

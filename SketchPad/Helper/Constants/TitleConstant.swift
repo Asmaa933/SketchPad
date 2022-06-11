@@ -13,5 +13,5 @@ enum TitleConstant: String {
     case openSettings = "Open Settings"
     case deleteModeOn = "Delete mode is on"
     case drawingModeOn = "Drawing mode is on"
-
+    case sketchSaved = "Sketch Saved Successfully."
 }

@@ -14,14 +14,15 @@ class CachingManager {
     
     private init() {}
     
-    func saveIntoCoreData(item: Sketch) {
+    func saveIntoCache(item: Sketch, _ completion: @escaping((Result<Bool,Error>)-> Void)) {
         guard let context = getCoreDataObject(),
               let _ = mapToCoreDataModel(item: item) else { return }
         do {
             try context.save()
-            debugPrint("Saved.")
+            completion(.success(true))
         } catch (let error) {
             debugPrint("error in saving >> \(error)")
+            completion(.failure(error))
         }
     }
 }
