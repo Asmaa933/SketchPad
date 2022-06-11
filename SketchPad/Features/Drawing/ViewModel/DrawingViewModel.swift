@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol DrawingViewModelProtocol {
-    var statePresenter: DrawingStatePresentable? { get set }
+    var statePresenter: StatePresentable? { get set }
     func getImage()
     func topBarButtonTapped(_ button: DrawingTopBarButton)
 }
@@ -17,7 +17,7 @@ protocol DrawingViewModelProtocol {
 class DrawingViewModel {
     
     private var coordinator: DrawingCoordinatorProtocol
-    var statePresenter: DrawingStatePresentable?
+    var statePresenter: StatePresentable?
     var imageDidPicked: ((Data) -> Void)?
     
     init(coordinator: DrawingCoordinatorProtocol) {
@@ -30,7 +30,8 @@ fileprivate extension DrawingViewModel {
     func getImageFromCoordinator() {
         coordinator.imageDidPicked = {[weak self] imageData in
             guard let self = self else { return }
-            self.statePresenter?.render(state: .imagePicked(imageData: imageData))
+            self.statePresenter?.render(state: .imagePicked(imageData: imageData),
+                                        mapping: DrawingState.self)
         }
         coordinator.showImagePicker()
     }

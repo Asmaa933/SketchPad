@@ -97,10 +97,13 @@ fileprivate extension DrawingViewController {
     }
 }
 
-extension DrawingViewController: DrawingStatePresentable {
-    func render(state: DrawingState) {
-        switch state {
-        case .imagePicked(let imageData):
+extension DrawingViewController: StatePresentable {
+    
+    func render<T>(state: T, mapping: T.Type) where T : AppState {
+        guard let drawingState = state as? DrawingState  else { return }
+        switch drawingState {
+            
+        case .imagePicked(imageData: let imageData):
             self.removeAddPhotoButton()
             self.setupSketchView(with: imageData)
         }

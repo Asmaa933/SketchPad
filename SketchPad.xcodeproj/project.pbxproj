@@ -272,14 +272,6 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
-		998B029628539C1A00D58A8F /* State */ = {
-			isa = PBXGroup;
-			children = (
-				998B029728539C3B00D58A8F /* DrawingState.swift */,
-			);
-			path = State;
-			sourceTree = "<group>";
-		};
 		998B029B2853A77000D58A8F /* Preview */ = {
 			isa = PBXGroup;
 			children = (
@@ -468,7 +460,6 @@
 		99A71CE42852ADB00060C1DA /* Drawing */ = {
 			isa = PBXGroup;
 			children = (
-				998B029628539C1A00D58A8F /* State */,
 				998B028A285378BD00D58A8F /* Coordinator */,
 				998B02712852DFD200D58A8F /* Subviews */,
 				99A71CFC2852CC150060C1DA /* View */,
@@ -504,6 +495,7 @@
 			isa = PBXGroup;
 			children = (
 				99A71CF82852B7630060C1DA /* Coordinator.swift */,
+				998B029728539C3B00D58A8F /* DrawingState.swift */,
 			);
 			path = SharedProtocols;
 			sourceTree = "<group>";

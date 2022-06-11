@@ -7,12 +7,14 @@
 
 import Foundation
 
-enum DrawingState {
+protocol AppState {}
+
+enum DrawingState: AppState {
     case imagePicked(imageData: Data)
     
     
 }
 
-protocol DrawingStatePresentable {
-    func render(state: DrawingState)
+protocol StatePresentable {
+    func render<T: AppState>(state: T, mapping: T.Type)
 }
