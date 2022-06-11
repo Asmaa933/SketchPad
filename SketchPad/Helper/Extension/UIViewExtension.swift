@@ -9,7 +9,7 @@ import UIKit
 
 extension UIView {
     
-    var cornerRadius: CGFloat {
+   @IBInspectable var cornerRadius: CGFloat {
         get {
             return layer.cornerRadius
         }
@@ -24,7 +24,6 @@ extension UIView {
         layer.shadowOpacity = 0.5
         layer.shadowRadius = 2
         layer.masksToBounds = false
-        clipsToBounds = true
     }
     
     func loadNibView() {
