@@ -37,7 +37,8 @@ class EnterNameViewController: UIViewController {
 
 fileprivate extension EnterNameViewController {
     func handleViewDidLoad() {
-        view.backgroundColor = .black.withAlphaComponent(30)
+        view.backgroundColor = .black.withAlphaComponent(0.3)
+        viewModel.statePresenter = self
         setupNameAlert()
         setupCallBack()
     }
@@ -54,6 +55,16 @@ fileprivate extension EnterNameViewController {
         enterNameAlert.callBack = {[weak self] action in
             guard let self = self else { return }
             self.viewModel.handleAlertAction(action)
+        }
+    }
+}
+
+extension EnterNameViewController: StatePresentable {
+    func render<T>(state: T, mapping: T.Type) where T : AppState {
+        guard let previewState = state as? EnterNameState else { return }
+        switch previewState {
+        case .showError(let error):
+            view.showToast(with: error.rawValue)
         }
     }
 }

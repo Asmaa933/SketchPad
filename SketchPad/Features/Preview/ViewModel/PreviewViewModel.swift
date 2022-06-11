@@ -19,17 +19,14 @@ class PreviewViewModel {
     private var coordinator: PreviewCoordinatorProtocol
     private var canEdit: Bool
     private(set) var imageData: Data
-    private var cachingManager: CachingManager
     var statePresenter: StatePresentable?
     
     init(coordinator: PreviewCoordinatorProtocol,
          canEdit: Bool,
-         imageData: Data,
-         cachingManager: CachingManager = .shared) {
+         imageData: Data) {
         self.coordinator = coordinator
         self.canEdit = canEdit
         self.imageData = imageData
-        self.cachingManager = cachingManager
     }
 }
 
