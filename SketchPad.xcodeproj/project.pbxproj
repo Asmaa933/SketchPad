@@ -14,6 +14,7 @@
 		9902C5CB285547A500498CD8 /* EnterNameAlert.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9902C5CA285547A400498CD8 /* EnterNameAlert.xib */; };
 		9902C5CD285547E300498CD8 /* EnterNameAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9902C5CC285547E300498CD8 /* EnterNameAlert.swift */; };
 		9902C5D42855657900498CD8 /* HistoryDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9902C5D32855657900498CD8 /* HistoryDataProvider.swift */; };
+		9902C5D72855719B00498CD8 /* HistorySketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9902C5D62855719B00498CD8 /* HistorySketch.swift */; };
 		993170892853EDEE00573750 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993170882853EDEE00573750 /* UITableViewExtension.swift */; };
 		9931708D2853EE8200573750 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9931708B2853EE8200573750 /* HistoryTableViewCell.swift */; };
 		9931708E2853EE8200573750 /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9931708C2853EE8200573750 /* HistoryTableViewCell.xib */; };
@@ -93,6 +94,7 @@
 		9902C5CA285547A400498CD8 /* EnterNameAlert.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnterNameAlert.xib; sourceTree = "<group>"; };
 		9902C5CC285547E300498CD8 /* EnterNameAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterNameAlert.swift; sourceTree = "<group>"; };
 		9902C5D32855657900498CD8 /* HistoryDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDataProvider.swift; sourceTree = "<group>"; };
+		9902C5D62855719B00498CD8 /* HistorySketch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorySketch.swift; sourceTree = "<group>"; };
 		993170882853EDEE00573750 /* UITableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		9931708B2853EE8200573750 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		9931708C2853EE8200573750 /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
@@ -226,6 +228,14 @@
 				9902C5D32855657900498CD8 /* HistoryDataProvider.swift */,
 			);
 			path = UseCase;
+			sourceTree = "<group>";
+		};
+		9902C5D52855718600498CD8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9902C5D62855719B00498CD8 /* HistorySketch.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		9931708A2853EE6900573750 /* Cell */ = {
@@ -570,6 +580,7 @@
 		99A71CE52852ADB70060C1DA /* History */ = {
 			isa = PBXGroup;
 			children = (
+				9902C5D52855718600498CD8 /* Model */,
 				99527A542853C7F3005609F4 /* Coordinator */,
 				99527A5A2853E80B005609F4 /* Subviews */,
 				99527A532853C7D7005609F4 /* View */,
@@ -805,6 +816,7 @@
 				993170892853EDEE00573750 /* UITableViewExtension.swift in Sources */,
 				9902C5D42855657900498CD8 /* HistoryDataProvider.swift in Sources */,
 				99A71CEF2852AE4A0060C1DA /* TabBarCoordinator.swift in Sources */,
+				9902C5D72855719B00498CD8 /* HistorySketch.swift in Sources */,
 				9902C5CD285547E300498CD8 /* EnterNameAlert.swift in Sources */,
 				998B026D2852CDF900D58A8F /* UIViewExtension.swift in Sources */,
 				998B02732852E06600D58A8F /* DrawingTopBar.swift in Sources */,

@@ -23,6 +23,13 @@ class SketchHistoryView: UIView {
         loadNibView()
         setupView()
     }
+    
+    func reloadHistoryTableView() {
+        DispatchQueue.main.async {[weak self] in
+            guard let self = self else { return }
+            self.historyTableView.reloadData()
+        }
+    }
 }
 
 fileprivate extension SketchHistoryView {

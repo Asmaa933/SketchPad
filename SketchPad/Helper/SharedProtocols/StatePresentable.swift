@@ -27,6 +27,10 @@ enum EnterNameState: AppState {
     case showError(error: AppError)
 }
 
+enum HistoryState: AppState {
+    case reloadHistoryTableView
+}
+
 protocol StatePresentable {
     func render<T: AppState>(state: T, mapping: T.Type)
 }

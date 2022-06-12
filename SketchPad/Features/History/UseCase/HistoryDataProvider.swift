@@ -7,7 +7,7 @@
 
 import Foundation
 
-typealias SketchResult = Result<[Sketch], Error>
+typealias SketchResult = Result<[HistorySketch], Error>
 
 protocol HistoryDataProviderProtocol {
     func getHistory(_ completion: @escaping (SketchResult) -> Void)
@@ -24,7 +24,9 @@ class HistoryDataProvider: HistoryDataProviderProtocol {
         let result = cachingManager.getSketchesFromCache()
         switch result {
         case .success(let cachedSketched):
-            let sketches = cachedSketched.compactMap(mapResultToSketch(_:))
+            let sketches = cachedSketched
+                .compactMap(mapResultToSketch(_:))
+                .compactMap(\.toHistoryDisplay)
             completion(.success(sketches))
         case .failure(let error):
             completion(.failure(error))

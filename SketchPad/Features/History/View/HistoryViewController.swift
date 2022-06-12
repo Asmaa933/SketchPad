@@ -34,6 +34,7 @@ class HistoryViewController: UIViewController {
 fileprivate extension HistoryViewController {
     
     func handleViewDidLoad() {
+        viewModel.statePresenter = self
         setupSketchHistoryView()
         viewModel.viewDidLoad()
     }
@@ -45,4 +46,17 @@ fileprivate extension HistoryViewController {
                                      sketchHistoryView.topAnchor.constraint(equalTo: view.topAnchor),
                                      sketchHistoryView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
     }
+}
+
+extension HistoryViewController: StatePresentable {
+    func render<T>(state: T, mapping: T.Type) where T : AppState {
+        guard let state = state as? HistoryState else { return }
+        
+        switch state {
+        case .reloadHistoryTableView:
+            sketchHistoryView.reloadHistoryTableView()
+        }
+    }
+    
+    
 }

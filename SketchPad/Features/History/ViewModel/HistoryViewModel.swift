@@ -8,13 +8,20 @@
 import Foundation
 
 protocol HistoryViewModelProtocol {
+    var statePresenter: StatePresentable? { get set }
     func viewDidLoad()
+    func getSketchesCount() -> Int
+    func getSketch(at index: Int) -> HistorySketch
+//    func sketchDidSelected(at index: Int)
+//    func deleteSketch(at index: Int)
+//    func editSketch(at index: Int)z
 }
 
 class HistoryViewModel {
     private var coordinator: HistoryCoordinatorProtocol
     private var dataProvider: HistoryDataProviderProtocol
-    private lazy var sketches = [Sketch]()
+    private lazy var sketches = [HistorySketch]()
+    var statePresenter: StatePresentable?
     
     init(coordinator: HistoryCoordinatorProtocol, dataProvider: HistoryDataProviderProtocol) {
         self.coordinator = coordinator
@@ -35,7 +42,8 @@ fileprivate extension HistoryViewModel {
         case .success(let sketches):
             self.sketches = sketches
             debugPrint(sketches)
-            #warning("reloadTableView")
+            statePresenter?.render(state: HistoryState.reloadHistoryTableView,
+                                   mapping: HistoryState.self)
         case .failure:
             coordinator.showError(message: .generalError)
         }
@@ -43,8 +51,16 @@ fileprivate extension HistoryViewModel {
 }
 
 extension HistoryViewModel: HistoryViewModelProtocol {
+
     func viewDidLoad() {
         loadHistory()
     }
+    
+    func getSketchesCount() -> Int {
+        return sketches.count
+    }
 
+    func getSketch(at index: Int) -> HistorySketch {
+        return sketches[index]
+    }
 }
