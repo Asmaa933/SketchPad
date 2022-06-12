@@ -107,8 +107,8 @@ extension HistoryViewModel: HistoryViewModelProtocol {
     
     func sketchDidSelected(at indexPath: IndexPath) {
         let section = groupedSketches[indexPath.section]
-        guard let sketch = section.SectionData?[indexPath.row].toDisplay else { return }
-        coordinator.previewSketch(with: sketch.imageData)
+        guard let sketch = section.SectionData?[indexPath.row] else { return }
+        coordinator.previewSketch(with: sketch)
     }
     #warning("show alert")
     func deleteSketch(at indexPath: IndexPath) {

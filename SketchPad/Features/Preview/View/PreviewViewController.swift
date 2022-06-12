@@ -36,11 +36,6 @@ class PreviewViewController: UIViewController {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = true
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        tabBarController?.tabBar.isHidden = false
-    }
 }
 
 fileprivate extension PreviewViewController {
@@ -51,7 +46,7 @@ fileprivate extension PreviewViewController {
     func addPreviewView() {
         view.addSubview(previewSketchView)
         previewSketchView.delegate = self
-        previewSketchView.setImage(with: viewModel.imageData)
+        previewSketchView.setImage(with: viewModel.sketch.imageData)
         NSLayoutConstraint.activate([previewSketchView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                                      previewSketchView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                                      previewSketchView.topAnchor.constraint(equalTo: view.topAnchor),

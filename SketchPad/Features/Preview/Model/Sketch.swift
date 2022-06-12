@@ -10,7 +10,7 @@ import Foundation
 struct Sketch {
     
     let id: UUID?
-    let imageData: Data?
+    var imageData: Data?
     var imageName: String?
     let date: String?
     let time: String?

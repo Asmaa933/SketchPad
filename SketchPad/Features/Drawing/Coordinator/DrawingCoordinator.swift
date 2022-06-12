@@ -8,18 +8,18 @@
 import UIKit
 
 protocol DrawingCoordinatorProtocol {
-    var imageDidPicked: ((Data) -> Void)? { get set }
+    var imageDidPicked: ((Sketch) -> Void)? { get set }
     var colorDidPicked: ((UIColor) -> Void)? { get set }
     func showImagePicker()
     func showPermissionDeniedAlert(error: AppError)
-    func openPreviewView(with imageData: Data)
+    func openPreviewView(with sketch: Sketch)
     func showColorPicker(currentColor: UIColor)
 }
 
 class DrawingCoordinator: NSObject {
     
     private var navigationController: UINavigationController
-    var imageDidPicked: ((Data) -> Void)?
+    var imageDidPicked: ((Sketch) -> Void)?
     var colorDidPicked: ((UIColor) -> Void)?
     
     init(navigationController: UINavigationController) {
@@ -54,11 +54,11 @@ extension DrawingCoordinator: DrawingCoordinatorProtocol {
                                        actions: [okAlert,settingsAction])
     }
     
-    func openPreviewView(with imageData: Data) {
+    func openPreviewView(with sketch: Sketch) {
         let coordinator = PreviewCoordinator(navigationController: navigationController)
         let viewModel = PreviewViewModel(coordinator: coordinator,
                                          canEdit: true,
-                                         imageData: imageData)
+                                         sketch: sketch)
         let previewViewController = PreviewViewController(viewModel: viewModel)
         navigationController.pushViewController(previewViewController,
                                                 animated: true)
@@ -80,7 +80,7 @@ extension DrawingCoordinator: UIImagePickerControllerDelegate, UINavigationContr
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let editedImage = info[.editedImage] as? UIImage,
               let imageData = editedImage.pngData() else { return }
-        imageDidPicked?(imageData)
+        imageDidPicked?(Sketch(imageData: imageData))
         navigationController.dismiss(animated: true)
     }
     

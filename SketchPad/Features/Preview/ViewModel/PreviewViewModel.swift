@@ -8,7 +8,7 @@
 import Foundation
 
 protocol PreviewViewModelProtocol {
-    var imageData: Data { get }
+    var sketch: Sketch { get }
     var statePresenter: StatePresentable? { get set }
     func viewDidLoaded()
     func topBarButtonTapped(_ button: PreviewTopBarButton)
@@ -19,15 +19,15 @@ class PreviewViewModel {
     
     private var coordinator: PreviewCoordinatorProtocol
     private var canEdit: Bool
-    private(set) var imageData: Data
+    private(set) var sketch: Sketch
     var statePresenter: StatePresentable?
     
     init(coordinator: PreviewCoordinatorProtocol,
          canEdit: Bool,
-         imageData: Data) {
+         sketch: Sketch) {
         self.coordinator = coordinator
         self.canEdit = canEdit
-        self.imageData = imageData
+        self.sketch = sketch
     }
 }
 

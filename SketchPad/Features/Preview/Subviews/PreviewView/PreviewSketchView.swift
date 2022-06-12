@@ -31,7 +31,8 @@ class PreviewSketchView: UIView {
         setupTopBarCallBack()
     }
     
-    func setImage(with imageData: Data) {
+    func setImage(with imageData: Data?) {
+        guard let imageData = imageData else { return }
         previewImageView.image = UIImage(data: imageData)
     }
     

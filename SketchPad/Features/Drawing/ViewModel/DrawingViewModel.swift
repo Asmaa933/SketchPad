@@ -30,6 +30,7 @@ class DrawingViewModel {
     private var currentColor: UIColor = .black
     private var currentThickness: CGFloat = 20
     private var currentMode: Mode = .drawing
+    private var sketch: Sketch?
     
     var statePresenter: StatePresentable?
     
@@ -41,8 +42,10 @@ class DrawingViewModel {
 fileprivate extension DrawingViewModel {
     
     func getImageFromCoordinator() {
-        coordinator.imageDidPicked = {[weak self] imageData in
-            guard let self = self else { return }
+        coordinator.imageDidPicked = {[weak self] sketch in
+            guard let self = self,
+                  let imageData = sketch.imageData else { return }
+            self.sketch = sketch
             self.statePresenter?.render(state: .imagePicked(imageData: imageData),
                                         mapping: DrawingState.self)
         }
@@ -98,8 +101,10 @@ extension DrawingViewModel: DrawingViewModelProtocol {
     func doneButtonTapped(imageData: Data?) {
         switch currentMode {
         case .drawing:
-            guard let imageData = imageData else { return }
-            coordinator.openPreviewView(with: imageData)
+            guard var sketch = sketch,
+                  let imageData = imageData else { return }
+            sketch.imageData = imageData
+            coordinator.openPreviewView(with: sketch)
             
         case .delete:
             currentMode = .drawing

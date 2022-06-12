@@ -9,7 +9,7 @@ import UIKit
 
 protocol HistoryCoordinatorProtocol {
     func showError(message: AppError)
-    func previewSketch(with imageData: Data)
+    func previewSketch(with sketch: Sketch)
 }
 
 class HistoryCoordinator {
@@ -29,9 +29,9 @@ extension HistoryCoordinator: HistoryCoordinatorProtocol {
         navigationController.showAlert(message: message.rawValue, actions: [okAction])
     }
     
-    func previewSketch(with imageData: Data) {
+    func previewSketch(with sketch: Sketch) {
         let coordinator = PreviewCoordinator(navigationController: navigationController)
-        let viewModel = PreviewViewModel(coordinator: coordinator, canEdit: false, imageData: imageData)
+        let viewModel = PreviewViewModel(coordinator: coordinator, canEdit: false, sketch: sketch)
         let previewViewController = PreviewViewController(viewModel: viewModel)
         navigationController.present(previewViewController, animated: true)
     }
