@@ -7,9 +7,14 @@
 
 import Foundation
 
+enum HistoryMode {
+    case notSearching
+    case searching(text: String)
+}
+
 protocol HistoryViewModelProtocol {
     var statePresenter: StatePresentable? { get set }
-    func viewDidLoaded()
+    func loadHistory()
     func getSectionsCount() -> Int
     func getTitle(for section: Int) -> String
     func getSketchesCount(in section: Int) -> Int
@@ -17,40 +22,37 @@ protocol HistoryViewModelProtocol {
     func sketchDidSelected(at indexPath: IndexPath)
     func deleteSketch(at indexPath: IndexPath)
     func editSketch(at indexPath: IndexPath)
+    func searchForSketch(by text: String)
 }
 
 class HistoryViewModel {
     private var coordinator: HistoryCoordinatorProtocol
     private var dataProvider: HistoryDataProviderProtocol
+    private var searchDispatcher: SearchDispatcher
+    private var currentMode: HistoryMode = .notSearching
     private lazy var groupedSketches = [HistorySketchSection]() {
         didSet {
             reloadTableView()
         }
     }
-    private lazy var loadedSketches = [Sketch]()
+    
     var statePresenter: StatePresentable?
     
-    init(coordinator: HistoryCoordinatorProtocol, dataProvider: HistoryDataProviderProtocol) {
+    init(coordinator: HistoryCoordinatorProtocol,
+         dataProvider: HistoryDataProviderProtocol,
+         searchDispatcher: SearchDispatcher = SearchDispatchItem()) {
         self.coordinator = coordinator
         self.dataProvider = dataProvider
+        self.searchDispatcher = searchDispatcher
     }
 }
 
 fileprivate extension HistoryViewModel {
     
-    func loadHistory() {
-        dataProvider.getHistory {[weak self] result in
-            guard let self = self else { return }
-            self.handleHistoryResult(result: result)
-        }
-    }
-    
     func handleHistoryResult(result: SketchResult) {
         switch result {
-        case .success((let sketchesInSection, let sketches)):
+        case .success(let sketchesInSection):
             self.groupedSketches = sketchesInSection
-            self.loadedSketches = sketches
-            debugPrint(sketches)
         case .failure:
             coordinator.showError(message: .generalError)
         }
@@ -61,20 +63,30 @@ fileprivate extension HistoryViewModel {
                                mapping: HistoryState.self)
     }
     
-    func handleDeleteResult(_ result: CallBackResult, sketchIndex: Int) {
+    func handleDeleteResult(_ result: CallBackResult, indexPath: IndexPath) {
         switch result {
         case .success(_):
-            groupedSketches.remove(at: sketchIndex)
+            groupedSketches[indexPath.section].SectionData?.remove(at: indexPath.row)
         case .failure(let error):
             coordinator.showError(message: error)
+        }
+    }
+    
+    func searchForSketchesInCache(by imageName: String) {
+        dataProvider.searchForSketches(by: imageName) {[weak self] result in
+            guard let self = self else { return }
+            self.handleHistoryResult(result: result)
         }
     }
 }
 
 extension HistoryViewModel: HistoryViewModelProtocol {
-
-    func viewDidLoaded() {
-        loadHistory()
+    
+    func loadHistory() {
+        dataProvider.getHistory {[weak self] result in
+            guard let self = self else { return }
+            self.handleHistoryResult(result: result)
+        }
     }
     
     func getSectionsCount() -> Int {
@@ -104,11 +116,27 @@ extension HistoryViewModel: HistoryViewModelProtocol {
               let id = sketches[indexPath.row].id else { return }
         dataProvider.deleteSketchFromCaching(id: id) {[weak self] result in
             guard let self = self else { return }
-            self.handleDeleteResult(result, sketchIndex: indexPath.section)
+            self.handleDeleteResult(result, indexPath: indexPath)
         }
     }
     
     func editSketch(at indexPath: IndexPath) {
         
+    }
+    
+    func searchForSketch(by text: String) {
+        if text.isEmpty {
+            currentMode = .notSearching
+            dataProvider.getHistory {[weak self] result in
+                guard let self = self else { return }
+                self.handleHistoryResult(result: result)
+            }
+        } else {
+            searchDispatcher.call {[weak self] in
+                guard let self = self else { return }
+                self.currentMode = .searching(text: text)
+                self.searchForSketchesInCache(by: text)
+            }
+        }
     }
 }

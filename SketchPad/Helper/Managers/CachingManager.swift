@@ -52,6 +52,16 @@ class CachingManager {
             return .failure(.generalError)
         }
     }
+    
+    func searchForSketch(by imageName: String) -> Result<[CachedSketch],AppError> {
+        let predicate = NSPredicate(format: "imageName contains[c] %@", imageName)
+        let sketches = fetchFromCache(predicate: predicate)
+        if let sketches = sketches {
+            return .success(sketches)
+        } else {
+            return .failure(.generalError)
+        }
+    }
 }
 
 fileprivate extension CachingManager {
@@ -73,18 +83,23 @@ fileprivate extension CachingManager {
         return cachedSketch
     }
     
-    func getItemFromCacheByID(_ id: UUID) -> CachedSketch? {
+    func fetchFromCache(predicate: NSPredicate) -> [CachedSketch]? {
         guard let context = getCoreDataObject() else { return nil }
         guard let entityName = CachedSketch.entity().name else { return nil }
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        request.predicate = predicate
         do {
             let sketches =  try context.fetch(request) as? [CachedSketch]
-            return sketches?.first
+            return sketches
         } catch(let error) {
             debugPrint("Error getting item by Id >> \(error.localizedDescription )")
             return nil
         }
+    }
+    
+    func getItemFromCacheByID(_ id: UUID) -> CachedSketch? {
+        let predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        return fetchFromCache(predicate: predicate)?.first
     }
 }
 

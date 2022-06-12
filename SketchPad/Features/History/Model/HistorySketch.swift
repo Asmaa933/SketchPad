@@ -9,5 +9,5 @@ import Foundation
 
 struct HistorySketchSection {
     let date: String
-    let SectionData: [Sketch]?
+    var SectionData: [Sketch]?
 }
