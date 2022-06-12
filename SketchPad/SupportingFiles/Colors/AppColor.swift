@@ -10,8 +10,10 @@ import UIKit
 enum AppColor: String {
     case backgroundColor
     case tintColor
-    case tabbarBackgroundColor
+    case tabBarBackgroundColor
     case sketchBarColor
+    case swipeDeleteColor
+    case swipeEditColor
 }
 
 
