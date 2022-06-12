@@ -23,6 +23,7 @@ class PreviewCoordinator {
 }
 
 extension PreviewCoordinator: PreviewCoordinatorProtocol {
+    
     func popViewController() {
         navigationController.popViewController(animated: true)
     }

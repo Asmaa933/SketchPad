@@ -20,6 +20,7 @@
 		993BF3272854E960004F9E4B /* UIBezierPathExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993BF3262854E960004F9E4B /* UIBezierPathExtension.swift */; };
 		993BF32D28552EC7004F9E4B /* CachingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993BF32C28552EC7004F9E4B /* CachingManager.swift */; };
 		993BF33028552F0C004F9E4B /* SketchHistory.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 993BF32E28552F0C004F9E4B /* SketchHistory.xcdatamodeld */; };
+		994A0D952856A58D00F132D6 /* PreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 994A0D942856A58D00F132D6 /* PreviewViewController.xib */; };
 		99527A562853C82A005609F4 /* HistoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99527A552853C82A005609F4 /* HistoryCoordinator.swift */; };
 		99527A592853E099005609F4 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99527A582853E099005609F4 /* HistoryViewModel.swift */; };
 		99527A5E2853EA04005609F4 /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99527A5D2853EA04005609F4 /* HistoryViewController.xib */; };
@@ -44,8 +45,6 @@
 		998B02A72853A8B300D58A8F /* PreviewTopBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 998B02A62853A8B300D58A8F /* PreviewTopBar.xib */; };
 		998B02AA2853A8D300D58A8F /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B02A82853A8D300D58A8F /* PreviewViewController.swift */; };
 		998B02AE2853A92000D58A8F /* PreviewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B02AD2853A92000D58A8F /* PreviewCoordinator.swift */; };
-		998B02B12853B07F00D58A8F /* PreviewSketchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B02B02853B07F00D58A8F /* PreviewSketchView.swift */; };
-		998B02B32853B08D00D58A8F /* PreviewSketchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 998B02B22853B08D00D58A8F /* PreviewSketchView.xib */; };
 		99A34A392855DE4B003FB9E8 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A34A382855DE4B003FB9E8 /* DateExtension.swift */; };
 		99A71CA328526B860060C1DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CA228526B860060C1DA /* AppDelegate.swift */; };
 		99A71CA528526B860060C1DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CA428526B860060C1DA /* SceneDelegate.swift */; };
@@ -101,6 +100,7 @@
 		993BF3262854E960004F9E4B /* UIBezierPathExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBezierPathExtension.swift; sourceTree = "<group>"; };
 		993BF32C28552EC7004F9E4B /* CachingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachingManager.swift; sourceTree = "<group>"; };
 		993BF32F28552F0C004F9E4B /* SketchHistory.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SketchHistory.xcdatamodel; sourceTree = "<group>"; };
+		994A0D942856A58D00F132D6 /* PreviewViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreviewViewController.xib; sourceTree = "<group>"; };
 		99527A552853C82A005609F4 /* HistoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCoordinator.swift; sourceTree = "<group>"; };
 		99527A582853E099005609F4 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		99527A5D2853EA04005609F4 /* HistoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
@@ -125,8 +125,6 @@
 		998B02A62853A8B300D58A8F /* PreviewTopBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreviewTopBar.xib; sourceTree = "<group>"; };
 		998B02A82853A8D300D58A8F /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		998B02AD2853A92000D58A8F /* PreviewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCoordinator.swift; sourceTree = "<group>"; };
-		998B02B02853B07F00D58A8F /* PreviewSketchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewSketchView.swift; sourceTree = "<group>"; };
-		998B02B22853B08D00D58A8F /* PreviewSketchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreviewSketchView.xib; sourceTree = "<group>"; };
 		99A34A382855DE4B003FB9E8 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		99A71C9F28526B860060C1DA /* SketchPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SketchPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99A71CA228526B860060C1DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -379,6 +377,7 @@
 			isa = PBXGroup;
 			children = (
 				998B02A82853A8D300D58A8F /* PreviewViewController.swift */,
+				994A0D942856A58D00F132D6 /* PreviewViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -394,7 +393,6 @@
 		998B02A22853A86300D58A8F /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
-				998B02AF2853B04200D58A8F /* PreviewView */,
 				998B02A32853A87D00D58A8F /* PreviewTopBar */,
 			);
 			path = Subviews;
@@ -415,15 +413,6 @@
 				998B02AD2853A92000D58A8F /* PreviewCoordinator.swift */,
 			);
 			path = Coordinator;
-			sourceTree = "<group>";
-		};
-		998B02AF2853B04200D58A8F /* PreviewView */ = {
-			isa = PBXGroup;
-			children = (
-				998B02B02853B07F00D58A8F /* PreviewSketchView.swift */,
-				998B02B22853B08D00D58A8F /* PreviewSketchView.xib */,
-			);
-			path = PreviewView;
 			sourceTree = "<group>";
 		};
 		99A71C9628526B860060C1DA = {
@@ -734,12 +723,12 @@
 				99A71CDA28526F2F0060C1DA /* Colors.xcassets in Resources */,
 				99A71CAF28526B8A0060C1DA /* LaunchScreen.storyboard in Resources */,
 				99ABDBBD285697A500CDA6E3 /* EnterNameViewController.xib in Resources */,
+				994A0D952856A58D00F132D6 /* PreviewViewController.xib in Resources */,
 				99527A5E2853EA04005609F4 /* HistoryViewController.xib in Resources */,
 				998B02752852E08200D58A8F /* DrawingTopBar.xib in Resources */,
 				998B027828535CE700D58A8F /* SketchView.xib in Resources */,
 				998B02A72853A8B300D58A8F /* PreviewTopBar.xib in Resources */,
 				9931708E2853EE8200573750 /* HistoryTableViewCell.xib in Resources */,
-				998B02B32853B08D00D58A8F /* PreviewSketchView.xib in Resources */,
 				998B028528536D0900D58A8F /* DrawingBottomBar.xib in Resources */,
 				99A71CAC28526B8A0060C1DA /* Assets.xcassets in Resources */,
 			);
@@ -780,7 +769,6 @@
 				998B02A12853A83000D58A8F /* PreviewViewModel.swift in Sources */,
 				99A71CF12852AF0C0060C1DA /* AppColor.swift in Sources */,
 				99ABDBBB28568A4A00CDA6E3 /* EncodableExtension.swift in Sources */,
-				998B02B12853B07F00D58A8F /* PreviewSketchView.swift in Sources */,
 				9902C5C62855458500498CD8 /* EnterNameViewModel.swift in Sources */,
 				99A71CEC2852ADF70060C1DA /* HistoryViewController.swift in Sources */,
 				998B0291285393BC00D58A8F /* PhotoLibraryManager.swift in Sources */,

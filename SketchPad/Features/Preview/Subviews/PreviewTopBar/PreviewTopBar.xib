@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ku0-De-bgq">
-                    <rect key="frame" x="20" y="28" width="25" height="25"/>
+                    <rect key="frame" x="20" y="41" width="25" height="25"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="25" id="4dG-2e-mPd"/>
                         <constraint firstAttribute="height" constant="25" id="7fb-J0-cSM"/>
@@ -33,11 +33,12 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2RC-eI-wd1">
-                    <rect key="frame" x="250" y="28" width="50" height="25"/>
+                    <rect key="frame" x="250" y="41" width="50" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="LGb-vw-gY7"/>
                         <constraint firstAttribute="width" constant="50" id="ken-rR-PhW"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <color key="tintColor" name="tintColor"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="Save"/>
@@ -45,8 +46,8 @@
                         <action selector="saveAction:" destination="-1" eventType="touchUpInside" id="IyA-UI-cbC"/>
                     </connections>
                 </button>
-                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Obz-2v-DZI">
-                    <rect key="frame" x="75" y="28" width="65" height="25"/>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Obz-2v-DZI">
+                    <rect key="frame" x="75" y="41" width="75" height="25"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PfS-e3-aPj">
                             <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
@@ -62,7 +63,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BoB-lG-znx">
-                            <rect key="frame" x="40" y="0.0" width="25" height="25"/>
+                            <rect key="frame" x="50" y="0.0" width="25" height="25"/>
                             <color key="tintColor" name="tintColor"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" image="rotate.right" catalog="system"/>
@@ -78,9 +79,9 @@
             <constraints>
                 <constraint firstItem="2RC-eI-wd1" firstAttribute="centerY" secondItem="ku0-De-bgq" secondAttribute="centerY" id="2qP-2q-Brs"/>
                 <constraint firstItem="Obz-2v-DZI" firstAttribute="centerY" secondItem="ku0-De-bgq" secondAttribute="centerY" id="8C8-eB-Jfx"/>
+                <constraint firstItem="qon-xI-46Z" firstAttribute="bottom" secondItem="ku0-De-bgq" secondAttribute="bottom" constant="15" id="Eiq-lZ-dgl"/>
                 <constraint firstItem="qon-xI-46Z" firstAttribute="trailing" secondItem="2RC-eI-wd1" secondAttribute="trailing" constant="20" id="MNJ-hr-qBG"/>
                 <constraint firstItem="Obz-2v-DZI" firstAttribute="leading" secondItem="ku0-De-bgq" secondAttribute="trailing" constant="30" id="QUK-UK-e4Y"/>
-                <constraint firstItem="ku0-De-bgq" firstAttribute="centerY" secondItem="qon-xI-46Z" secondAttribute="centerY" id="TNi-h6-d5n"/>
                 <constraint firstItem="ku0-De-bgq" firstAttribute="leading" secondItem="qon-xI-46Z" secondAttribute="leading" constant="20" id="lgC-nP-xeo"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
