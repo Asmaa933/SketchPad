@@ -8,12 +8,9 @@
 import UIKit
 
 class EnterNameViewController: UIViewController {
-
-    private lazy var enterNameAlert: EnterNameAlert = {
-        let alert = EnterNameAlert()
-        alert.translatesAutoresizingMaskIntoConstraints = false
-        return alert
-    }()
+    
+    @IBOutlet private weak var alertView: UIView!
+    @IBOutlet private weak var nameTextField: UITextField!
     
     private var viewModel: EnterNameViewModelProtocol
     
@@ -26,46 +23,39 @@ class EnterNameViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         handleViewDidLoad()
     }
+    
+    @IBAction private func saveAction(_ sender: UIButton) {
+        nameTextField.resignFirstResponder()
+        viewModel.handleAlertAction(.save(imageName: nameTextField.text ?? ""))
+    }
+    
+    @IBAction private func cancelAction(_ sender: UIButton) {
+        dismissView()
+    }
+    
+    @IBAction private func backgroundViewTapped(_ sender: UITapGestureRecognizer) {
+        dismissView()
+    }
 }
 
 fileprivate extension EnterNameViewController {
+    
     func handleViewDidLoad() {
-        view.backgroundColor = .black.withAlphaComponent(0.3)
         viewModel.statePresenter = self
-        addTapGestureToView()
-        setupNameAlert()
-        setupCallBack()
+        setupView()
     }
     
-    func addTapGestureToView() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissView))
-        tapGesture.cancelsTouchesInView = false
-        view.addGestureRecognizer(tapGesture)
+    func setupView() {
+        alertView.addShadow()
+        nameTextField.text = viewModel.getImageName()
     }
     
-    @objc func dismissView() {
+    func dismissView() {
         viewModel.handleAlertAction(.cancel)
-    }
-    
-    func setupNameAlert() {
-        enterNameAlert.setupTextField(text: viewModel.getImageName())
-        view.addSubview(enterNameAlert)
-        NSLayoutConstraint.activate([enterNameAlert.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                                     enterNameAlert.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-                                     enterNameAlert.widthAnchor.constraint(equalToConstant: view.frame.width * 0.85)
-        ])
-    }
-    
-    func setupCallBack() {
-        enterNameAlert.callBack = {[weak self] action in
-            guard let self = self else { return }
-            self.viewModel.handleAlertAction(action)
-        }
     }
 }
 

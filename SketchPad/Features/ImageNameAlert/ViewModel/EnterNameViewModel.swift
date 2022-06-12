@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum NameAlertAction {
+    case save(imageName: String)
+    case cancel
+}
+
 protocol EnterNameViewModelProtocol {
     var statePresenter: StatePresentable? { get set }
     func handleAlertAction(_ action: NameAlertAction)
@@ -19,6 +24,7 @@ class EnterNameViewModel {
     private var sketch: Sketch
     private var cachingManager: CachingManager
     private var isEdit: Bool
+    
     var statePresenter: StatePresentable?
     
     init(coordinator: EnterNameCoordinatorProtocol,
@@ -43,7 +49,7 @@ extension EnterNameViewModel: EnterNameViewModelProtocol {
             }
             
         case .cancel:
-            coordinator.cancelAlert()
+            coordinator.dismissAlert()
         }
     }
     
@@ -76,9 +82,12 @@ fileprivate extension EnterNameViewModel {
     
     func handleSaveResult(result: Result<Bool,AppError>) {
         switch result {
+            
         case .success:
             PhotoLibraryManager().saveIntoPhoto(imageData: sketch.imageData)
-            coordinator.showSavedSuccessfully(message: TitleConstant.sketchSaved)
+            let message = isEdit ? TitleConstant.sketchEdited : TitleConstant.sketchSaved
+            coordinator.showSavedSuccessfully(message: message)
+            
         case .failure:
             statePresenter?.render(state: EnterNameState.showError(error: .generalError),
                                    mapping: EnterNameState.self)

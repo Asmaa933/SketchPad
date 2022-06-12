@@ -8,12 +8,12 @@
 import UIKit
 
 protocol EnterNameCoordinatorProtocol {
-    func cancelAlert()
+    func dismissAlert()
     func showSavedSuccessfully(message: TitleConstant)
 }
 
 class EnterNameCoordinator {
-
+    
     private var navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {
@@ -22,6 +22,7 @@ class EnterNameCoordinator {
 }
 
 fileprivate extension EnterNameCoordinator {
+    
     func setRootToDrawing() {
         let coordinator = DrawingCoordinator(navigationController: navigationController)
         let viewModel = DrawingViewModel(coordinator: coordinator)
@@ -31,7 +32,7 @@ fileprivate extension EnterNameCoordinator {
 }
 
 extension EnterNameCoordinator: EnterNameCoordinatorProtocol {
-    func cancelAlert() {
+    func dismissAlert() {
         navigationController.dismiss(animated: true)
     }
     
@@ -39,6 +40,7 @@ extension EnterNameCoordinator: EnterNameCoordinatorProtocol {
         let okAction = UIAlertAction(title: TitleConstant.ok.rawValue,
                                      style: .default) {[weak self] _ in
             guard let self = self else { return }
+            self.dismissAlert()
             self.setRootToDrawing()
         }
         navigationController.showAlert(message: message.rawValue, actions: [okAction])
