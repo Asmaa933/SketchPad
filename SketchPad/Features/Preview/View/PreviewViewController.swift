@@ -7,9 +7,9 @@
 
 import UIKit
 
-protocol PreviewSketchViewDelegate: AnyObject {
+protocol PreviewTopBarDelegate: AnyObject {
     func topBarButtonTapped(_ button: PreviewTopBarButton)
-    func saveButtonTapped(imageData: Data?)
+    func saveButtonTapped()
 }
 
 class PreviewViewController: UIViewController {
@@ -44,25 +44,8 @@ class PreviewViewController: UIViewController {
 fileprivate extension PreviewViewController {
     func handleViewDidLoad() {
         viewModel.viewDidLoad()
-        setupTopBarCallBack()
+        topBar.delegate = self
         setImage(with: viewModel.sketch.imageData)
-    }
-    
-    func setupTopBarCallBack() {
-        topBar.topBarButtonTapped = {[weak self] button in
-            guard let self = self else { return }
-            self.handleTapBarCallBack(button)
-        }
-    }
-    
-    func handleTapBarCallBack( _ button: PreviewTopBarButton) {
-        switch button {
-        case .save:
-            let imageData = previewImageView.image?.pngData()
-            viewModel.saveButtonTapped(imageData: imageData)
-        default:
-            viewModel.topBarButtonTapped(button)
-        }
     }
     
     func setImage(with imageData: Data?) {
@@ -75,26 +58,29 @@ fileprivate extension PreviewViewController {
     }
 }
 
-extension PreviewViewController: PreviewSketchViewDelegate {
+extension PreviewViewController: PreviewTopBarDelegate {
+    
     func topBarButtonTapped(_ button: PreviewTopBarButton) {
         viewModel.topBarButtonTapped(button)
     }
     
-    func saveButtonTapped(imageData: Data?) {
+    func saveButtonTapped() {
+        let imageData = previewImageView.image?.pngData()
         viewModel.saveButtonTapped(imageData: imageData)
     }
 }
 
 extension PreviewViewController: StatePresentable {
+    
     func render<T>(state: T, mapping: T.Type) where T : AppState {
         guard let previewState = state as? PreviewState  else { return }
         switch previewState {
-            
+
         case .rotate(let angle):
             rotateImage(by: angle)
             
-        case .canEdit(let canEdit):
-            topBar.shouldHideSave(!canEdit)
+        case .saveButtonIsHidden(let isHidden):
+            topBar.shouldHideSave(isHidden)
         }
     }
 }

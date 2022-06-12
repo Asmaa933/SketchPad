@@ -20,6 +20,7 @@ class PreviewViewModel {
     private var coordinator: PreviewCoordinatorProtocol
     private var canEdit: Bool
     private(set) var sketch: Sketch
+    
     var statePresenter: StatePresentable?
     
     init(coordinator: PreviewCoordinatorProtocol,
@@ -36,14 +37,13 @@ extension PreviewViewModel: PreviewViewModelProtocol {
         switch button {
         case .back:
             coordinator.popViewController()
-        case .save:
-            break
+        
         case .rotateLeft:
-            statePresenter?.render(state: PreviewState.rotate(angle: -.pi / 2),
-                                               mapping: PreviewState.self)
+            statePresenter?.render(state: PreviewState.rotate(angle: Rotation.rotateLeft.angle),
+                                   mapping: PreviewState.self)
         case .rotateRight:
-            statePresenter?.render(state: PreviewState.rotate(angle: .pi / 2),
-                                               mapping: PreviewState.self)
+            statePresenter?.render(state: PreviewState.rotate(angle: Rotation.rotateRight.angle),
+                                   mapping: PreviewState.self)
         }
     }
     
@@ -54,7 +54,7 @@ extension PreviewViewModel: PreviewViewModelProtocol {
     }
     
     func viewDidLoad() {
-        statePresenter?.render(state: PreviewState.canEdit(canEdit),
+        statePresenter?.render(state: PreviewState.saveButtonIsHidden(!canEdit),
                                mapping: PreviewState.self)
     }
 }
