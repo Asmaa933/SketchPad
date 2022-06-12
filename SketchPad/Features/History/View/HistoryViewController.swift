@@ -34,7 +34,7 @@ fileprivate extension HistoryViewController {
     func handleViewDidLoad() {
         viewModel.statePresenter = self
         setupHistoryTableView()
-        viewModel.viewDidLoad()
+        viewModel.viewDidLoaded()
     }
     
     func setupHistoryTableView() {
@@ -58,7 +58,9 @@ extension HistoryViewController: StatePresentable {
 }
 
 extension HistoryViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.sketchDidSelected(at: indexPath)
+    }
 }
 
 extension HistoryViewController: UITableViewDataSource {

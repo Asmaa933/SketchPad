@@ -20,6 +20,7 @@ enum DrawingState: AppState {
 }
 
 enum PreviewState: AppState {
+    case canEdit(Bool)
     case rotate(angle: CGFloat)
 }
 

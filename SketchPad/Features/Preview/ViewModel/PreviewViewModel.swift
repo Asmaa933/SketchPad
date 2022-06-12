@@ -10,6 +10,7 @@ import Foundation
 protocol PreviewViewModelProtocol {
     var imageData: Data { get }
     var statePresenter: StatePresentable? { get set }
+    func viewDidLoaded()
     func topBarButtonTapped(_ button: PreviewTopBarButton)
     func saveButtonTapped(imageData: Data?)
 }
@@ -50,5 +51,10 @@ extension PreviewViewModel: PreviewViewModelProtocol {
         guard let imageData = imageData else { return }
         let sketch = Sketch(imageData: imageData)
         coordinator.presentEnterNameViewController(with: sketch)
+    }
+    
+    func viewDidLoaded() {
+        statePresenter?.render(state: PreviewState.canEdit(canEdit),
+                               mapping: PreviewState.self)
     }
 }

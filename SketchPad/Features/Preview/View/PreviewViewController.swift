@@ -64,8 +64,13 @@ extension PreviewViewController: StatePresentable {
     func render<T>(state: T, mapping: T.Type) where T : AppState {
         guard let previewState = state as? PreviewState  else { return }
         switch previewState {
+        
         case .rotate(let angle):
             previewSketchView.rotateImage(by: angle)
+            
+        case .canEdit(let canEdit):
+            #warning("Hide save action")
+            break
         }
     }
 }

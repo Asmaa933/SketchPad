@@ -9,12 +9,12 @@ import Foundation
 
 protocol HistoryViewModelProtocol {
     var statePresenter: StatePresentable? { get set }
-    func viewDidLoad()
+    func viewDidLoaded()
     func getSectionsCount() -> Int
     func getTitle(for section: Int) -> String
     func getSketchesCount(in section: Int) -> Int
     func getSketch(for indexPath: IndexPath) -> DisplayedSketch?
-//    func sketchDidSelected(at index: Int)
+    func sketchDidSelected(at indexPath: IndexPath)
 //    func deleteSketch(at index: Int)
 //    func editSketch(at index: Int)z
 }
@@ -42,7 +42,7 @@ fileprivate extension HistoryViewModel {
     
     func handleHistoryResult(result: SketchResult) {
         switch result {
-        case .success(let sketchesInSection, let sketches):
+        case .success((let sketchesInSection, let sketches)):
             self.groupedSketches = sketchesInSection
             self.loadedSketches = sketches
             debugPrint(sketches)
@@ -56,7 +56,7 @@ fileprivate extension HistoryViewModel {
 
 extension HistoryViewModel: HistoryViewModelProtocol {
 
-    func viewDidLoad() {
+    func viewDidLoaded() {
         loadHistory()
     }
     
@@ -74,5 +74,11 @@ extension HistoryViewModel: HistoryViewModelProtocol {
     
     func getSketch(for indexPath: IndexPath) -> DisplayedSketch? {
         return groupedSketches[indexPath.section].SectionData?[indexPath.row].toDisplay
+    }
+    
+    func sketchDidSelected(at indexPath: IndexPath) {
+        let section = groupedSketches[indexPath.section]
+        guard let sketch = section.SectionData?[indexPath.row].toDisplay else { return }
+        coordinator.previewSketch(with: sketch.imageData)
     }
 }

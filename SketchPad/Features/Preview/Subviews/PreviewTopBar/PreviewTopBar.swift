@@ -16,6 +16,8 @@ enum PreviewTopBarButton {
 
 class PreviewTopBar: UIView {
     
+    @IBOutlet private weak var saveButton: UIButton!
+    
     var topBarButtonTapped: ((PreviewTopBarButton) -> Void)?
 
     override init(frame: CGRect) {
@@ -42,5 +44,9 @@ class PreviewTopBar: UIView {
     
     @IBAction private func rotateRightAction(_ sender: UIButton) {
         topBarButtonTapped?(.rotateRight)
+    }
+    
+    func shouldHideSave(_ isHidden: Bool) {
+        saveButton.isHidden = isHidden
     }
 }
