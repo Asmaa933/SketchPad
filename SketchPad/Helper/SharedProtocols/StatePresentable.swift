@@ -20,7 +20,7 @@ enum DrawingState: AppState {
 }
 
 enum PreviewState: AppState {
-    case canEdit(Bool)
+    case saveButtonIsHidden(Bool)
     case rotate(angle: CGFloat)
 }
 

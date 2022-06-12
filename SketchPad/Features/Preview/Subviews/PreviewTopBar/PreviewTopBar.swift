@@ -9,7 +9,6 @@ import UIKit
 
 enum PreviewTopBarButton {
     case back
-    case save
     case rotateLeft
     case rotateRight
 }
@@ -18,7 +17,7 @@ class PreviewTopBar: UIView {
     
     @IBOutlet private weak var saveButton: UIButton!
     
-    var topBarButtonTapped: ((PreviewTopBarButton) -> Void)?
+    weak var delegate: PreviewTopBarDelegate?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,19 +30,19 @@ class PreviewTopBar: UIView {
     }
 
     @IBAction private func backAction(_ sender: UIButton) {
-        topBarButtonTapped?(.back)
+        delegate?.topBarButtonTapped(.back)
     }
     
     @IBAction private func saveAction(_ sender: UIButton) {
-        topBarButtonTapped?(.save)
+        delegate?.saveButtonTapped()
     }
     
     @IBAction private func rotateLeftAction(_ sender: UIButton) {
-        topBarButtonTapped?(.rotateLeft)
+        delegate?.topBarButtonTapped(.rotateLeft)
     }
     
     @IBAction private func rotateRightAction(_ sender: UIButton) {
-        topBarButtonTapped?(.rotateRight)
+        delegate?.topBarButtonTapped(.rotateRight)
     }
     
     func shouldHideSave(_ isHidden: Bool) {

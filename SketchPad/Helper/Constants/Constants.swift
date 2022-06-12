@@ -5,7 +5,7 @@
 //  Created by Asmaa Tarek on 10/06/2022.
 //
 
-import Foundation
+import UIKit
 
 typealias CallBackResult = Result<Bool, AppError>
 
@@ -28,4 +28,18 @@ enum DateFormat: String {
 
 enum NotificationName: String {
     case editImage = "edit_image"
+}
+
+enum Rotation {
+    case rotateLeft
+    case rotateRight
+    
+    var angle: CGFloat {
+        switch self {
+        case .rotateLeft:
+            return -.pi / 2
+        case .rotateRight:
+            return .pi / 2
+        }
+    }
 }

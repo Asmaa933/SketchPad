@@ -7,13 +7,16 @@
 
 import UIKit
 
+protocol PreviewTopBarDelegate: AnyObject {
+    func topBarButtonTapped(_ button: PreviewTopBarButton)
+    func saveButtonTapped()
+}
+
 class PreviewViewController: UIViewController {
     
-    private lazy var previewSketchView: PreviewSketchView = {
-        let view = PreviewSketchView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    
+    @IBOutlet private weak var topBar: PreviewTopBar!
+    @IBOutlet private weak var previewImageView: UIImageView!
     
     private var viewModel: PreviewViewModelProtocol
     
@@ -40,41 +43,44 @@ class PreviewViewController: UIViewController {
 
 fileprivate extension PreviewViewController {
     func handleViewDidLoad() {
-        addPreviewView()
+        viewModel.viewDidLoad()
+        topBar.delegate = self
+        setImage(with: viewModel.sketch.imageData)
     }
     
-    func addPreviewView() {
-        view.addSubview(previewSketchView)
-        previewSketchView.delegate = self
-        previewSketchView.setImage(with: viewModel.sketch.imageData)
-        NSLayoutConstraint.activate([previewSketchView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                                     previewSketchView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                                     previewSketchView.topAnchor.constraint(equalTo: view.topAnchor),
-                                     previewSketchView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
+    func setImage(with imageData: Data?) {
+        guard let imageData = imageData else { return }
+        previewImageView.image = UIImage(data: imageData)
+    }
+    
+    func rotateImage(by angle: CGFloat) {
+        previewImageView.image = previewImageView.image?.rotate(by: angle)
     }
 }
 
-extension PreviewViewController: PreviewSketchViewDelegate {
+extension PreviewViewController: PreviewTopBarDelegate {
+    
     func topBarButtonTapped(_ button: PreviewTopBarButton) {
         viewModel.topBarButtonTapped(button)
     }
     
-    func saveButtonTapped(imageData: Data?) {
+    func saveButtonTapped() {
+        let imageData = previewImageView.image?.pngData()
         viewModel.saveButtonTapped(imageData: imageData)
     }
 }
 
 extension PreviewViewController: StatePresentable {
+    
     func render<T>(state: T, mapping: T.Type) where T : AppState {
         guard let previewState = state as? PreviewState  else { return }
         switch previewState {
-            
+
         case .rotate(let angle):
-            previewSketchView.rotateImage(by: angle)
+            rotateImage(by: angle)
             
-        case .canEdit(let canEdit):
-#warning("Hide save action")
-            break
+        case .saveButtonIsHidden(let isHidden):
+            topBar.shouldHideSave(isHidden)
         }
     }
 }
