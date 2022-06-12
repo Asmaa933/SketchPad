@@ -49,7 +49,7 @@ extension PreviewViewModel: PreviewViewModelProtocol {
     
     func saveButtonTapped(imageData: Data?) {
         guard let imageData = imageData else { return }
-        let sketch = Sketch(imageData: imageData)
+        sketch.imageData = imageData
         coordinator.presentEnterNameViewController(with: sketch)
     }
     

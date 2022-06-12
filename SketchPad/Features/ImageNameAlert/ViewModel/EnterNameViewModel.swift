@@ -10,6 +10,7 @@ import Foundation
 protocol EnterNameViewModelProtocol {
     var statePresenter: StatePresentable? { get set }
     func handleAlertAction(_ action: NameAlertAction)
+    func getImageName() -> String
 }
 
 class EnterNameViewModel {
@@ -17,6 +18,7 @@ class EnterNameViewModel {
     private var coordinator: EnterNameCoordinatorProtocol
     private var sketch: Sketch
     private var cachingManager: CachingManager
+    private var isEdit: Bool
     var statePresenter: StatePresentable?
     
     init(coordinator: EnterNameCoordinatorProtocol,
@@ -25,23 +27,28 @@ class EnterNameViewModel {
         self.coordinator = coordinator
         self.sketch = sketch
         self.cachingManager = cachingManger
+        self.isEdit = sketch.imageName != nil
     }
 }
 
 extension EnterNameViewModel: EnterNameViewModelProtocol {
+    
     func handleAlertAction(_ action: NameAlertAction) {
         switch action {
+            
         case .save(let imageName):
             if validate(imageName: imageName) {
                 sketch.imageName = imageName
-                cachingManager.saveIntoCache(item: sketch) { [weak self] result in
-                    guard let self = self else { return }
-                    self.handleSaveResult(result: result)
-                }
+                isEdit ? update() : save()
             }
+            
         case .cancel:
             coordinator.cancelAlert()
         }
+    }
+    
+    func getImageName() -> String {
+        return sketch.imageName ?? ""
     }
 }
 
@@ -55,6 +62,17 @@ fileprivate extension EnterNameViewModel {
         } else {
             return true
         }
+    }
+    
+    func save() {
+        cachingManager.saveIntoCache(item: sketch) { [weak self] result in
+            guard let self = self else { return }
+            self.handleSaveResult(result: result)
+        }
+    }
+    
+    func update() {
+        
     }
     
     func handleSaveResult(result: Result<Bool,Error>) {
