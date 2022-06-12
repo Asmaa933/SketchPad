@@ -73,18 +73,23 @@ fileprivate extension CachingManager {
         return cachedSketch
     }
     
-    func getItemFromCacheByID(_ id: UUID) -> CachedSketch? {
+    func fetchFromCache(predicate: NSPredicate) -> [CachedSketch]? {
         guard let context = getCoreDataObject() else { return nil }
         guard let entityName = CachedSketch.entity().name else { return nil }
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        request.predicate = predicate
         do {
             let sketches =  try context.fetch(request) as? [CachedSketch]
-            return sketches?.first
+            return sketches
         } catch(let error) {
             debugPrint("Error getting item by Id >> \(error.localizedDescription )")
             return nil
         }
+    }
+    
+    func getItemFromCacheByID(_ id: UUID) -> CachedSketch? {
+        let predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        return fetchFromCache(predicate: predicate)?.first
     }
 }
 
