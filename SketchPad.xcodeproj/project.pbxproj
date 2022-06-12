@@ -11,8 +11,6 @@
 		9902C5C02855420400498CD8 /* EnterNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9902C5BE2855420400498CD8 /* EnterNameViewController.swift */; };
 		9902C5C62855458500498CD8 /* EnterNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9902C5C52855458500498CD8 /* EnterNameViewModel.swift */; };
 		9902C5C8285545B100498CD8 /* EnterNameCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9902C5C7285545B100498CD8 /* EnterNameCoordinator.swift */; };
-		9902C5CB285547A500498CD8 /* EnterNameAlert.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9902C5CA285547A400498CD8 /* EnterNameAlert.xib */; };
-		9902C5CD285547E300498CD8 /* EnterNameAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9902C5CC285547E300498CD8 /* EnterNameAlert.swift */; };
 		9902C5D42855657900498CD8 /* HistoryDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9902C5D32855657900498CD8 /* HistoryDataProvider.swift */; };
 		9902C5D72855719B00498CD8 /* HistorySketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9902C5D62855719B00498CD8 /* HistorySketch.swift */; };
 		993170892853EDEE00573750 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993170882853EDEE00573750 /* UITableViewExtension.swift */; };
@@ -68,6 +66,7 @@
 		99A71CFF2852CC7C0060C1DA /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CFE2852CC7C0060C1DA /* FilledButton.swift */; };
 		99ABDBB92856528300CDA6E3 /* SearchDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ABDBB82856528300CDA6E3 /* SearchDispatcher.swift */; };
 		99ABDBBB28568A4A00CDA6E3 /* EncodableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ABDBBA28568A4A00CDA6E3 /* EncodableExtension.swift */; };
+		99ABDBBD285697A500CDA6E3 /* EnterNameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99ABDBBC285697A500CDA6E3 /* EnterNameViewController.xib */; };
 		99F6618D285537AB008DA790 /* Sketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F6618C285537AB008DA790 /* Sketch.swift */; };
 /* End PBXBuildFile section */
 
@@ -93,8 +92,6 @@
 		9902C5BE2855420400498CD8 /* EnterNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterNameViewController.swift; sourceTree = "<group>"; };
 		9902C5C52855458500498CD8 /* EnterNameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterNameViewModel.swift; sourceTree = "<group>"; };
 		9902C5C7285545B100498CD8 /* EnterNameCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterNameCoordinator.swift; sourceTree = "<group>"; };
-		9902C5CA285547A400498CD8 /* EnterNameAlert.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnterNameAlert.xib; sourceTree = "<group>"; };
-		9902C5CC285547E300498CD8 /* EnterNameAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterNameAlert.swift; sourceTree = "<group>"; };
 		9902C5D32855657900498CD8 /* HistoryDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDataProvider.swift; sourceTree = "<group>"; };
 		9902C5D62855719B00498CD8 /* HistorySketch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorySketch.swift; sourceTree = "<group>"; };
 		993170882853EDEE00573750 /* UITableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
@@ -154,6 +151,7 @@
 		99A71CFE2852CC7C0060C1DA /* FilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButton.swift; sourceTree = "<group>"; };
 		99ABDBB82856528300CDA6E3 /* SearchDispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDispatcher.swift; sourceTree = "<group>"; };
 		99ABDBBA28568A4A00CDA6E3 /* EncodableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodableExtension.swift; sourceTree = "<group>"; };
+		99ABDBBC285697A500CDA6E3 /* EnterNameViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnterNameViewController.xib; sourceTree = "<group>"; };
 		99F6618C285537AB008DA790 /* Sketch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sketch.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -186,7 +184,6 @@
 			isa = PBXGroup;
 			children = (
 				9902C5C42855456E00498CD8 /* Coordinator */,
-				9902C5C92855476A00498CD8 /* SubView */,
 				9902C5C22855454300498CD8 /* View */,
 				9902C5C32855456300498CD8 /* ViewModel */,
 			);
@@ -197,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				9902C5BE2855420400498CD8 /* EnterNameViewController.swift */,
+				99ABDBBC285697A500CDA6E3 /* EnterNameViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -215,15 +213,6 @@
 				9902C5C7285545B100498CD8 /* EnterNameCoordinator.swift */,
 			);
 			path = Coordinator;
-			sourceTree = "<group>";
-		};
-		9902C5C92855476A00498CD8 /* SubView */ = {
-			isa = PBXGroup;
-			children = (
-				9902C5CC285547E300498CD8 /* EnterNameAlert.swift */,
-				9902C5CA285547A400498CD8 /* EnterNameAlert.xib */,
-			);
-			path = SubView;
 			sourceTree = "<group>";
 		};
 		9902C5D22855655F00498CD8 /* UseCase */ = {
@@ -744,10 +733,10 @@
 			files = (
 				99A71CDA28526F2F0060C1DA /* Colors.xcassets in Resources */,
 				99A71CAF28526B8A0060C1DA /* LaunchScreen.storyboard in Resources */,
+				99ABDBBD285697A500CDA6E3 /* EnterNameViewController.xib in Resources */,
 				99527A5E2853EA04005609F4 /* HistoryViewController.xib in Resources */,
 				998B02752852E08200D58A8F /* DrawingTopBar.xib in Resources */,
 				998B027828535CE700D58A8F /* SketchView.xib in Resources */,
-				9902C5CB285547A500498CD8 /* EnterNameAlert.xib in Resources */,
 				998B02A72853A8B300D58A8F /* PreviewTopBar.xib in Resources */,
 				9931708E2853EE8200573750 /* HistoryTableViewCell.xib in Resources */,
 				998B02B32853B08D00D58A8F /* PreviewSketchView.xib in Resources */,
@@ -807,7 +796,6 @@
 				9902C5D42855657900498CD8 /* HistoryDataProvider.swift in Sources */,
 				99A71CEF2852AE4A0060C1DA /* TabBarCoordinator.swift in Sources */,
 				9902C5D72855719B00498CD8 /* HistorySketch.swift in Sources */,
-				9902C5CD285547E300498CD8 /* EnterNameAlert.swift in Sources */,
 				998B026D2852CDF900D58A8F /* UIViewExtension.swift in Sources */,
 				99ABDBB92856528300CDA6E3 /* SearchDispatcher.swift in Sources */,
 				998B02732852E06600D58A8F /* DrawingTopBar.swift in Sources */,
