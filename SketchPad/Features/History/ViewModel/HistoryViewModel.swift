@@ -15,8 +15,8 @@ protocol HistoryViewModelProtocol {
     func getSketchesCount(in section: Int) -> Int
     func getSketch(for indexPath: IndexPath) -> DisplayedSketch?
     func sketchDidSelected(at indexPath: IndexPath)
-//    func deleteSketch(at index: Int)
-//    func editSketch(at index: Int)z
+    func deleteSketch(at indexPath: IndexPath)
+    func editSketch(at indexPath: IndexPath)
 }
 
 class HistoryViewModel {
@@ -80,5 +80,13 @@ extension HistoryViewModel: HistoryViewModelProtocol {
         let section = groupedSketches[indexPath.section]
         guard let sketch = section.SectionData?[indexPath.row].toDisplay else { return }
         coordinator.previewSketch(with: sketch.imageData)
+    }
+    
+    func deleteSketch(at indexPath: IndexPath) {
+        
+    }
+    
+    func editSketch(at indexPath: IndexPath) {
+        
     }
 }

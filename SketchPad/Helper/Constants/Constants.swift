@@ -14,6 +14,8 @@ enum TitleConstant: String {
     case deleteModeOn = "Delete mode is on"
     case drawingModeOn = "Drawing mode is on"
     case sketchSaved = "Sketch Saved Successfully."
+    case edit = "Edit"
+    case delete = "Delete"
 }
 
 enum DateFormat: String {

@@ -42,6 +42,25 @@ fileprivate extension HistoryViewController {
         historyTableView.dataSource = self
         historyTableView.registerCellNib(cellClass: HistoryTableViewCell.self)
     }
+    
+    func createSwipeActions(for indexPath: IndexPath) -> UISwipeActionsConfiguration {
+        let deleteAction = UIContextualAction(style: .normal,
+                                              title: TitleConstant.delete.rawValue) {[weak self] _, _, completion in
+            guard let self = self else { return }
+            self.viewModel.deleteSketch(at: indexPath)
+            completion(true)
+        }
+        
+        let editAction = UIContextualAction(style: .normal,
+                                            title: TitleConstant.edit.rawValue) {[weak self] _, _, completion in
+            guard let self = self else { return }
+            self.viewModel.editSketch(at: indexPath)
+            completion(true)
+        }
+        deleteAction.backgroundColor = .red
+        editAction.backgroundColor = .green
+        return UISwipeActionsConfiguration(actions: [deleteAction,editAction])
+    }
 }
 
 extension HistoryViewController: StatePresentable {
@@ -58,8 +77,13 @@ extension HistoryViewController: StatePresentable {
 }
 
 extension HistoryViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.sketchDidSelected(at: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        return createSwipeActions(for: indexPath)
     }
 }
 
