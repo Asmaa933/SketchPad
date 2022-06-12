@@ -7,6 +7,8 @@
 
 import Foundation
 
+typealias CallBackResult = Result<Bool, AppError>
+
 enum TitleConstant: String {
     case addPhoto = "+ Add Photo"
     case ok = "Ok"

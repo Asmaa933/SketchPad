@@ -11,6 +11,7 @@ typealias SketchResult = Result<([HistorySketchSection], [Sketch]), Error>
 
 protocol HistoryDataProviderProtocol {
     func getHistory(_ completion: @escaping (SketchResult) -> Void)
+    func deleteSketchFromCaching(id: UUID, _ completion: @escaping (CallBackResult) -> Void)
 }
 
 class HistoryDataProvider: HistoryDataProviderProtocol {
@@ -33,6 +34,10 @@ class HistoryDataProvider: HistoryDataProviderProtocol {
         }
     }
     
+    func deleteSketchFromCaching(id: UUID, _ completion: @escaping (CallBackResult) -> Void) {
+         let result = cachingManager.deleteFromCache(id: id)
+        completion(result)
+    }
 }
 
 fileprivate extension HistoryDataProvider {
@@ -49,7 +54,7 @@ fileprivate extension HistoryDataProvider {
         let sortedArray = sketches.sorted {($0.createdAt ?? Date()) > ($1.createdAt ?? Date())}
         let grouped = Dictionary(grouping: sortedArray, by: { $0.date ?? "" })
         let sortedDates = grouped.keys.sorted(by: >)
-        let sections = sortedDates.map { HistorySketchSection(id: UUID() , date: $0, SectionData: grouped[$0])}
+        let sections = sortedDates.map { HistorySketchSection(date: $0, SectionData: grouped[$0])}
         return sections
     }
 }

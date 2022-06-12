@@ -22,7 +22,11 @@ protocol HistoryViewModelProtocol {
 class HistoryViewModel {
     private var coordinator: HistoryCoordinatorProtocol
     private var dataProvider: HistoryDataProviderProtocol
-    private lazy var groupedSketches = [HistorySketchSection]()
+    private lazy var groupedSketches = [HistorySketchSection]() {
+        didSet {
+            reloadTableView()
+        }
+    }
     private lazy var loadedSketches = [Sketch]()
     var statePresenter: StatePresentable?
     
@@ -33,6 +37,7 @@ class HistoryViewModel {
 }
 
 fileprivate extension HistoryViewModel {
+    
     func loadHistory() {
         dataProvider.getHistory {[weak self] result in
             guard let self = self else { return }
@@ -46,10 +51,22 @@ fileprivate extension HistoryViewModel {
             self.groupedSketches = sketchesInSection
             self.loadedSketches = sketches
             debugPrint(sketches)
-            statePresenter?.render(state: HistoryState.reloadHistoryTableView,
-                                   mapping: HistoryState.self)
         case .failure:
             coordinator.showError(message: .generalError)
+        }
+    }
+    
+    func reloadTableView() {
+        statePresenter?.render(state: HistoryState.reloadHistoryTableView,
+                               mapping: HistoryState.self)
+    }
+    
+    func handleDeleteResult(_ result: CallBackResult, sketchIndex: Int) {
+        switch result {
+        case .success(_):
+            groupedSketches.remove(at: sketchIndex)
+        case .failure(let error):
+            coordinator.showError(message: error)
         }
     }
 }
@@ -83,7 +100,12 @@ extension HistoryViewModel: HistoryViewModelProtocol {
     }
     
     func deleteSketch(at indexPath: IndexPath) {
-        
+        guard let sketches = groupedSketches[indexPath.section].SectionData,
+              let id = sketches[indexPath.row].id else { return }
+        dataProvider.deleteSketchFromCaching(id: id) {[weak self] result in
+            guard let self = self else { return }
+            self.handleDeleteResult(result, sketchIndex: indexPath.section)
+        }
     }
     
     func editSketch(at indexPath: IndexPath) {

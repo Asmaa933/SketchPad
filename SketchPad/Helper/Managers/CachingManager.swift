@@ -37,6 +37,21 @@ class CachingManager {
             return .failure(.generalError)
         }
     }
+    
+    func deleteFromCache(id: UUID) -> Result<Bool,AppError> {
+        guard let context = getCoreDataObject(),
+              let mappedSketch = getItemFromCacheByID(id)
+        else { return .failure(.generalError) }
+        context.delete(mappedSketch)
+        do{
+            try context.save()
+            return .success(true)
+        }
+        catch{
+            debugPrint("error in delete data")
+            return .failure(.generalError)
+        }
+    }
 }
 
 fileprivate extension CachingManager {
@@ -57,4 +72,19 @@ fileprivate extension CachingManager {
         cachedSketch.createdAt = item.createdAt
         return cachedSketch
     }
+    
+    func getItemFromCacheByID(_ id: UUID) -> CachedSketch? {
+        guard let context = getCoreDataObject() else { return nil }
+        guard let entityName = CachedSketch.entity().name else { return nil }
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        do {
+            let sketches =  try context.fetch(request) as? [CachedSketch]
+            return sketches?.first
+        } catch(let error) {
+            debugPrint("Error getting item by Id >> \(error.localizedDescription )")
+            return nil
+        }
+    }
 }
+

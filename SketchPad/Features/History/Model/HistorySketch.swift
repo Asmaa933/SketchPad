@@ -8,7 +8,6 @@
 import Foundation
 
 struct HistorySketchSection {
-    let id: UUID
     let date: String
     let SectionData: [Sketch]?
 }
