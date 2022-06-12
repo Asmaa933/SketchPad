@@ -8,12 +8,10 @@
 import UIKit
 
 class HistoryViewController: UIViewController {
-
-    private lazy var sketchHistoryView: SketchHistoryView = {
-       let view = SketchHistoryView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-       return view
-    }()
+    
+    @IBOutlet private weak var historyTableView: UITableView!
+    @IBOutlet private weak var searchBar: UISearchBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         handleViewDidLoad()
@@ -35,16 +33,14 @@ fileprivate extension HistoryViewController {
     
     func handleViewDidLoad() {
         viewModel.statePresenter = self
-        setupSketchHistoryView()
+        setupHistoryTableView()
         viewModel.viewDidLoad()
     }
     
-    func setupSketchHistoryView() {
-        view.addSubview(sketchHistoryView)
-        NSLayoutConstraint.activate([sketchHistoryView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                                     sketchHistoryView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                                     sketchHistoryView.topAnchor.constraint(equalTo: view.topAnchor),
-                                     sketchHistoryView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
+    func setupHistoryTableView() {
+        historyTableView.delegate = self
+        historyTableView.dataSource = self
+        historyTableView.registerCellNib(cellClass: HistoryTableViewCell.self)
     }
 }
 
@@ -54,9 +50,25 @@ extension HistoryViewController: StatePresentable {
         
         switch state {
         case .reloadHistoryTableView:
-            sketchHistoryView.reloadHistoryTableView()
+            historyTableView.reloadData()
+            break
         }
     }
+
+}
+
+extension HistoryViewController: UITableViewDelegate {
     
+}
+
+extension HistoryViewController: UITableViewDataSource {
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeue() as HistoryTableViewCell
+        return cell
+    }
 }
