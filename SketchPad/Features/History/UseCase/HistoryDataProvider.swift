@@ -12,6 +12,7 @@ typealias SketchResult = Result<([HistorySketchSection]), Error>
 protocol HistoryDataProviderProtocol {
     func getHistory(_ completion: @escaping (SketchResult) -> Void)
     func deleteSketchFromCaching(id: UUID, _ completion: @escaping (CallBackResult) -> Void)
+    func searchForSketches(by imageName: String, _ completion: @escaping (SketchResult) -> Void)
 }
 
 class HistoryDataProvider: HistoryDataProviderProtocol {
@@ -23,20 +24,17 @@ class HistoryDataProvider: HistoryDataProviderProtocol {
     
     func getHistory(_ completion: @escaping (SketchResult) -> Void) {
         let result = cachingManager.getSketchesFromCache()
-        switch result {
-        case .success(let cachedSketched):
-            let sketches = cachedSketched
-                .compactMap(mapResultToSketch(_:))
-            let sections = mapSketchesToGrouped(sketches)
-            completion(.success(sections))
-        case .failure(let error):
-            completion(.failure(error))
-        }
+        completion(handleDataResult(result))
     }
     
     func deleteSketchFromCaching(id: UUID, _ completion: @escaping (CallBackResult) -> Void) {
-         let result = cachingManager.deleteFromCache(id: id)
+        let result = cachingManager.deleteFromCache(id: id)
         completion(result)
+    }
+    
+    func searchForSketches(by imageName: String, _ completion: @escaping (SketchResult) -> Void) {
+        let result = cachingManager.getItem(by: imageName)
+        completion(handleDataResult(result))
     }
 }
 
@@ -56,6 +54,18 @@ fileprivate extension HistoryDataProvider {
         let sortedDates = grouped.keys.sorted(by: >)
         let sections = sortedDates.map { HistorySketchSection(date: $0, SectionData: grouped[$0])}
         return sections
+    }
+    
+    func handleDataResult(_ result: Result<[CachedSketch], AppError>) -> SketchResult {
+        switch result {
+        case .success(let cachedSketched):
+            let sketches = cachedSketched
+                .compactMap(mapResultToSketch(_:))
+            let sections = mapSketchesToGrouped(sketches)
+            return .success(sections)
+        case .failure(let error):
+            return .failure(error)
+        }
     }
 }
 

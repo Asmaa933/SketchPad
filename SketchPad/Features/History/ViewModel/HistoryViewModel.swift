@@ -14,7 +14,7 @@ enum HistoryMode {
 
 protocol HistoryViewModelProtocol {
     var statePresenter: StatePresentable? { get set }
-    func viewDidLoaded()
+    func loadHistory()
     func getSectionsCount() -> Int
     func getTitle(for section: Int) -> String
     func getSketchesCount(in section: Int) -> Int
@@ -45,13 +45,6 @@ class HistoryViewModel {
 
 fileprivate extension HistoryViewModel {
     
-    func loadHistory() {
-        dataProvider.getHistory {[weak self] result in
-            guard let self = self else { return }
-            self.handleHistoryResult(result: result)
-        }
-    }
-    
     func handleHistoryResult(result: SketchResult) {
         switch result {
         case .success(let sketchesInSection):
@@ -67,9 +60,10 @@ fileprivate extension HistoryViewModel {
     }
     
     func handleDeleteResult(_ result: CallBackResult, sketchIndex: Int) {
+    func handleDeleteResult(_ result: CallBackResult, indexPath: IndexPath) {
         switch result {
         case .success(_):
-            groupedSketches.remove(at: sketchIndex)
+            groupedSketches[indexPath.section].SectionData?.remove(at: indexPath.row)
         case .failure(let error):
             coordinator.showError(message: error)
         }
@@ -78,8 +72,11 @@ fileprivate extension HistoryViewModel {
 
 extension HistoryViewModel: HistoryViewModelProtocol {
     
-    func viewDidLoaded() {
-        loadHistory()
+    func loadHistory() {
+        dataProvider.getHistory {[weak self] result in
+            guard let self = self else { return }
+            self.handleHistoryResult(result: result)
+        }
     }
     
     func getSectionsCount() -> Int {
@@ -109,7 +106,7 @@ extension HistoryViewModel: HistoryViewModelProtocol {
               let id = sketches[indexPath.row].id else { return }
         dataProvider.deleteSketchFromCaching(id: id) {[weak self] result in
             guard let self = self else { return }
-            self.handleDeleteResult(result, sketchIndex: indexPath.section)
+            self.handleDeleteResult(result, indexPath: indexPath)
         }
     }
     

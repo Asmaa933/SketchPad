@@ -12,11 +12,6 @@ class HistoryViewController: UIViewController {
     @IBOutlet private weak var historyTableView: UITableView!
     @IBOutlet private weak var searchBar: UISearchBar!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        handleViewDidLoad()
-    }
-    
     private var viewModel: HistoryViewModelProtocol
     
     init(viewModel: HistoryViewModelProtocol) {
@@ -27,6 +22,16 @@ class HistoryViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        handleViewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.loadHistory()
+    }
 }
 
 fileprivate extension HistoryViewController {
@@ -35,7 +40,6 @@ fileprivate extension HistoryViewController {
         viewModel.statePresenter = self
         setupHistoryTableView()
         setupSearchBar()
-        viewModel.viewDidLoaded()
     }
     
     func setupHistoryTableView() {
@@ -132,6 +136,7 @@ extension HistoryViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         endEditing()
+        searchBar.text = ""
         viewModel.searchForSketch(by: "")
     }
     
