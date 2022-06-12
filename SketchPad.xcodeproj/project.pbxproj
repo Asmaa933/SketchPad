@@ -27,7 +27,7 @@
 		99527A5E2853EA04005609F4 /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99527A5D2853EA04005609F4 /* HistoryViewController.xib */; };
 		997D6C6E2854BF37000A2AEE /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997D6C6D2854BF37000A2AEE /* UIImageViewExtension.swift */; };
 		998B026D2852CDF900D58A8F /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B026C2852CDF900D58A8F /* UIViewExtension.swift */; };
-		998B02702852D00800D58A8F /* TitleConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B026F2852D00800D58A8F /* TitleConstant.swift */; };
+		998B02702852D00800D58A8F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B026F2852D00800D58A8F /* Constants.swift */; };
 		998B02732852E06600D58A8F /* DrawingTopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B02722852E06600D58A8F /* DrawingTopBar.swift */; };
 		998B02752852E08200D58A8F /* DrawingTopBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 998B02742852E08200D58A8F /* DrawingTopBar.xib */; };
 		998B027828535CE700D58A8F /* SketchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 998B027728535CE700D58A8F /* SketchView.xib */; };
@@ -48,6 +48,7 @@
 		998B02AE2853A92000D58A8F /* PreviewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B02AD2853A92000D58A8F /* PreviewCoordinator.swift */; };
 		998B02B12853B07F00D58A8F /* PreviewSketchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B02B02853B07F00D58A8F /* PreviewSketchView.swift */; };
 		998B02B32853B08D00D58A8F /* PreviewSketchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 998B02B22853B08D00D58A8F /* PreviewSketchView.xib */; };
+		99A34A392855DE4B003FB9E8 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A34A382855DE4B003FB9E8 /* DateExtension.swift */; };
 		99A71CA328526B860060C1DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CA228526B860060C1DA /* AppDelegate.swift */; };
 		99A71CA528526B860060C1DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CA428526B860060C1DA /* SceneDelegate.swift */; };
 		99A71CAC28526B8A0060C1DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99A71CAB28526B8A0060C1DA /* Assets.xcassets */; };
@@ -106,7 +107,7 @@
 		99527A5D2853EA04005609F4 /* HistoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
 		997D6C6D2854BF37000A2AEE /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		998B026C2852CDF900D58A8F /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
-		998B026F2852D00800D58A8F /* TitleConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleConstant.swift; sourceTree = "<group>"; };
+		998B026F2852D00800D58A8F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		998B02722852E06600D58A8F /* DrawingTopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingTopBar.swift; sourceTree = "<group>"; };
 		998B02742852E08200D58A8F /* DrawingTopBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DrawingTopBar.xib; sourceTree = "<group>"; };
 		998B027728535CE700D58A8F /* SketchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SketchView.xib; sourceTree = "<group>"; };
@@ -127,6 +128,7 @@
 		998B02AD2853A92000D58A8F /* PreviewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCoordinator.swift; sourceTree = "<group>"; };
 		998B02B02853B07F00D58A8F /* PreviewSketchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewSketchView.swift; sourceTree = "<group>"; };
 		998B02B22853B08D00D58A8F /* PreviewSketchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreviewSketchView.xib; sourceTree = "<group>"; };
+		99A34A382855DE4B003FB9E8 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		99A71C9F28526B860060C1DA /* SketchPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SketchPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99A71CA228526B860060C1DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99A71CA428526B860060C1DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -290,7 +292,7 @@
 		998B026E2852CFF800D58A8F /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				998B026F2852D00800D58A8F /* TitleConstant.swift */,
+				998B026F2852D00800D58A8F /* Constants.swift */,
 				998B02922853943900D58A8F /* AppError.swift */,
 			);
 			path = Constants;
@@ -625,6 +627,7 @@
 				997D6C6D2854BF37000A2AEE /* UIImageViewExtension.swift */,
 				993BF3262854E960004F9E4B /* UIBezierPathExtension.swift */,
 				9902C5BB2855402900498CD8 /* UIImageExtension.swift */,
+				99A34A382855DE4B003FB9E8 /* DateExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -777,7 +780,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				99A71CE82852ADDB0060C1DA /* DrawingViewController.swift in Sources */,
-				998B02702852D00800D58A8F /* TitleConstant.swift in Sources */,
+				998B02702852D00800D58A8F /* Constants.swift in Sources */,
 				998B028C285378D800D58A8F /* DrawingViewModel.swift in Sources */,
 				99F6618D285537AB008DA790 /* Sketch.swift in Sources */,
 				998B027A28535E0900D58A8F /* SketchView.swift in Sources */,
@@ -813,6 +816,7 @@
 				998B02A52853A8A000D58A8F /* PreviewTopBar.swift in Sources */,
 				99A71CFF2852CC7C0060C1DA /* FilledButton.swift in Sources */,
 				9902C5C8285545B100498CD8 /* EnterNameCoordinator.swift in Sources */,
+				99A34A392855DE4B003FB9E8 /* DateExtension.swift in Sources */,
 				99527A592853E099005609F4 /* HistoryViewModel.swift in Sources */,
 				993BF33028552F0C004F9E4B /* SketchHistory.xcdatamodeld in Sources */,
 				9902C5BC2855402900498CD8 /* UIImageExtension.swift in Sources */,

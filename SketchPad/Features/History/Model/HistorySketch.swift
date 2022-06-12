@@ -7,10 +7,8 @@
 
 import Foundation
 
-struct HistorySketch {
+struct HistorySketchSection {
     let id: UUID
     let date: String
-    let time: String
-    let imageName: String
-    let imageData: Data
+    let SectionData: [Sketch]?
 }

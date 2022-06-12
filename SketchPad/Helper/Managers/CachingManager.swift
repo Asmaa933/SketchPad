@@ -52,6 +52,8 @@ fileprivate extension CachingManager {
         cachedSketch.id = item.id
         cachedSketch.imageData = item.imageData
         cachedSketch.imageName = item.imageName
+        cachedSketch.date = item.date
+        cachedSketch.time = item.time
         cachedSketch.createdAt = item.createdAt
         return cachedSketch
     }

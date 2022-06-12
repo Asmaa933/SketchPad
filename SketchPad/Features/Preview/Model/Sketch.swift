@@ -8,34 +8,31 @@
 import Foundation
 
 struct Sketch {
-    
+   
     let id: UUID?
     let imageData: Data?
-    let createdAt: Date?
     var imageName: String?
+    let date: String?
+    let time: String?
+    let createdAt: Date?
     
-    init(imageData: Data?, createdAt: Date?, imageName: String? = "", id: UUID? = UUID()) {
+    
+    internal init(imageData: Data?, imageName: String? = nil) {
+        self.id = UUID()
         self.imageData = imageData
-        self.createdAt = createdAt
+        self.date = Date().toString(format: .dateFormat)
+        self.time = Date().toString(format: .timeFormat)
         self.imageName = imageName
+        self.createdAt = Date()
+    }
+    
+    internal init(id: UUID?, imageData: Data?, imageName: String? , date: String?, time: String?, createdAt: Date?) {
         self.id = id
+        self.imageData = imageData
+        self.imageName = imageName
+        self.date = date
+        self.time = time
+        self.createdAt = createdAt
     }
-}
-
-extension Sketch {
-    var toHistoryDisplay: HistorySketch? {
-        guard let id = self.id,
-              let date = self.createdAt,
-              let imageName = self.imageName,
-              let imageData = self.imageData else { return nil }
-      
-        let displayedHistorySketch = HistorySketch(id: id,
-                                                            date: "date",
-                                                            time: "date",
-                                                            imageName: imageName,
-                                                            imageData: imageData)
-        
-        
-        return displayedHistorySketch
-    }
+  
 }

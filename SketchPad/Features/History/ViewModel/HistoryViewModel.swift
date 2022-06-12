@@ -11,7 +11,7 @@ protocol HistoryViewModelProtocol {
     var statePresenter: StatePresentable? { get set }
     func viewDidLoad()
     func getSketchesCount() -> Int
-    func getSketch(at index: Int) -> HistorySketch
+    func getSketch(at index: Int) -> HistorySketchSection
 //    func sketchDidSelected(at index: Int)
 //    func deleteSketch(at index: Int)
 //    func editSketch(at index: Int)z
@@ -20,7 +20,7 @@ protocol HistoryViewModelProtocol {
 class HistoryViewModel {
     private var coordinator: HistoryCoordinatorProtocol
     private var dataProvider: HistoryDataProviderProtocol
-    private lazy var sketches = [HistorySketch]()
+    private lazy var sketches = [HistorySketchSection]()
     var statePresenter: StatePresentable?
     
     init(coordinator: HistoryCoordinatorProtocol, dataProvider: HistoryDataProviderProtocol) {
@@ -60,7 +60,7 @@ extension HistoryViewModel: HistoryViewModelProtocol {
         return sketches.count
     }
 
-    func getSketch(at index: Int) -> HistorySketch {
+    func getSketch(at index: Int) -> HistorySketchSection {
         return sketches[index]
     }
 }

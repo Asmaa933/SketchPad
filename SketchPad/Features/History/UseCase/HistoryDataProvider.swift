@@ -7,7 +7,7 @@
 
 import Foundation
 
-typealias SketchResult = Result<[HistorySketch], Error>
+typealias SketchResult = Result<[HistorySketchSection], Error>
 
 protocol HistoryDataProviderProtocol {
     func getHistory(_ completion: @escaping (SketchResult) -> Void)
@@ -26,8 +26,9 @@ class HistoryDataProvider: HistoryDataProviderProtocol {
         case .success(let cachedSketched):
             let sketches = cachedSketched
                 .compactMap(mapResultToSketch(_:))
-                .compactMap(\.toHistoryDisplay)
-            completion(.success(sketches))
+            let sections = mapSketchesToGrouped(sketches)
+            
+            completion(.success(sections))
         case .failure(let error):
             completion(.failure(error))
         }
@@ -37,10 +38,20 @@ class HistoryDataProvider: HistoryDataProviderProtocol {
 
 fileprivate extension HistoryDataProvider {
     func mapResultToSketch(_ result: CachedSketch) -> Sketch {
-        return Sketch(imageData: result.imageData,
-                      createdAt: result.createdAt,
+        return Sketch(id: result.id,
+                      imageData: result.imageData,
                       imageName: result.imageName,
-                      id: result.id)
+                      date: result.date,
+                      time: result.time,
+                      createdAt: result.createdAt)
+    }
+    
+    func mapSketchesToGrouped(_ sketches: [Sketch]) -> [HistorySketchSection] {
+        let sortedArray = sketches.sorted {($0.createdAt ?? Date()) > ($1.createdAt ?? Date())}
+        let grouped = Dictionary(grouping: sortedArray, by: { $0.date ?? "" })
+        let sortedDates = grouped.keys.sorted(by: >)
+        let sections = sortedDates.map { HistorySketchSection(id: UUID() , date: $0, SectionData: grouped[$0])}
+        return sections
     }
 }
 

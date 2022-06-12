@@ -15,3 +15,8 @@ enum TitleConstant: String {
     case drawingModeOn = "Drawing mode is on"
     case sketchSaved = "Sketch Saved Successfully."
 }
+
+enum DateFormat: String {
+    case dateFormat = "dd-MM-yyyy"
+    case timeFormat = "hh:mm a"
+}
