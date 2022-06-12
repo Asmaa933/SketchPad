@@ -52,6 +52,16 @@ class CachingManager {
             return .failure(.generalError)
         }
     }
+    
+    func searchForSketch(by imageName: String) -> Result<[CachedSketch],AppError> {
+        let predicate = NSPredicate(format: "imageName contains[c] %@", imageName)
+        let sketches = fetchFromCache(predicate: predicate)
+        if let sketches = sketches {
+            return .success(sketches)
+        } else {
+            return .failure(.generalError)
+        }
+    }
 }
 
 fileprivate extension CachingManager {

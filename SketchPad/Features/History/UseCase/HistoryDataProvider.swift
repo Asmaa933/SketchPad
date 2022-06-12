@@ -33,7 +33,7 @@ class HistoryDataProvider: HistoryDataProviderProtocol {
     }
     
     func searchForSketches(by imageName: String, _ completion: @escaping (SketchResult) -> Void) {
-        let result = cachingManager.getItem(by: imageName)
+        let result = cachingManager.searchForSketch(by: imageName)
         completion(handleDataResult(result))
     }
 }

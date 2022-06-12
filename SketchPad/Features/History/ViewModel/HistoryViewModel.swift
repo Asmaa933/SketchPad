@@ -28,6 +28,7 @@ protocol HistoryViewModelProtocol {
 class HistoryViewModel {
     private var coordinator: HistoryCoordinatorProtocol
     private var dataProvider: HistoryDataProviderProtocol
+    private var searchDispatcher: SearchDispatcher
     private var currentMode: HistoryMode = .notSearching
     private lazy var groupedSketches = [HistorySketchSection]() {
         didSet {
@@ -37,9 +38,12 @@ class HistoryViewModel {
     
     var statePresenter: StatePresentable?
     
-    init(coordinator: HistoryCoordinatorProtocol, dataProvider: HistoryDataProviderProtocol) {
+    init(coordinator: HistoryCoordinatorProtocol,
+         dataProvider: HistoryDataProviderProtocol,
+         searchDispatcher: SearchDispatcher = SearchDispatchItem()) {
         self.coordinator = coordinator
         self.dataProvider = dataProvider
+        self.searchDispatcher = searchDispatcher
     }
 }
 
@@ -59,13 +63,19 @@ fileprivate extension HistoryViewModel {
                                mapping: HistoryState.self)
     }
     
-    func handleDeleteResult(_ result: CallBackResult, sketchIndex: Int) {
     func handleDeleteResult(_ result: CallBackResult, indexPath: IndexPath) {
         switch result {
         case .success(_):
             groupedSketches[indexPath.section].SectionData?.remove(at: indexPath.row)
         case .failure(let error):
             coordinator.showError(message: error)
+        }
+    }
+    
+    func searchForSketchesInCache(by imageName: String) {
+        dataProvider.searchForSketches(by: imageName) {[weak self] result in
+            guard let self = self else { return }
+            self.handleHistoryResult(result: result)
         }
     }
 }
@@ -100,7 +110,7 @@ extension HistoryViewModel: HistoryViewModelProtocol {
         guard let sketch = section.SectionData?[indexPath.row].toDisplay else { return }
         coordinator.previewSketch(with: sketch.imageData)
     }
-#warning("show alert")
+    #warning("show alert")
     func deleteSketch(at indexPath: IndexPath) {
         guard let sketches = groupedSketches[indexPath.section].SectionData,
               let id = sketches[indexPath.row].id else { return }
@@ -122,7 +132,10 @@ extension HistoryViewModel: HistoryViewModelProtocol {
                 self.handleHistoryResult(result: result)
             }
         } else {
+            searchDispatcher.call {[weak self] in
+                guard let self = self else { return }
                 self.currentMode = .searching(text: text)
+                self.searchForSketchesInCache(by: text)
             }
         }
     }
