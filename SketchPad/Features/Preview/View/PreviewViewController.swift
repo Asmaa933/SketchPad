@@ -16,12 +16,12 @@ class PreviewViewController: UIViewController {
     }()
     
     private var viewModel: PreviewViewModelProtocol
-
+    
     init(viewModel: PreviewViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -32,6 +32,10 @@ class PreviewViewController: UIViewController {
         handleViewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = true
+    }
 }
 
 fileprivate extension PreviewViewController {
@@ -42,7 +46,7 @@ fileprivate extension PreviewViewController {
     func addPreviewView() {
         view.addSubview(previewSketchView)
         previewSketchView.delegate = self
-        previewSketchView.setImage(with: viewModel.imageData)
+        previewSketchView.setImage(with: viewModel.sketch.imageData)
         NSLayoutConstraint.activate([previewSketchView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                                      previewSketchView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                                      previewSketchView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -64,12 +68,12 @@ extension PreviewViewController: StatePresentable {
     func render<T>(state: T, mapping: T.Type) where T : AppState {
         guard let previewState = state as? PreviewState  else { return }
         switch previewState {
-        
+            
         case .rotate(let angle):
             previewSketchView.rotateImage(by: angle)
             
         case .canEdit(let canEdit):
-            #warning("Hide save action")
+#warning("Hide save action")
             break
         }
     }

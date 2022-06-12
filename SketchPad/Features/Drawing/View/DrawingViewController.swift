@@ -38,6 +38,10 @@ class DrawingViewController: UIViewController {
         handleViewDidLoad()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = false
+    }
 }
 
 fileprivate extension DrawingViewController {

@@ -14,15 +14,15 @@ class CachingManager {
     
     private init() {}
     
-    func saveIntoCache(item: Sketch, _ completion: @escaping((Result<Bool,Error>)-> Void)) {
+    func saveIntoCache(item: Sketch) -> CallBackResult {
         guard let context = getCoreDataObject(),
-              let _ = mapToCoreDataModel(item: item) else { return }
+              let _ = mapToCoreDataModel(item: item) else { return .failure(.generalError)}
         do {
             try context.save()
-            completion(.success(true))
+            return .success(true)
         } catch (let error) {
             debugPrint("error in saving >> \(error)")
-            completion(.failure(error))
+            return .failure(.generalError)
         }
     }
     
@@ -38,7 +38,8 @@ class CachingManager {
         }
     }
     
-    func deleteFromCache(id: UUID) -> Result<Bool,AppError> {
+    @discardableResult
+    func deleteFromCache(id: UUID) -> CallBackResult {
         guard let context = getCoreDataObject(),
               let mappedSketch = getItemFromCacheByID(id)
         else { return .failure(.generalError) }
@@ -61,6 +62,12 @@ class CachingManager {
         } else {
             return .failure(.generalError)
         }
+    }
+    
+    func updateSketch(_ sketch: Sketch) -> CallBackResult  {
+        guard let sketchID = sketch.id else { return .failure(.generalError)}
+        deleteFromCache(id: sketchID)
+        return saveIntoCache(item: sketch)
     }
 }
 

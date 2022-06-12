@@ -33,6 +33,10 @@ class EnterNameAlert: UIView {
         self.addShadow()
     }
     
+    func setupTextField(text: String) {
+        nameTextField.text = text
+    }
+    
     @IBAction private func saveAction(_ sender: UIButton) {
         nameTextField.resignFirstResponder()
         callBack?(.save(imageName: nameTextField.text ?? ""))

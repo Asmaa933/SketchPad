@@ -30,23 +30,60 @@ class DrawingViewModel {
     private var currentColor: UIColor = .black
     private var currentThickness: CGFloat = 20
     private var currentMode: Mode = .drawing
+    private var sketch: Sketch?
     
     var statePresenter: StatePresentable?
     
     init(coordinator: DrawingCoordinatorProtocol) {
         self.coordinator = coordinator
+        observeOnEditNotification()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
 fileprivate extension DrawingViewModel {
     
     func getImageFromCoordinator() {
-        coordinator.imageDidPicked = {[weak self] imageData in
+        coordinator.imageDidPicked = {[weak self] sketch in
             guard let self = self else { return }
-            self.statePresenter?.render(state: .imagePicked(imageData: imageData),
-                                        mapping: DrawingState.self)
+            self.updateSketch(sketch)
         }
         coordinator.showImagePicker()
+    }
+    
+    func updateSketch(_ sketch: Sketch) {
+        guard let imageData = sketch.imageData else { return }
+        self.sketch = sketch
+        self.statePresenter?.render(state: .imagePicked(imageData: imageData),
+                                    mapping: DrawingState.self)
+    }
+    
+    func observeOnEditNotification() {
+        let notificationName = NotificationName.editImage.rawValue
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(receivedEditNotification(_:)),
+                                               name: NSNotification.Name(rawValue: notificationName),
+                                               object: nil)
+    }
+    
+    @objc func receivedEditNotification(_ notification: Notification) {
+        guard let sketchDict = notification.userInfo,
+                let sketch = decodeToSketch(dict: sketchDict) else { return }
+        updateSketch(sketch)
+    }
+    
+    func decodeToSketch(dict: [AnyHashable : Any]) -> Sketch? {
+        do {
+            let data = try JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
+            let sketch = try JSONDecoder().decode(Sketch.self, from: data)
+            return sketch
+        } catch(let error) {
+            debugPrint("error in decoding >> \(error)")
+            return nil
+        }
     }
 }
 
@@ -98,8 +135,10 @@ extension DrawingViewModel: DrawingViewModelProtocol {
     func doneButtonTapped(imageData: Data?) {
         switch currentMode {
         case .drawing:
-            guard let imageData = imageData else { return }
-            coordinator.openPreviewView(with: imageData)
+            guard var sketch = sketch,
+                  let imageData = imageData else { return }
+            sketch.imageData = imageData
+            coordinator.openPreviewView(with: sketch)
             
         case .delete:
             currentMode = .drawing
