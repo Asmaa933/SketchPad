@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum HistoryMode {
+    case notSearching
+    case searching
+}
+
 protocol HistoryViewModelProtocol {
     var statePresenter: StatePresentable? { get set }
     func viewDidLoaded()
@@ -17,6 +22,7 @@ protocol HistoryViewModelProtocol {
     func sketchDidSelected(at indexPath: IndexPath)
     func deleteSketch(at indexPath: IndexPath)
     func editSketch(at indexPath: IndexPath)
+    func searchForSketch(by text: String)
 }
 
 class HistoryViewModel {
@@ -109,6 +115,10 @@ extension HistoryViewModel: HistoryViewModelProtocol {
     }
     
     func editSketch(at indexPath: IndexPath) {
+        
+    }
+    
+    func searchForSketch(by text: String) {
         
     }
 }

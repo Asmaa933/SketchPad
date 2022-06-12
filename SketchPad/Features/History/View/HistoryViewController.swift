@@ -34,6 +34,7 @@ fileprivate extension HistoryViewController {
     func handleViewDidLoad() {
         viewModel.statePresenter = self
         setupHistoryTableView()
+        setupSearchBar()
         viewModel.viewDidLoaded()
     }
     
@@ -41,6 +42,11 @@ fileprivate extension HistoryViewController {
         historyTableView.delegate = self
         historyTableView.dataSource = self
         historyTableView.registerCellNib(cellClass: HistoryTableViewCell.self)
+    }
+    
+    func setupSearchBar() {
+        searchBar.delegate = self
+        searchBar.searchTextField.clearButtonMode = .never
     }
     
     func createSwipeActions(for indexPath: IndexPath) -> UISwipeActionsConfiguration {
@@ -61,6 +67,11 @@ fileprivate extension HistoryViewController {
         editAction.backgroundColor = .green
         return UISwipeActionsConfiguration(actions: [deleteAction,editAction])
     }
+    
+    func endEditing() {
+        searchBar.resignFirstResponder()
+        searchBar.showsCancelButton = false
+    }
 }
 
 extension HistoryViewController: StatePresentable {
@@ -73,7 +84,7 @@ extension HistoryViewController: StatePresentable {
             break
         }
     }
-
+    
 }
 
 extension HistoryViewController: UITableViewDelegate {
@@ -96,9 +107,11 @@ extension HistoryViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.getSectionsCount()
     }
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return viewModel.getTitle(for: section)
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.getSketchesCount(in: section)
     }
@@ -107,5 +120,23 @@ extension HistoryViewController: UITableViewDataSource {
         let cell = tableView.dequeue() as HistoryTableViewCell
         cell.configureCell(with: viewModel.getSketch(for: indexPath))
         return cell
+    }
+}
+
+extension HistoryViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchBar.showsCancelButton = true
+        viewModel.searchForSketch(by: searchText)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        endEditing()
+        viewModel.searchForSketch(by: "")
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        endEditing()
+        viewModel.searchForSketch(by: searchBar.text ?? "")
     }
 }
