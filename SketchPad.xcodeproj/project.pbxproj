@@ -13,6 +13,8 @@
 		9902C5C8285545B100498CD8 /* EnterNameCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9902C5C7285545B100498CD8 /* EnterNameCoordinator.swift */; };
 		9902C5CB285547A500498CD8 /* EnterNameAlert.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9902C5CA285547A400498CD8 /* EnterNameAlert.xib */; };
 		9902C5CD285547E300498CD8 /* EnterNameAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9902C5CC285547E300498CD8 /* EnterNameAlert.swift */; };
+		9902C5D42855657900498CD8 /* HistoryDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9902C5D32855657900498CD8 /* HistoryDataProvider.swift */; };
+		9902C5D72855719B00498CD8 /* HistorySketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9902C5D62855719B00498CD8 /* HistorySketch.swift */; };
 		993170892853EDEE00573750 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993170882853EDEE00573750 /* UITableViewExtension.swift */; };
 		9931708D2853EE8200573750 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9931708B2853EE8200573750 /* HistoryTableViewCell.swift */; };
 		9931708E2853EE8200573750 /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9931708C2853EE8200573750 /* HistoryTableViewCell.xib */; };
@@ -22,11 +24,10 @@
 		993BF33028552F0C004F9E4B /* SketchHistory.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 993BF32E28552F0C004F9E4B /* SketchHistory.xcdatamodeld */; };
 		99527A562853C82A005609F4 /* HistoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99527A552853C82A005609F4 /* HistoryCoordinator.swift */; };
 		99527A592853E099005609F4 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99527A582853E099005609F4 /* HistoryViewModel.swift */; };
-		99527A5C2853E9BE005609F4 /* SketchHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99527A5B2853E9BD005609F4 /* SketchHistoryView.swift */; };
-		99527A5E2853EA04005609F4 /* SketchHistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99527A5D2853EA04005609F4 /* SketchHistoryView.xib */; };
+		99527A5E2853EA04005609F4 /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99527A5D2853EA04005609F4 /* HistoryViewController.xib */; };
 		997D6C6E2854BF37000A2AEE /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997D6C6D2854BF37000A2AEE /* UIImageViewExtension.swift */; };
 		998B026D2852CDF900D58A8F /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B026C2852CDF900D58A8F /* UIViewExtension.swift */; };
-		998B02702852D00800D58A8F /* TitleConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B026F2852D00800D58A8F /* TitleConstant.swift */; };
+		998B02702852D00800D58A8F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B026F2852D00800D58A8F /* Constants.swift */; };
 		998B02732852E06600D58A8F /* DrawingTopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B02722852E06600D58A8F /* DrawingTopBar.swift */; };
 		998B02752852E08200D58A8F /* DrawingTopBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 998B02742852E08200D58A8F /* DrawingTopBar.xib */; };
 		998B027828535CE700D58A8F /* SketchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 998B027728535CE700D58A8F /* SketchView.xib */; };
@@ -47,6 +48,7 @@
 		998B02AE2853A92000D58A8F /* PreviewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B02AD2853A92000D58A8F /* PreviewCoordinator.swift */; };
 		998B02B12853B07F00D58A8F /* PreviewSketchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B02B02853B07F00D58A8F /* PreviewSketchView.swift */; };
 		998B02B32853B08D00D58A8F /* PreviewSketchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 998B02B22853B08D00D58A8F /* PreviewSketchView.xib */; };
+		99A34A392855DE4B003FB9E8 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A34A382855DE4B003FB9E8 /* DateExtension.swift */; };
 		99A71CA328526B860060C1DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CA228526B860060C1DA /* AppDelegate.swift */; };
 		99A71CA528526B860060C1DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CA428526B860060C1DA /* SceneDelegate.swift */; };
 		99A71CAC28526B8A0060C1DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99A71CAB28526B8A0060C1DA /* Assets.xcassets */; };
@@ -91,6 +93,8 @@
 		9902C5C7285545B100498CD8 /* EnterNameCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterNameCoordinator.swift; sourceTree = "<group>"; };
 		9902C5CA285547A400498CD8 /* EnterNameAlert.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnterNameAlert.xib; sourceTree = "<group>"; };
 		9902C5CC285547E300498CD8 /* EnterNameAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterNameAlert.swift; sourceTree = "<group>"; };
+		9902C5D32855657900498CD8 /* HistoryDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDataProvider.swift; sourceTree = "<group>"; };
+		9902C5D62855719B00498CD8 /* HistorySketch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorySketch.swift; sourceTree = "<group>"; };
 		993170882853EDEE00573750 /* UITableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		9931708B2853EE8200573750 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		9931708C2853EE8200573750 /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
@@ -100,11 +104,10 @@
 		993BF32F28552F0C004F9E4B /* SketchHistory.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SketchHistory.xcdatamodel; sourceTree = "<group>"; };
 		99527A552853C82A005609F4 /* HistoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCoordinator.swift; sourceTree = "<group>"; };
 		99527A582853E099005609F4 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
-		99527A5B2853E9BD005609F4 /* SketchHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchHistoryView.swift; sourceTree = "<group>"; };
-		99527A5D2853EA04005609F4 /* SketchHistoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SketchHistoryView.xib; sourceTree = "<group>"; };
+		99527A5D2853EA04005609F4 /* HistoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
 		997D6C6D2854BF37000A2AEE /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		998B026C2852CDF900D58A8F /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
-		998B026F2852D00800D58A8F /* TitleConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleConstant.swift; sourceTree = "<group>"; };
+		998B026F2852D00800D58A8F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		998B02722852E06600D58A8F /* DrawingTopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingTopBar.swift; sourceTree = "<group>"; };
 		998B02742852E08200D58A8F /* DrawingTopBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DrawingTopBar.xib; sourceTree = "<group>"; };
 		998B027728535CE700D58A8F /* SketchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SketchView.xib; sourceTree = "<group>"; };
@@ -125,6 +128,7 @@
 		998B02AD2853A92000D58A8F /* PreviewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCoordinator.swift; sourceTree = "<group>"; };
 		998B02B02853B07F00D58A8F /* PreviewSketchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewSketchView.swift; sourceTree = "<group>"; };
 		998B02B22853B08D00D58A8F /* PreviewSketchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreviewSketchView.xib; sourceTree = "<group>"; };
+		99A34A382855DE4B003FB9E8 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		99A71C9F28526B860060C1DA /* SketchPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SketchPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99A71CA228526B860060C1DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99A71CA428526B860060C1DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -218,6 +222,22 @@
 			path = SubView;
 			sourceTree = "<group>";
 		};
+		9902C5D22855655F00498CD8 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				9902C5D32855657900498CD8 /* HistoryDataProvider.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		9902C5D52855718600498CD8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9902C5D62855719B00498CD8 /* HistorySketch.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		9931708A2853EE6900573750 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,7 +266,9 @@
 		99527A532853C7D7005609F4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9931708A2853EE6900573750 /* Cell */,
 				99A71CEA2852ADF70060C1DA /* HistoryViewController.swift */,
+				99527A5D2853EA04005609F4 /* HistoryViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -267,20 +289,10 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		99527A5A2853E80B005609F4 /* Subviews */ = {
-			isa = PBXGroup;
-			children = (
-				9931708A2853EE6900573750 /* Cell */,
-				99527A5B2853E9BD005609F4 /* SketchHistoryView.swift */,
-				99527A5D2853EA04005609F4 /* SketchHistoryView.xib */,
-			);
-			path = Subviews;
-			sourceTree = "<group>";
-		};
 		998B026E2852CFF800D58A8F /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				998B026F2852D00800D58A8F /* TitleConstant.swift */,
+				998B026F2852D00800D58A8F /* Constants.swift */,
 				998B02922853943900D58A8F /* AppError.swift */,
 			);
 			path = Constants;
@@ -560,10 +572,11 @@
 		99A71CE52852ADB70060C1DA /* History */ = {
 			isa = PBXGroup;
 			children = (
+				9902C5D52855718600498CD8 /* Model */,
 				99527A542853C7F3005609F4 /* Coordinator */,
-				99527A5A2853E80B005609F4 /* Subviews */,
 				99527A532853C7D7005609F4 /* View */,
 				99527A572853DF14005609F4 /* ViewModel */,
+				9902C5D22855655F00498CD8 /* UseCase */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -614,6 +627,7 @@
 				997D6C6D2854BF37000A2AEE /* UIImageViewExtension.swift */,
 				993BF3262854E960004F9E4B /* UIBezierPathExtension.swift */,
 				9902C5BB2855402900498CD8 /* UIImageExtension.swift */,
+				99A34A382855DE4B003FB9E8 /* DateExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -732,7 +746,7 @@
 			files = (
 				99A71CDA28526F2F0060C1DA /* Colors.xcassets in Resources */,
 				99A71CAF28526B8A0060C1DA /* LaunchScreen.storyboard in Resources */,
-				99527A5E2853EA04005609F4 /* SketchHistoryView.xib in Resources */,
+				99527A5E2853EA04005609F4 /* HistoryViewController.xib in Resources */,
 				998B02752852E08200D58A8F /* DrawingTopBar.xib in Resources */,
 				998B027828535CE700D58A8F /* SketchView.xib in Resources */,
 				9902C5CB285547A500498CD8 /* EnterNameAlert.xib in Resources */,
@@ -766,7 +780,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				99A71CE82852ADDB0060C1DA /* DrawingViewController.swift in Sources */,
-				998B02702852D00800D58A8F /* TitleConstant.swift in Sources */,
+				998B02702852D00800D58A8F /* Constants.swift in Sources */,
 				998B028C285378D800D58A8F /* DrawingViewModel.swift in Sources */,
 				99F6618D285537AB008DA790 /* Sketch.swift in Sources */,
 				998B027A28535E0900D58A8F /* SketchView.swift in Sources */,
@@ -776,7 +790,6 @@
 				99A71CA328526B860060C1DA /* AppDelegate.swift in Sources */,
 				9931709128542DFE00573750 /* LineInfo.swift in Sources */,
 				998B02932853943900D58A8F /* AppError.swift in Sources */,
-				99527A5C2853E9BE005609F4 /* SketchHistoryView.swift in Sources */,
 				998B02A12853A83000D58A8F /* PreviewViewModel.swift in Sources */,
 				99A71CF12852AF0C0060C1DA /* AppColor.swift in Sources */,
 				998B02B12853B07F00D58A8F /* PreviewSketchView.swift in Sources */,
@@ -792,7 +805,9 @@
 				99A71CF32852AFE30060C1DA /* AppImage.swift in Sources */,
 				998B0288285370D100D58A8F /* DrawingArea.swift in Sources */,
 				993170892853EDEE00573750 /* UITableViewExtension.swift in Sources */,
+				9902C5D42855657900498CD8 /* HistoryDataProvider.swift in Sources */,
 				99A71CEF2852AE4A0060C1DA /* TabBarCoordinator.swift in Sources */,
+				9902C5D72855719B00498CD8 /* HistorySketch.swift in Sources */,
 				9902C5CD285547E300498CD8 /* EnterNameAlert.swift in Sources */,
 				998B026D2852CDF900D58A8F /* UIViewExtension.swift in Sources */,
 				998B02732852E06600D58A8F /* DrawingTopBar.swift in Sources */,
@@ -801,6 +816,7 @@
 				998B02A52853A8A000D58A8F /* PreviewTopBar.swift in Sources */,
 				99A71CFF2852CC7C0060C1DA /* FilledButton.swift in Sources */,
 				9902C5C8285545B100498CD8 /* EnterNameCoordinator.swift in Sources */,
+				99A34A392855DE4B003FB9E8 /* DateExtension.swift in Sources */,
 				99527A592853E099005609F4 /* HistoryViewModel.swift in Sources */,
 				993BF33028552F0C004F9E4B /* SketchHistory.xcdatamodeld in Sources */,
 				9902C5BC2855402900498CD8 /* UIImageExtension.swift in Sources */,

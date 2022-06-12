@@ -20,11 +20,16 @@ enum DrawingState: AppState {
 }
 
 enum PreviewState: AppState {
+    case canEdit(Bool)
     case rotate(angle: CGFloat)
 }
 
 enum EnterNameState: AppState {
     case showError(error: AppError)
+}
+
+enum HistoryState: AppState {
+    case reloadHistoryTableView
 }
 
 protocol StatePresentable {

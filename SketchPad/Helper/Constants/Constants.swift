@@ -7,6 +7,8 @@
 
 import Foundation
 
+typealias CallBackResult = Result<Bool, AppError>
+
 enum TitleConstant: String {
     case addPhoto = "+ Add Photo"
     case ok = "Ok"
@@ -14,4 +16,11 @@ enum TitleConstant: String {
     case deleteModeOn = "Delete mode is on"
     case drawingModeOn = "Drawing mode is on"
     case sketchSaved = "Sketch Saved Successfully."
+    case edit = "Edit"
+    case delete = "Delete"
+}
+
+enum DateFormat: String {
+    case dateFormat = "dd-MM-yyyy"
+    case timeFormat = "hh:mm a"
 }

@@ -32,8 +32,9 @@ class PhotoLibraryManager: PhotoLibraryManagerProtocol {
         }
     }
     
-    func saveIntoPhoto(imageData: Data) {
-        guard let image = UIImage(data: imageData) else { return }
+    func saveIntoPhoto(imageData: Data?) {
+        guard let imageData = imageData,
+              let image = UIImage(data: imageData) else { return }
         PHPhotoLibrary.shared().performChanges({
             PHAssetChangeRequest.creationRequestForAsset(from: image)},
                                                completionHandler: {success, error in

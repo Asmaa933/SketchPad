@@ -8,7 +8,49 @@
 import Foundation
 
 struct Sketch {
+    
+    let id: UUID?
+    let imageData: Data?
+    var imageName: String?
+    let date: String?
+    let time: String?
+    let createdAt: Date?
+    
+    
+    internal init(imageData: Data?, imageName: String? = nil) {
+        self.id = UUID()
+        self.imageData = imageData
+        self.date = Date().toString(format: .dateFormat)
+        self.time = Date().toString(format: .timeFormat)
+        self.imageName = imageName
+        self.createdAt = Date()
+    }
+    
+    internal init(id: UUID?, imageData: Data?, imageName: String? , date: String?, time: String?, createdAt: Date?) {
+        self.id = id
+        self.imageData = imageData
+        self.imageName = imageName
+        self.date = date
+        self.time = time
+        self.createdAt = createdAt
+    }
+    
+}
+
+struct DisplayedSketch {
+    let imageName: String
     let imageData: Data
-    let createdAt: Date
-    var imageName: String = ""
+    let time: String
+}
+
+extension Sketch {
+    var toDisplay: DisplayedSketch? {
+        guard let imageName = imageName,
+              let imageData = imageData,
+              let time = time else { return nil }
+        
+        return DisplayedSketch(imageName: imageName,
+                               imageData: imageData,
+                               time: time)
+    }
 }

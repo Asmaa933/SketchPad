@@ -8,12 +8,10 @@
 import UIKit
 
 class HistoryViewController: UIViewController {
-
-    private lazy var sketchHistoryView: SketchHistoryView = {
-       let view = SketchHistoryView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-       return view
-    }()
+    
+    @IBOutlet private weak var historyTableView: UITableView!
+    @IBOutlet private weak var searchBar: UISearchBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         handleViewDidLoad()
@@ -34,14 +32,80 @@ class HistoryViewController: UIViewController {
 fileprivate extension HistoryViewController {
     
     func handleViewDidLoad() {
-        setupSketchHistoryView()
+        viewModel.statePresenter = self
+        setupHistoryTableView()
+        viewModel.viewDidLoaded()
     }
     
-    func setupSketchHistoryView() {
-        view.addSubview(sketchHistoryView)
-        NSLayoutConstraint.activate([sketchHistoryView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                                     sketchHistoryView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                                     sketchHistoryView.topAnchor.constraint(equalTo: view.topAnchor),
-                                     sketchHistoryView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
+    func setupHistoryTableView() {
+        historyTableView.delegate = self
+        historyTableView.dataSource = self
+        historyTableView.registerCellNib(cellClass: HistoryTableViewCell.self)
+    }
+    
+    func createSwipeActions(for indexPath: IndexPath) -> UISwipeActionsConfiguration {
+        let deleteAction = UIContextualAction(style: .normal,
+                                              title: TitleConstant.delete.rawValue) {[weak self] _, _, completion in
+            guard let self = self else { return }
+            self.viewModel.deleteSketch(at: indexPath)
+            completion(true)
+        }
+        
+        let editAction = UIContextualAction(style: .normal,
+                                            title: TitleConstant.edit.rawValue) {[weak self] _, _, completion in
+            guard let self = self else { return }
+            self.viewModel.editSketch(at: indexPath)
+            completion(true)
+        }
+        deleteAction.backgroundColor = .red
+        editAction.backgroundColor = .green
+        return UISwipeActionsConfiguration(actions: [deleteAction,editAction])
+    }
+}
+
+extension HistoryViewController: StatePresentable {
+    func render<T>(state: T, mapping: T.Type) where T : AppState {
+        guard let state = state as? HistoryState else { return }
+        
+        switch state {
+        case .reloadHistoryTableView:
+            historyTableView.reloadData()
+            break
+        }
+    }
+
+}
+
+extension HistoryViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.sketchDidSelected(at: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        return createSwipeActions(for: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 25
+    }
+}
+
+extension HistoryViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.getSectionsCount()
+    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return viewModel.getTitle(for: section)
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.getSketchesCount(in: section)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeue() as HistoryTableViewCell
+        cell.configureCell(with: viewModel.getSketch(for: indexPath))
+        return cell
     }
 }
