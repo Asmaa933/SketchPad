@@ -8,7 +8,7 @@
 import UIKit
 
 protocol HistoryCoordinatorProtocol {
-    
+    func showError(message: AppError)
 }
 
 class HistoryCoordinator {
@@ -22,5 +22,8 @@ class HistoryCoordinator {
 }
 
 extension HistoryCoordinator: HistoryCoordinatorProtocol {
-    
+    func showError(message: AppError) {
+        let okAction = UIAlertAction(title: TitleConstant.ok.rawValue, style: .default)
+        navigationController.showAlert(message: message.rawValue, actions: [okAction])
+    }
 }

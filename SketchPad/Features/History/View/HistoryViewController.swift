@@ -35,6 +35,7 @@ fileprivate extension HistoryViewController {
     
     func handleViewDidLoad() {
         setupSketchHistoryView()
+        viewModel.viewDidLoad()
     }
     
     func setupSketchHistoryView() {

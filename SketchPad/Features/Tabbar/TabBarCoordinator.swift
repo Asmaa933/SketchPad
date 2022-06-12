@@ -42,7 +42,7 @@ fileprivate extension TabBarCoordinator {
             viewController = DrawingViewController(viewModel: viewModel)
         case .history:
             let coordinator = HistoryCoordinator(navigationController: navigationController)
-            let viewModel = HistoryViewModel(coordinator: coordinator)
+            let viewModel = HistoryViewModel(coordinator: coordinator, dataProvider: HistoryDataProvider())
             viewController = HistoryViewController(viewModel: viewModel)
         }
         return viewController

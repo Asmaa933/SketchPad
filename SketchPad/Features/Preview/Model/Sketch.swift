@@ -8,7 +8,16 @@
 import Foundation
 
 struct Sketch {
-    let imageData: Data
-    let createdAt: Date
-    var imageName: String = ""
+    
+    let id: UUID?
+    let imageData: Data?
+    let createdAt: Date?
+    var imageName: String?
+    
+    init(imageData: Data?, createdAt: Date?, imageName: String? = "", id: UUID? = UUID()) {
+        self.imageData = imageData
+        self.createdAt = createdAt
+        self.imageName = imageName
+        self.id = id
+    }
 }

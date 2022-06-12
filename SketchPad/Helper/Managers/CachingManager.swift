@@ -25,6 +25,18 @@ class CachingManager {
             completion(.failure(error))
         }
     }
+    
+    func getSketchesFromCache() -> Result<[CachedSketch],AppError> {
+        guard let context = getCoreDataObject() else { return .failure(.generalError) }
+        do{
+            let sketches = try context.fetch(CachedSketch.fetchRequest())
+            return .success(sketches)
+        }
+        catch (let error){
+            debugPrint("error in get sketches >> \(error.localizedDescription)")
+            return .failure(.generalError)
+        }
+    }
 }
 
 fileprivate extension CachingManager {
@@ -37,7 +49,7 @@ fileprivate extension CachingManager {
     func mapToCoreDataModel(item: Sketch) -> CachedSketch? {
         guard let context = getCoreDataObject() else { return nil }
         let cachedSketch = CachedSketch(context: context)
-        cachedSketch.id = UUID()
+        cachedSketch.id = item.id
         cachedSketch.imageData = item.imageData
         cachedSketch.imageName = item.imageName
         cachedSketch.createdAt = item.createdAt
