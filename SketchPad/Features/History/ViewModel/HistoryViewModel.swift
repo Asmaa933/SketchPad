@@ -5,7 +5,7 @@
 //  Created by Asmaa Tarek on 10/06/2022.
 //
 
-import Foundation
+import UIKit
 
 enum HistoryMode {
     case notSearching
@@ -54,7 +54,7 @@ fileprivate extension HistoryViewModel {
         case .success(let sketchesInSection):
             self.groupedSketches = sketchesInSection
         case .failure:
-            coordinator.showError(message: .generalError)
+            showError(message: .generalError)
         }
     }
     
@@ -68,7 +68,7 @@ fileprivate extension HistoryViewModel {
         case .success(_):
             groupedSketches[indexPath.section].SectionData?.remove(at: indexPath.row)
         case .failure(let error):
-            coordinator.showError(message: error)
+            showError(message: error)
         }
     }
     
@@ -77,6 +77,13 @@ fileprivate extension HistoryViewModel {
             guard let self = self else { return }
             self.handleHistoryResult(result: result)
         }
+    }
+    
+    func showError(message: AppError) {
+        let okAction = UIAlertAction(title: TitleConstant.ok.rawValue,
+                                     style: .default)
+        coordinator.showError(message: message,
+                              actions: [okAction])
     }
 }
 
@@ -110,7 +117,7 @@ extension HistoryViewModel: HistoryViewModelProtocol {
         guard let sketch = section.SectionData?[indexPath.row] else { return }
         coordinator.previewSketch(with: sketch)
     }
-    #warning("show alert")
+#warning("show alert")
     func deleteSketch(at indexPath: IndexPath) {
         guard let sketches = groupedSketches[indexPath.section].SectionData,
               let id = sketches[indexPath.row].id else { return }
