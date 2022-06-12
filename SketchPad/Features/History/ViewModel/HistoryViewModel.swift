@@ -9,7 +9,7 @@ import Foundation
 
 enum HistoryMode {
     case notSearching
-    case searching
+    case searching(text: String)
 }
 
 protocol HistoryViewModelProtocol {
@@ -28,12 +28,13 @@ protocol HistoryViewModelProtocol {
 class HistoryViewModel {
     private var coordinator: HistoryCoordinatorProtocol
     private var dataProvider: HistoryDataProviderProtocol
+    private var currentMode: HistoryMode = .notSearching
     private lazy var groupedSketches = [HistorySketchSection]() {
         didSet {
             reloadTableView()
         }
     }
-    private lazy var loadedSketches = [Sketch]()
+    
     var statePresenter: StatePresentable?
     
     init(coordinator: HistoryCoordinatorProtocol, dataProvider: HistoryDataProviderProtocol) {
@@ -53,10 +54,8 @@ fileprivate extension HistoryViewModel {
     
     func handleHistoryResult(result: SketchResult) {
         switch result {
-        case .success((let sketchesInSection, let sketches)):
+        case .success(let sketchesInSection):
             self.groupedSketches = sketchesInSection
-            self.loadedSketches = sketches
-            debugPrint(sketches)
         case .failure:
             coordinator.showError(message: .generalError)
         }
@@ -78,7 +77,7 @@ fileprivate extension HistoryViewModel {
 }
 
 extension HistoryViewModel: HistoryViewModelProtocol {
-
+    
     func viewDidLoaded() {
         loadHistory()
     }
@@ -104,7 +103,7 @@ extension HistoryViewModel: HistoryViewModelProtocol {
         guard let sketch = section.SectionData?[indexPath.row].toDisplay else { return }
         coordinator.previewSketch(with: sketch.imageData)
     }
-    #warning("show alert")
+#warning("show alert")
     func deleteSketch(at indexPath: IndexPath) {
         guard let sketches = groupedSketches[indexPath.section].SectionData,
               let id = sketches[indexPath.row].id else { return }
@@ -119,6 +118,15 @@ extension HistoryViewModel: HistoryViewModelProtocol {
     }
     
     func searchForSketch(by text: String) {
-        
+        if text.isEmpty {
+            currentMode = .notSearching
+            dataProvider.getHistory {[weak self] result in
+                guard let self = self else { return }
+                self.handleHistoryResult(result: result)
+            }
+        } else {
+                self.currentMode = .searching(text: text)
+            }
+        }
     }
 }
