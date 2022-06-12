@@ -8,7 +8,7 @@
 import Foundation
 
 struct Sketch {
-   
+    
     let id: UUID?
     let imageData: Data?
     var imageName: String?
@@ -34,5 +34,23 @@ struct Sketch {
         self.time = time
         self.createdAt = createdAt
     }
-  
+    
+}
+
+struct DisplayedSketch {
+    let imageName: String
+    let imageData: Data
+    let time: String
+}
+
+extension Sketch {
+    var toDisplay: DisplayedSketch? {
+        guard let imageName = imageName,
+              let imageData = imageData,
+              let time = time else { return nil }
+        
+        return DisplayedSketch(imageName: imageName,
+                               imageData: imageData,
+                               time: time)
+    }
 }

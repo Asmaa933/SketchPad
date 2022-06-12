@@ -7,7 +7,7 @@
 
 import Foundation
 
-typealias SketchResult = Result<[HistorySketchSection], Error>
+typealias SketchResult = Result<([HistorySketchSection], [Sketch]), Error>
 
 protocol HistoryDataProviderProtocol {
     func getHistory(_ completion: @escaping (SketchResult) -> Void)
@@ -27,8 +27,7 @@ class HistoryDataProvider: HistoryDataProviderProtocol {
             let sketches = cachedSketched
                 .compactMap(mapResultToSketch(_:))
             let sections = mapSketchesToGrouped(sketches)
-            
-            completion(.success(sections))
+            completion(.success((sections, sketches)))
         case .failure(let error):
             completion(.failure(error))
         }

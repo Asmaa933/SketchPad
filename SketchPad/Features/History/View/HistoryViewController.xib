@@ -26,7 +26,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </searchBar>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="dgB-Xa-OwA">
-                    <rect key="frame" x="0.0" y="76" width="320" height="472"/>
+                    <rect key="frame" x="0.0" y="86" width="320" height="462"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
             </subviews>
@@ -35,7 +35,7 @@
             <constraints>
                 <constraint firstItem="dgB-Xa-OwA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Lpc-og-fM0"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="dgB-Xa-OwA" secondAttribute="bottom" constant="20" id="fDy-db-8OV"/>
-                <constraint firstItem="dgB-Xa-OwA" firstAttribute="top" secondItem="Mvt-H5-eHZ" secondAttribute="bottom" constant="5" id="gew-E4-gn1"/>
+                <constraint firstItem="dgB-Xa-OwA" firstAttribute="top" secondItem="Mvt-H5-eHZ" secondAttribute="bottom" constant="15" id="gew-E4-gn1"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="dgB-Xa-OwA" secondAttribute="trailing" id="j9j-e5-jTC"/>
                 <constraint firstItem="Mvt-H5-eHZ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="sWP-b6-5U7"/>
                 <constraint firstItem="Mvt-H5-eHZ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="uy7-AC-Tvo"/>

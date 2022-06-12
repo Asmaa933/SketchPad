@@ -64,15 +64,18 @@ extension HistoryViewController: UITableViewDelegate {
 extension HistoryViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return viewModel.getSectionsCount()
     }
-    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return viewModel.getTitle(for: section)
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return viewModel.getSketchesCount(in: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue() as HistoryTableViewCell
+        cell.configureCell(with: viewModel.getSketch(for: indexPath))
         return cell
     }
 }

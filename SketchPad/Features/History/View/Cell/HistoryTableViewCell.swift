@@ -18,4 +18,18 @@ class HistoryTableViewCell: UITableViewCell {
         super.layoutSubviews()
         mainView.addShadow()
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageNameLabel.text = ""
+        savedImageView.image = nil
+        timeLabel.text = ""
+    }
+    
+    func configureCell(with sketch: DisplayedSketch?) {
+        guard let sketch = sketch else { return }
+        imageNameLabel.text = sketch.imageName
+        savedImageView.image = UIImage(data: sketch.imageData)
+        timeLabel.text = sketch.time
+    }
 }

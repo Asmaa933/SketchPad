@@ -10,8 +10,10 @@ import Foundation
 protocol HistoryViewModelProtocol {
     var statePresenter: StatePresentable? { get set }
     func viewDidLoad()
-    func getSketchesCount() -> Int
-    func getSketch(at index: Int) -> HistorySketchSection
+    func getSectionsCount() -> Int
+    func getTitle(for section: Int) -> String
+    func getSketchesCount(in section: Int) -> Int
+    func getSketch(for indexPath: IndexPath) -> DisplayedSketch?
 //    func sketchDidSelected(at index: Int)
 //    func deleteSketch(at index: Int)
 //    func editSketch(at index: Int)z
@@ -20,7 +22,8 @@ protocol HistoryViewModelProtocol {
 class HistoryViewModel {
     private var coordinator: HistoryCoordinatorProtocol
     private var dataProvider: HistoryDataProviderProtocol
-    private lazy var sketches = [HistorySketchSection]()
+    private lazy var groupedSketches = [HistorySketchSection]()
+    private lazy var loadedSketches = [Sketch]()
     var statePresenter: StatePresentable?
     
     init(coordinator: HistoryCoordinatorProtocol, dataProvider: HistoryDataProviderProtocol) {
@@ -39,8 +42,9 @@ fileprivate extension HistoryViewModel {
     
     func handleHistoryResult(result: SketchResult) {
         switch result {
-        case .success(let sketches):
-            self.sketches = sketches
+        case .success(let sketchesInSection, let sketches):
+            self.groupedSketches = sketchesInSection
+            self.loadedSketches = sketches
             debugPrint(sketches)
             statePresenter?.render(state: HistoryState.reloadHistoryTableView,
                                    mapping: HistoryState.self)
@@ -56,11 +60,19 @@ extension HistoryViewModel: HistoryViewModelProtocol {
         loadHistory()
     }
     
-    func getSketchesCount() -> Int {
-        return sketches.count
+    func getSectionsCount() -> Int {
+        return groupedSketches.count
     }
-
-    func getSketch(at index: Int) -> HistorySketchSection {
-        return sketches[index]
+    
+    func getTitle(for section: Int) -> String {
+        return groupedSketches[section].date
+    }
+    
+    func getSketchesCount(in section: Int) -> Int {
+        return groupedSketches[section].SectionData?.count ?? 0
+    }
+    
+    func getSketch(for indexPath: IndexPath) -> DisplayedSketch? {
+        return groupedSketches[indexPath.section].SectionData?[indexPath.row].toDisplay
     }
 }
