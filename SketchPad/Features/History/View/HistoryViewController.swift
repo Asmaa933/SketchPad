@@ -85,6 +85,10 @@ extension HistoryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         return createSwipeActions(for: indexPath)
     }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 25
+    }
 }
 
 extension HistoryViewController: UITableViewDataSource {
