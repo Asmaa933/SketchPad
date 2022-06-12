@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Sketch {
+struct Sketch: Codable {
     
     let id: UUID?
     var imageData: Data?
@@ -17,7 +17,7 @@ struct Sketch {
     let createdAt: Date?
     
     
-    internal init(imageData: Data?, imageName: String? = nil) {
+     init(imageData: Data?, imageName: String? = nil) {
         self.id = UUID()
         self.imageData = imageData
         self.date = Date().toString(format: .dateFormat)
@@ -26,7 +26,7 @@ struct Sketch {
         self.createdAt = Date()
     }
     
-    internal init(id: UUID?, imageData: Data?, imageName: String? , date: String?, time: String?, createdAt: Date?) {
+     init(id: UUID?, imageData: Data?, imageName: String? , date: String?, time: String?, createdAt: Date?) {
         self.id = id
         self.imageData = imageData
         self.imageName = imageName
@@ -34,7 +34,6 @@ struct Sketch {
         self.time = time
         self.createdAt = createdAt
     }
-    
 }
 
 struct DisplayedSketch {

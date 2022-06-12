@@ -24,3 +24,7 @@ enum DateFormat: String {
     case dateFormat = "dd-MM-yyyy"
     case timeFormat = "hh:mm a"
 }
+
+enum NotificationName: String {
+    case editImage = "edit_image"
+}

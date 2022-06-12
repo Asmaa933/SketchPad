@@ -65,17 +65,16 @@ fileprivate extension EnterNameViewModel {
     }
     
     func save() {
-        cachingManager.saveIntoCache(item: sketch) { [weak self] result in
-            guard let self = self else { return }
-            self.handleSaveResult(result: result)
-        }
+        let result = cachingManager.saveIntoCache(item: sketch)
+        self.handleSaveResult(result: result)
     }
     
     func update() {
-        
+        let result = cachingManager.updateSketch(sketch)
+        self.handleSaveResult(result: result)
     }
     
-    func handleSaveResult(result: Result<Bool,Error>) {
+    func handleSaveResult(result: Result<Bool,AppError>) {
         switch result {
         case .success:
             PhotoLibraryManager().saveIntoPhoto(imageData: sketch.imageData)

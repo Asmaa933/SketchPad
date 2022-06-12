@@ -36,6 +36,11 @@ class DrawingViewModel {
     
     init(coordinator: DrawingCoordinatorProtocol) {
         self.coordinator = coordinator
+        observeOnEditNotification()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -43,13 +48,42 @@ fileprivate extension DrawingViewModel {
     
     func getImageFromCoordinator() {
         coordinator.imageDidPicked = {[weak self] sketch in
-            guard let self = self,
-                  let imageData = sketch.imageData else { return }
-            self.sketch = sketch
-            self.statePresenter?.render(state: .imagePicked(imageData: imageData),
-                                        mapping: DrawingState.self)
+            guard let self = self else { return }
+            self.updateSketch(sketch)
         }
         coordinator.showImagePicker()
+    }
+    
+    func updateSketch(_ sketch: Sketch) {
+        guard let imageData = sketch.imageData else { return }
+        self.sketch = sketch
+        self.statePresenter?.render(state: .imagePicked(imageData: imageData),
+                                    mapping: DrawingState.self)
+    }
+    
+    func observeOnEditNotification() {
+        let notificationName = NotificationName.editImage.rawValue
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(receivedEditNotification(_:)),
+                                               name: NSNotification.Name(rawValue: notificationName),
+                                               object: nil)
+    }
+    
+    @objc func receivedEditNotification(_ notification: Notification) {
+        guard let sketchDict = notification.userInfo,
+                let sketch = decodeToSketch(dict: sketchDict) else { return }
+        updateSketch(sketch)
+    }
+    
+    func decodeToSketch(dict: [AnyHashable : Any]) -> Sketch? {
+        do {
+            let data = try JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
+            let sketch = try JSONDecoder().decode(Sketch.self, from: data)
+            return sketch
+        } catch(let error) {
+            debugPrint("error in decoding >> \(error)")
+            return nil
+        }
     }
 }
 

@@ -121,7 +121,13 @@ extension HistoryViewModel: HistoryViewModelProtocol {
     }
     
     func editSketch(at indexPath: IndexPath) {
-        
+        guard let sketches = groupedSketches[indexPath.section].SectionData else { return }
+        let sketch = sketches[indexPath.row]
+        let notificationName = NotificationName.editImage.rawValue
+        NotificationCenter.default.post(name: Notification.Name(notificationName),
+                                        object: nil,
+                                        userInfo: sketch.toJSON())
+        coordinator.goToDrawing()
     }
     
     func searchForSketch(by text: String) {

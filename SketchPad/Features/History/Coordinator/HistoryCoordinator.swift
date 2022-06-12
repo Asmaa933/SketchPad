@@ -10,6 +10,7 @@ import UIKit
 protocol HistoryCoordinatorProtocol {
     func showError(message: AppError)
     func previewSketch(with sketch: Sketch)
+    func goToDrawing()
 }
 
 class HistoryCoordinator {
@@ -34,5 +35,10 @@ extension HistoryCoordinator: HistoryCoordinatorProtocol {
         let viewModel = PreviewViewModel(coordinator: coordinator, canEdit: false, sketch: sketch)
         let previewViewController = PreviewViewController(viewModel: viewModel)
         navigationController.present(previewViewController, animated: true)
+    }
+    
+    func goToDrawing() {
+        guard let tabBarController = navigationController.tabBarController else { return }
+        tabBarController.selectedIndex = 0
     }
 }

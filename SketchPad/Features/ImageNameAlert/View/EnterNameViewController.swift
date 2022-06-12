@@ -31,8 +31,6 @@ class EnterNameViewController: UIViewController {
         super.viewDidLoad()
         handleViewDidLoad()
     }
-    
-    
 }
 
 fileprivate extension EnterNameViewController {
@@ -55,6 +53,7 @@ fileprivate extension EnterNameViewController {
     }
     
     func setupNameAlert() {
+        enterNameAlert.setupTextField(text: viewModel.getImageName())
         view.addSubview(enterNameAlert)
         NSLayoutConstraint.activate([enterNameAlert.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                                      enterNameAlert.centerYAnchor.constraint(equalTo: view.centerYAnchor),

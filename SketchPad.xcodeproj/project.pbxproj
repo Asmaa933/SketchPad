@@ -67,6 +67,7 @@
 		99A71CFB2852C0790060C1DA /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CFA2852C0790060C1DA /* AppCoordinator.swift */; };
 		99A71CFF2852CC7C0060C1DA /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A71CFE2852CC7C0060C1DA /* FilledButton.swift */; };
 		99ABDBB92856528300CDA6E3 /* SearchDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ABDBB82856528300CDA6E3 /* SearchDispatcher.swift */; };
+		99ABDBBB28568A4A00CDA6E3 /* EncodableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ABDBBA28568A4A00CDA6E3 /* EncodableExtension.swift */; };
 		99F6618D285537AB008DA790 /* Sketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F6618C285537AB008DA790 /* Sketch.swift */; };
 /* End PBXBuildFile section */
 
@@ -152,6 +153,7 @@
 		99A71CFA2852C0790060C1DA /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		99A71CFE2852CC7C0060C1DA /* FilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButton.swift; sourceTree = "<group>"; };
 		99ABDBB82856528300CDA6E3 /* SearchDispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDispatcher.swift; sourceTree = "<group>"; };
+		99ABDBBA28568A4A00CDA6E3 /* EncodableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodableExtension.swift; sourceTree = "<group>"; };
 		99F6618C285537AB008DA790 /* Sketch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sketch.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -252,6 +254,7 @@
 		9931708F28542DE700573750 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				99F6618C285537AB008DA790 /* Sketch.swift */,
 				9931709028542DFE00573750 /* LineInfo.swift */,
 			);
 			path = Model;
@@ -375,7 +378,6 @@
 		998B029B2853A77000D58A8F /* Preview */ = {
 			isa = PBXGroup;
 			children = (
-				99F6618B2855379C008DA790 /* Model */,
 				998B02AC2853A90E00D58A8F /* Coordinator */,
 				998B02A22853A86300D58A8F /* Subviews */,
 				998B029C2853A77E00D58A8F /* View */,
@@ -631,16 +633,9 @@
 				993BF3262854E960004F9E4B /* UIBezierPathExtension.swift */,
 				9902C5BB2855402900498CD8 /* UIImageExtension.swift */,
 				99A34A382855DE4B003FB9E8 /* DateExtension.swift */,
+				99ABDBBA28568A4A00CDA6E3 /* EncodableExtension.swift */,
 			);
 			path = Extension;
-			sourceTree = "<group>";
-		};
-		99F6618B2855379C008DA790 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				99F6618C285537AB008DA790 /* Sketch.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -795,6 +790,7 @@
 				998B02932853943900D58A8F /* AppError.swift in Sources */,
 				998B02A12853A83000D58A8F /* PreviewViewModel.swift in Sources */,
 				99A71CF12852AF0C0060C1DA /* AppColor.swift in Sources */,
+				99ABDBBB28568A4A00CDA6E3 /* EncodableExtension.swift in Sources */,
 				998B02B12853B07F00D58A8F /* PreviewSketchView.swift in Sources */,
 				9902C5C62855458500498CD8 /* EnterNameViewModel.swift in Sources */,
 				99A71CEC2852ADF70060C1DA /* HistoryViewController.swift in Sources */,
