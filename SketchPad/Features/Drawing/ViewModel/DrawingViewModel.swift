@@ -79,7 +79,7 @@ fileprivate extension DrawingViewModel {
     
     @objc func receivedEditNotification(_ notification: Notification) {
         guard let sketchDict = notification.userInfo,
-                let sketch = decodeToSketch(dict: sketchDict) else { return }
+              let sketch = decodeToSketch(dict: sketchDict) else { return }
         updateSketch(sketch)
     }
     
@@ -107,26 +107,40 @@ fileprivate extension DrawingViewModel {
             } else {
                 hiddenButtons = []
                 notHiddenButtons = [.redo, .undo, .delete]
-            }   
+            }
         }
         
         let state = DrawingState.shouldChangeHidden(hiddenButtons: hiddenButtons, notHiddenButtons: notHiddenButtons)
         statePresenter?.render(state: state, mapping: DrawingState.self)
-
+        
     }
     
     func statusChanged() {
         switch currentMode {
         case .drawing:
-            statePresenter?.render(state: DrawingState.deleteMode(isOn: true), mapping: DrawingState.self)
             checkButtonsAppear()
         case .delete:
             statePresenter?.render(state: DrawingState.deleteMode(isOn: true), mapping: DrawingState.self)
             
             let hideState = DrawingState.shouldChangeHidden(hiddenButtons: [.delete, .undo, .redo],
-                                                        notHiddenButtons: [])
+                                                            notHiddenButtons: [])
             statePresenter?.render(state: hideState, mapping: DrawingState.self)
         }
+    }
+    
+    func showPermissionDeniedAlert() {
+        let settingsAction = UIAlertAction(title: TitleConstant.openSettings.rawValue, style: .destructive) {[weak self] _ in
+            guard let self = self else { return }
+            self.openSettings()
+        }
+        let okAlert = UIAlertAction(title: TitleConstant.ok.rawValue, style: .default)
+        coordinator.showAlert(error: .photoPermissionDenied,
+                              actions: [okAlert, settingsAction])
+    }
+    
+    func openSettings() {
+        guard let settingsURL = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(settingsURL) else { return }
+        UIApplication.shared.open(settingsURL)
     }
     
     
@@ -143,7 +157,7 @@ extension DrawingViewModel: DrawingViewModelProtocol {
                 case .success(_):
                     self.getImageFromCoordinator()
                 case .failure(let error):
-                    self.coordinator.showPermissionDeniedAlert(error: error)
+                    self.showPermissionDeniedAlert()
                 }
             }
         }
@@ -171,9 +185,9 @@ extension DrawingViewModel: DrawingViewModelProtocol {
         case .delete:
             guard currentMode == .drawing, !linesInfo.isEmpty else { return }
             currentMode = .delete
-    
+            
         case .done:
-          break
+            break
         }
     }
     
@@ -238,7 +252,7 @@ fileprivate extension DrawingViewModel {
                     deletedLines.append(linesInfo[index])
                     linesInfo.remove(at: index)
                     statePresenter?.render(state: DrawingState.draw(lines: linesInfo),
-                                          mapping: DrawingState.self)
+                                           mapping: DrawingState.self)
                     break
                 }
             }
