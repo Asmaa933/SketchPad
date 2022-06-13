@@ -19,6 +19,8 @@ enum TitleConstant: String {
     case sketchEdited = "Sketch edited successfully."
     case edit = "Edit"
     case delete = "Delete"
+    case cancel = "Cancel"
+  
 }
 
 enum DateFormat: String {

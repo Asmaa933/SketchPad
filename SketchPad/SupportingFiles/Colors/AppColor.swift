@@ -20,6 +20,6 @@ enum AppColor: String {
 extension UIColor {
     
     static func color(for appColor: AppColor) -> UIColor {
-        UIColor(named: appColor.rawValue) ?? UIColor()
+        UIColor(named: appColor.rawValue) ?? .black
     }
 }
