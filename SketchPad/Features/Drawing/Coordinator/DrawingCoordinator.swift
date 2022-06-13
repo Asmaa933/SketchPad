@@ -93,4 +93,8 @@ extension DrawingCoordinator: UIColorPickerViewControllerDelegate {
     func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
         colorDidPicked?(viewController.selectedColor)
     }
+    
+    func colorPickerViewController(_ viewController: UIColorPickerViewController, didSelect color: UIColor, continuously: Bool) {
+        colorDidPicked?(viewController.selectedColor)
+    }
 }
