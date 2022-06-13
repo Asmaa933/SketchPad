@@ -6,7 +6,6 @@
 //
 
 import UIKit
-#warning("handle dismiss searchbar when touch outside")
 
 class HistoryViewController: UIViewController {
     
@@ -40,6 +39,7 @@ fileprivate extension HistoryViewController {
     func handleViewDidLoad() {
         viewModel.statePresenter = self
         setupHistoryTableView()
+        addGestureToView()
         setupSearchBar()
     }
     
@@ -73,7 +73,13 @@ fileprivate extension HistoryViewController {
         return UISwipeActionsConfiguration(actions: [deleteAction,editAction])
     }
     
-    func endEditing() {
+    func addGestureToView() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(endEditing))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func endEditing() {
         searchBar.resignFirstResponder()
         searchBar.showsCancelButton = false
     }
