@@ -11,7 +11,7 @@ protocol DrawingCoordinatorProtocol {
     var imageDidPicked: ((Sketch) -> Void)? { get set }
     var colorDidPicked: ((UIColor) -> Void)? { get set }
     func showImagePicker()
-    func showPermissionDeniedAlert(error: AppError)
+    func showAlert(error: AppError, actions: [UIAlertAction])
     func openPreviewView(with sketch: Sketch)
     func showColorPicker(currentColor: UIColor)
 }
@@ -27,13 +27,6 @@ class DrawingCoordinator: NSObject {
     }
 }
 
-fileprivate extension DrawingCoordinator {
-    func openSettings() {
-        guard let settingsURL = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(settingsURL) else { return }
-        UIApplication.shared.open(settingsURL)
-    }
-}
-
 extension DrawingCoordinator: DrawingCoordinatorProtocol {
 
     func showImagePicker() {
@@ -44,14 +37,9 @@ extension DrawingCoordinator: DrawingCoordinatorProtocol {
         navigationController.present(imagePickerController, animated: true)
     }
     
-    func showPermissionDeniedAlert(error: AppError) {
-        let settingsAction = UIAlertAction(title: TitleConstant.openSettings.rawValue, style: .destructive) {[weak self] _ in
-            guard let self = self else { return }
-            self.openSettings()
-        }
-        let okAlert = UIAlertAction(title: TitleConstant.ok.rawValue, style: .default)
+    func showAlert(error: AppError, actions: [UIAlertAction]) {
         navigationController.showAlert(message: error.rawValue,
-                                       actions: [okAlert,settingsAction])
+                                       actions: actions)
     }
     
     func openPreviewView(with sketch: Sketch) {
@@ -91,6 +79,10 @@ extension DrawingCoordinator: UIImagePickerControllerDelegate, UINavigationContr
 
 extension DrawingCoordinator: UIColorPickerViewControllerDelegate {
     func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
+        colorDidPicked?(viewController.selectedColor)
+    }
+    
+    func colorPickerViewController(_ viewController: UIColorPickerViewController, didSelect color: UIColor, continuously: Bool) {
         colorDidPicked?(viewController.selectedColor)
     }
 }

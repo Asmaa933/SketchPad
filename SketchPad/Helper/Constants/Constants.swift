@@ -20,7 +20,7 @@ enum TitleConstant: String {
     case edit = "Edit"
     case delete = "Delete"
     case cancel = "Cancel"
-  
+    case close = "Close"
 }
 
 enum DateFormat: String {

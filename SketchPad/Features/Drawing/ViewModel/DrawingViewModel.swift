@@ -25,12 +25,26 @@ protocol DrawingViewModelProtocol {
 class DrawingViewModel {
     
     private var coordinator: DrawingCoordinatorProtocol
-    private lazy var linesInfo = [LineInfo]()
-    private lazy var deletedLines = [LineInfo]()
     private var currentColor: UIColor = .black
     private var currentThickness: CGFloat = 20
-    private var currentMode: Mode = .drawing
     private var sketch: Sketch?
+    private lazy var deletedLines = [LineInfo]() {
+        didSet {
+            checkButtonsAppear(checkedArr: deletedLines, buttons: [.redo])
+        }
+    }
+    
+    private lazy var linesInfo = [LineInfo]() {
+        didSet {
+            checkButtonsAppear(checkedArr: linesInfo, buttons: [.undo, .delete])
+        }
+    }
+    
+    private var currentMode: Mode = .drawing {
+        didSet {
+            statusChanged()
+        }
+    }
     
     var statePresenter: StatePresentable?
     
@@ -71,7 +85,7 @@ fileprivate extension DrawingViewModel {
     
     @objc func receivedEditNotification(_ notification: Notification) {
         guard let sketchDict = notification.userInfo,
-                let sketch = decodeToSketch(dict: sketchDict) else { return }
+              let sketch = decodeToSketch(dict: sketchDict) else { return }
         updateSketch(sketch)
     }
     
@@ -85,31 +99,95 @@ fileprivate extension DrawingViewModel {
             return nil
         }
     }
+    
+    func checkButtonsAppear(checkedArr: [LineInfo], buttons: [DrawingTopBarButton]) {
+        var hiddenButtons = [DrawingTopBarButton]()
+        var notHiddenButtons = [DrawingTopBarButton]()
+        if checkedArr.isEmpty  {
+            hiddenButtons = buttons
+            notHiddenButtons = []
+        } else {
+            hiddenButtons = []
+            notHiddenButtons = buttons
+        }
+        
+        let state = DrawingState.shouldChangeHidden(hiddenButtons: hiddenButtons, notHiddenButtons: notHiddenButtons)
+        statePresenter?.render(state: state, mapping: DrawingState.self)
+        
+    }
+    
+    func statusChanged() {
+        switch currentMode {
+        case .drawing:
+            checkButtonsAppear(checkedArr: linesInfo, buttons: [.undo, .delete])
+        case .delete:
+            statePresenter?.render(state: DrawingState.deleteMode(isOn: true), mapping: DrawingState.self)
+            
+            let hideState = DrawingState.shouldChangeHidden(hiddenButtons: [.delete, .undo, .redo],
+                                                            notHiddenButtons: [])
+            statePresenter?.render(state: hideState, mapping: DrawingState.self)
+        }
+    }
+    
+    func showPermissionDeniedAlert() {
+        let settingsAction = UIAlertAction(title: TitleConstant.openSettings.rawValue, style: .destructive) {[weak self] _ in
+            guard let self = self else { return }
+            self.openSettings()
+        }
+        
+        let okAlert = UIAlertAction(title: TitleConstant.ok.rawValue, style: .default)
+        coordinator.showAlert(error: .photoPermissionDenied,
+                              actions: [okAlert, settingsAction])
+    }
+    
+    func openSettings() {
+        guard let settingsURL = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(settingsURL) else { return }
+        UIApplication.shared.open(settingsURL)
+    }
+    
+    func showCloseAlert() {
+        let closeAction = UIAlertAction(title: TitleConstant.close.rawValue,
+                                        style: .destructive) {[weak self] _ in
+            guard let self = self else { return }
+            self.closeDrawing()
+        }
+        let cancelAction = UIAlertAction(title: TitleConstant.cancel.rawValue,
+                                         style: .default)
+        coordinator.showAlert(error: .confirmClose,
+                              actions: [closeAction, cancelAction])
+    }
+    
+    func closeDrawing() {
+        statePresenter?.render(state: DrawingState.close,
+                               mapping: DrawingState.self)
+        resetData()
+    }
+    
+    func resetData() {
+        linesInfo.removeAll()
+        deletedLines.removeAll()
+        currentMode = .drawing
+        currentColor = .black
+        currentThickness = 20
+        sketch = nil
+    }
 }
 
 extension DrawingViewModel: DrawingViewModelProtocol {
     
     func getImage() {
         let photoLibraryManager: PhotoLibraryManagerProtocol = PhotoLibraryManager()
-        photoLibraryManager.getPermission {[weak self] result in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                switch result {
-                case .success(_):
-                    self.getImageFromCoordinator()
-                case .failure(let error):
-                    self.coordinator.showPermissionDeniedAlert(error: error)
-                }
-            }
+        if photoLibraryManager.permissionIsDenied() {
+            showPermissionDeniedAlert()
+        } else {
+            getImageFromCoordinator()
         }
     }
     
     func topBarButtonTapped(_ button: DrawingTopBarButton) {
         switch button {
         case .close:
-            #warning("show warrning")
-            linesInfo.removeAll()
-            statePresenter?.render(state: DrawingState.close, mapping: DrawingState.self)
+            showCloseAlert()
             
         case .undo:
             guard let lastLine = linesInfo.popLast() else { return }
@@ -124,11 +202,9 @@ extension DrawingViewModel: DrawingViewModelProtocol {
         case .delete:
             guard currentMode == .drawing, !linesInfo.isEmpty else { return }
             currentMode = .delete
-            statePresenter?.render(state: DrawingState.deleteMode(isOn: true),
-                                   mapping: DrawingState.self)
-    
+            
         case .done:
-          break
+            break
         }
     }
     
@@ -142,8 +218,6 @@ extension DrawingViewModel: DrawingViewModelProtocol {
             
         case .delete:
             currentMode = .drawing
-            statePresenter?.render(state: DrawingState.deleteMode(isOn: false),
-                                   mapping: DrawingState.self)
         }
     }
     
@@ -195,7 +269,7 @@ fileprivate extension DrawingViewModel {
                     deletedLines.append(linesInfo[index])
                     linesInfo.remove(at: index)
                     statePresenter?.render(state: DrawingState.draw(lines: linesInfo),
-                                          mapping: DrawingState.self)
+                                           mapping: DrawingState.self)
                     break
                 }
             }

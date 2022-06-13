@@ -9,18 +9,9 @@ import UIKit
 
 class DrawingViewController: UIViewController {
     
-    private lazy var addPhotoButton: FilledButton = {
-        let button = FilledButton()
-        button.title = .addPhoto
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
+    private lazy var addPhotoButton = FilledButton()
     
-    private lazy var sketchView: SketchView = {
-        let view = SketchView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private lazy var sketchView: SketchView = SketchView()
     
     private var viewModel: DrawingViewModelProtocol
     
@@ -37,7 +28,7 @@ class DrawingViewController: UIViewController {
         super.viewDidLoad()
         handleViewDidLoad()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = false
@@ -61,6 +52,9 @@ fileprivate extension DrawingViewController {
 fileprivate extension DrawingViewController {
     
     func setupAddPhotoButton() {
+        addPhotoButton = FilledButton()
+        addPhotoButton.title = .addPhoto
+        addPhotoButton.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .color(for: .backgroundColor)
         view.addSubview(addPhotoButton)
         NSLayoutConstraint.activate([addPhotoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -86,6 +80,8 @@ fileprivate extension DrawingViewController {
 fileprivate extension DrawingViewController {
     
     func setupSketchView(with imageData: Data) {
+        sketchView = SketchView()
+        sketchView.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .color(for: .sketchBarColor)
         sketchView.setImage(imageData: imageData)
         sketchView.delegate = self
@@ -124,17 +120,22 @@ extension DrawingViewController: StatePresentable {
         case .deleteMode(let isOn):
             if isOn {
                 view.showToast(with: TitleConstant.deleteModeOn.rawValue)
-                sketchView.toggleMode(isDelete: true)
+                sketchView.changeTopButtonsHidden(hiddenButtons: [.redo,.undo,.delete],
+                                                  unhiddenButtons: [])
             } else {
-                view.showToast(with: TitleConstant.drawingModeOn.rawValue)
-                sketchView.toggleMode(isDelete: false)
+                sketchView.changeTopButtonsHidden(hiddenButtons: [],
+                                                  unhiddenButtons: [.redo,.undo,.delete])
             }
+            
+        case .shouldChangeHidden(let hiddenButton, let notHiddenButton):
+            sketchView.changeTopButtonsHidden(hiddenButtons: hiddenButton,
+                                              unhiddenButtons: notHiddenButton)
         }
     }
 }
 
 extension DrawingViewController: SketchViewDelegate {
-
+    
     func topBarButtonTapped(_ button: DrawingTopBarButton) {
         viewModel.topBarButtonTapped(button)
     }
