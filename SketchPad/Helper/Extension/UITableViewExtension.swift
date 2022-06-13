@@ -30,7 +30,7 @@ extension UITableView {
         messageImageView.translatesAutoresizingMaskIntoConstraints = false
         let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.textColor = .color(for: .)
+        titleLabel.textColor = .color(for: .containerColor)
         titleLabel.text = title
         emptyView.addSubview(titleLabel)
         emptyView.addSubview(messageImageView)
