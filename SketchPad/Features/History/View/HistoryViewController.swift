@@ -22,7 +22,7 @@ class HistoryViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         handleViewDidLoad()
@@ -39,6 +39,7 @@ fileprivate extension HistoryViewController {
     func handleViewDidLoad() {
         viewModel.statePresenter = self
         setupHistoryTableView()
+        addGestureToView()
         setupSearchBar()
     }
     
@@ -67,12 +68,18 @@ fileprivate extension HistoryViewController {
             self.viewModel.editSketch(at: indexPath)
             completion(true)
         }
-        deleteAction.backgroundColor = .red
-        editAction.backgroundColor = .green
+        deleteAction.backgroundColor = .color(for: .swipeDeleteColor)
+        editAction.backgroundColor = .color(for: .swipeEditColor)
         return UISwipeActionsConfiguration(actions: [deleteAction,editAction])
     }
     
-    func endEditing() {
+    func addGestureToView() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(endEditing))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func endEditing() {
         searchBar.resignFirstResponder()
         searchBar.showsCancelButton = false
     }
@@ -81,14 +88,14 @@ fileprivate extension HistoryViewController {
 extension HistoryViewController: StatePresentable {
     func render<T>(state: T, mapping: T.Type) where T : AppState {
         guard let state = state as? HistoryState else { return }
-        
         switch state {
-        case .reloadHistoryTableView:
+        case .reloadHistoryTableView(let isEmpty):
+            historyTableView.isHidden = false
+            isEmpty ? historyTableView.setEmptyView(title: AppError.noDataFound.rawValue) : historyTableView.restore()
             historyTableView.reloadData()
             break
         }
     }
-    
 }
 
 extension HistoryViewController: UITableViewDelegate {

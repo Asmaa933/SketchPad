@@ -5,7 +5,7 @@
 //  Created by Asmaa Tarek on 10/06/2022.
 //
 
-import Foundation
+import UIKit
 
 enum HistoryMode {
     case notSearching
@@ -26,6 +26,7 @@ protocol HistoryViewModelProtocol {
 }
 
 class HistoryViewModel {
+    
     private var coordinator: HistoryCoordinatorProtocol
     private var dataProvider: HistoryDataProviderProtocol
     private var searchDispatcher: SearchDispatcher
@@ -54,12 +55,13 @@ fileprivate extension HistoryViewModel {
         case .success(let sketchesInSection):
             self.groupedSketches = sketchesInSection
         case .failure:
-            coordinator.showError(message: .generalError)
+            showError(message: .generalError)
         }
     }
     
     func reloadTableView() {
-        statePresenter?.render(state: HistoryState.reloadHistoryTableView,
+        
+        statePresenter?.render(state: HistoryState.reloadHistoryTableView(isEmpty: groupedSketches.isEmpty),
                                mapping: HistoryState.self)
     }
     
@@ -68,7 +70,7 @@ fileprivate extension HistoryViewModel {
         case .success(_):
             groupedSketches[indexPath.section].SectionData?.remove(at: indexPath.row)
         case .failure(let error):
-            coordinator.showError(message: error)
+            showError(message: error)
         }
     }
     
@@ -76,6 +78,35 @@ fileprivate extension HistoryViewModel {
         dataProvider.searchForSketches(by: imageName) {[weak self] result in
             guard let self = self else { return }
             self.handleHistoryResult(result: result)
+        }
+    }
+    
+    func showError(message: AppError) {
+        let okAction = UIAlertAction(title: TitleConstant.ok.rawValue,
+                                     style: .default)
+        coordinator.showError(message: message,
+                              actions: [okAction])
+    }
+    
+    func showDeleteAlert(sketchIndexPath: IndexPath) {
+        let deleteAction = UIAlertAction(title: TitleConstant.delete.rawValue,
+                                         style: .destructive) {[weak self ] _ in
+            guard let self = self else { return }
+            self.executeDeletion(at: sketchIndexPath)
+        }
+        
+        let cancelAction = UIAlertAction(title: TitleConstant.cancel.rawValue,
+                                         style: .default)
+        coordinator.showError(message: .confirmDelete,
+                              actions: [deleteAction,cancelAction])
+    }
+    
+    func executeDeletion(at indexPath: IndexPath) {
+        guard let sketches = groupedSketches[indexPath.section].SectionData,
+              let id = sketches[indexPath.row].id else { return }
+        dataProvider.deleteSketchFromCaching(id: id) {[weak self] result in
+            guard let self = self else { return }
+            self.handleDeleteResult(result, indexPath: indexPath)
         }
     }
 }
@@ -110,14 +141,9 @@ extension HistoryViewModel: HistoryViewModelProtocol {
         guard let sketch = section.SectionData?[indexPath.row] else { return }
         coordinator.previewSketch(with: sketch)
     }
-    #warning("show alert")
+    
     func deleteSketch(at indexPath: IndexPath) {
-        guard let sketches = groupedSketches[indexPath.section].SectionData,
-              let id = sketches[indexPath.row].id else { return }
-        dataProvider.deleteSketchFromCaching(id: id) {[weak self] result in
-            guard let self = self else { return }
-            self.handleDeleteResult(result, indexPath: indexPath)
-        }
+        showDeleteAlert(sketchIndexPath: indexPath)
     }
     
     func editSketch(at indexPath: IndexPath) {

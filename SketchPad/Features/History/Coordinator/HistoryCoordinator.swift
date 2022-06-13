@@ -8,7 +8,7 @@
 import UIKit
 
 protocol HistoryCoordinatorProtocol {
-    func showError(message: AppError)
+    func showError(message: AppError, actions: [UIAlertAction])
     func previewSketch(with sketch: Sketch)
     func goToDrawing()
 }
@@ -25,16 +25,19 @@ class HistoryCoordinator {
 
 extension HistoryCoordinator: HistoryCoordinatorProtocol {
     
-    func showError(message: AppError) {
-        let okAction = UIAlertAction(title: TitleConstant.ok.rawValue, style: .default)
-        navigationController.showAlert(message: message.rawValue, actions: [okAction])
+    func showError(message: AppError, actions: [UIAlertAction]) {
+        navigationController.showAlert(message: message.rawValue,
+                                       actions: actions)
     }
     
     func previewSketch(with sketch: Sketch) {
         let coordinator = PreviewCoordinator(navigationController: navigationController)
-        let viewModel = PreviewViewModel(coordinator: coordinator, canEdit: false, sketch: sketch)
+        let viewModel = PreviewViewModel(coordinator: coordinator,
+                                         canEdit: false,
+                                         sketch: sketch)
         let previewViewController = PreviewViewController(viewModel: viewModel)
-        navigationController.present(previewViewController, animated: true)
+        navigationController.present(previewViewController,
+                                     animated: true)
     }
     
     func goToDrawing() {

@@ -14,7 +14,7 @@ enum PreviewTopBarButton {
 }
 
 class PreviewTopBar: UIView {
-    
+    #warning("change icon to x when presenting")
     @IBOutlet private weak var saveButton: UIButton!
     
     weak var delegate: PreviewTopBarDelegate?

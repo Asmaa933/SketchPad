@@ -29,7 +29,7 @@ enum EnterNameState: AppState {
 }
 
 enum HistoryState: AppState {
-    case reloadHistoryTableView
+    case reloadHistoryTableView(isEmpty: Bool)
 }
 
 protocol StatePresentable {
