@@ -25,12 +25,12 @@ extension UITableView {
         let emptyView = UIView(frame: CGRect(x: self.center.x, y: self.center.y, width: self.bounds.size.width, height: self.bounds.size.height))
         let messageImageView = UIImageView()
         messageImageView.image = .getImage(from: .emptyState)
-        messageImageView.tintColor = .darkGray
+        messageImageView.tintColor = .color(for: .tintColor)
         messageImageView.backgroundColor = .clear
         messageImageView.translatesAutoresizingMaskIntoConstraints = false
         let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.textColor = .black
+        titleLabel.textColor = .color(for: .)
         titleLabel.text = title
         emptyView.addSubview(titleLabel)
         emptyView.addSubview(messageImageView)
