@@ -26,6 +26,7 @@ protocol HistoryViewModelProtocol {
 }
 
 class HistoryViewModel {
+    
     private var coordinator: HistoryCoordinatorProtocol
     private var dataProvider: HistoryDataProviderProtocol
     private var searchDispatcher: SearchDispatcher

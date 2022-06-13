@@ -39,6 +39,7 @@ class HistoryDataProvider: HistoryDataProviderProtocol {
 }
 
 fileprivate extension HistoryDataProvider {
+    
     func mapResultToSketch(_ result: CachedSketch) -> Sketch {
         return Sketch(id: result.id,
                       imageData: result.imageData,

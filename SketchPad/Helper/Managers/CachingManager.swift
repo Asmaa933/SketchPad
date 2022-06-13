@@ -16,25 +16,26 @@ class CachingManager {
     
     func saveIntoCache(item: Sketch) -> CallBackResult {
         guard let context = getCoreDataObject(),
-              let _ = mapToCoreDataModel(item: item) else { return .failure(.generalError)}
+              let _ = mapToCoreDataModel(item: item) else { return .failure(.saveError)}
         do {
             try context.save()
             return .success(true)
         } catch (let error) {
             debugPrint("error in saving >> \(error)")
-            return .failure(.generalError)
+            return .failure(.saveError)
         }
     }
+     
     
     func getSketchesFromCache() -> Result<[CachedSketch],AppError> {
-        guard let context = getCoreDataObject() else { return .failure(.generalError) }
+        guard let context = getCoreDataObject() else { return .failure(.errorFetching) }
         do{
             let sketches = try context.fetch(CachedSketch.fetchRequest())
             return .success(sketches)
         }
         catch (let error){
             debugPrint("error in get sketches >> \(error.localizedDescription)")
-            return .failure(.generalError)
+            return .failure(.errorFetching)
         }
     }
     
@@ -42,7 +43,7 @@ class CachingManager {
     func deleteFromCache(id: UUID) -> CallBackResult {
         guard let context = getCoreDataObject(),
               let mappedSketch = getItemFromCacheByID(id)
-        else { return .failure(.generalError) }
+        else { return .failure(.errorDeleteSketch) }
         context.delete(mappedSketch)
         do{
             try context.save()
@@ -50,7 +51,7 @@ class CachingManager {
         }
         catch{
             debugPrint("error in delete data")
-            return .failure(.generalError)
+            return .failure(.errorDeleteSketch)
         }
     }
     
@@ -60,12 +61,12 @@ class CachingManager {
         if let sketches = sketches {
             return .success(sketches)
         } else {
-            return .failure(.generalError)
+            return .failure(.errorFetching)
         }
     }
     
     func updateSketch(_ sketch: Sketch) -> CallBackResult  {
-        guard let sketchID = sketch.id else { return .failure(.generalError)}
+        guard let sketchID = sketch.id else { return .failure(.saveError)}
         deleteFromCache(id: sketchID)
         return saveIntoCache(item: sketch)
     }
