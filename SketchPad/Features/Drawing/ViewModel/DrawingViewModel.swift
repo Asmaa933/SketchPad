@@ -143,7 +143,30 @@ fileprivate extension DrawingViewModel {
         UIApplication.shared.open(settingsURL)
     }
     
+    func showCloseAlert() {
+        let closeAction = UIAlertAction(title: TitleConstant.close.rawValue,
+                                        style: .destructive) {[weak self] _ in
+            guard let self = self else { return }
+            self.closeDrawing()
+        }
+        let cancelAction = UIAlertAction(title: TitleConstant.cancel.rawValue,
+                                         style: .default)
+        coordinator.showAlert(error: .confirmClose, actions: [closeAction, cancelAction])
+    }
     
+    func closeDrawing() {
+        statePresenter?.render(state: DrawingState.close, mapping: DrawingState.self)
+        resetData()
+    }
+    
+    func resetData() {
+        linesInfo.removeAll()
+        deletedLines.removeAll()
+        currentMode = .drawing
+        currentColor = .black
+        currentThickness = 20
+        sketch = nil
+    }
 }
 
 extension DrawingViewModel: DrawingViewModelProtocol {
@@ -166,11 +189,7 @@ extension DrawingViewModel: DrawingViewModelProtocol {
     func topBarButtonTapped(_ button: DrawingTopBarButton) {
         switch button {
         case .close:
-            #warning("show warrning")
-            linesInfo.removeAll()
-            currentMode = .drawing
-            
-            statePresenter?.render(state: DrawingState.close, mapping: DrawingState.self)
+            showCloseAlert()
             
         case .undo:
             guard let lastLine = linesInfo.popLast() else { return }
