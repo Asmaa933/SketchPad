@@ -53,8 +53,8 @@ fileprivate extension TabBarCoordinator {
         UITabBarItem.appearance().setTitleTextAttributes(attributes, for: .normal)
         UITabBar.appearance().tintColor = .color(for: .tintColor)
         tabBarController.setViewControllers(tabControllers, animated: true)
-        tabBarController.tabBar.backgroundColor = UIColor.color(for: .tabBarBackgroundColor)
-        
+        tabBarController.tabBar.backgroundColor = UIColor.color(for: .sketchBarColor)
+        tabBarController.tabBar.addShadow()
     }
 }
 
