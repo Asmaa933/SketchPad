@@ -60,7 +60,8 @@ fileprivate extension HistoryViewModel {
     }
     
     func reloadTableView() {
-        statePresenter?.render(state: HistoryState.reloadHistoryTableView,
+        
+        statePresenter?.render(state: HistoryState.reloadHistoryTableView(isEmpty: groupedSketches.isEmpty),
                                mapping: HistoryState.self)
     }
     

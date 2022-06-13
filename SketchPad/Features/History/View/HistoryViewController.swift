@@ -6,6 +6,7 @@
 //
 
 import UIKit
+#warning("handle dismiss searchbar when touch outside")
 
 class HistoryViewController: UIViewController {
     
@@ -82,7 +83,9 @@ extension HistoryViewController: StatePresentable {
     func render<T>(state: T, mapping: T.Type) where T : AppState {
         guard let state = state as? HistoryState else { return }
         switch state {
-        case .reloadHistoryTableView:
+        case .reloadHistoryTableView(let isEmpty):
+            historyTableView.isHidden = false
+            isEmpty ? historyTableView.setEmptyView(title: AppError.noDataFound.rawValue) : historyTableView.restore()
             historyTableView.reloadData()
             break
         }

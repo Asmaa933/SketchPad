@@ -16,4 +16,5 @@ enum AppError: String, Error {
     case saveError = "Error in saving sketch"
     case errorFetching = "Error in getting sketches"
     case errorDeleteSketch = "Error in deleting sketch"
+    case noDataFound = "No data found"
 }
