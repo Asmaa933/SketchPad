@@ -8,7 +8,7 @@
 import UIKit
 
 protocol PreviewCoordinatorProtocol {
-    func popViewController()
+    func closeView(canEdit: Bool)
     func presentEnterNameViewController(with sketchData: Sketch)
 }
 
@@ -24,8 +24,12 @@ class PreviewCoordinator {
 
 extension PreviewCoordinator: PreviewCoordinatorProtocol {
     
-    func popViewController() {
-        navigationController.popViewController(animated: true)
+    func closeView(canEdit: Bool) {
+        if canEdit {
+            navigationController.popViewController(animated: true)
+        } else {
+            navigationController.dismiss(animated: true)
+        }
     }
     
     func presentEnterNameViewController(with sketchData: Sketch) {

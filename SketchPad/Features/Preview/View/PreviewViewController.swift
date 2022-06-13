@@ -46,6 +46,7 @@ fileprivate extension PreviewViewController {
         viewModel.viewDidLoad()
         topBar.delegate = self
         setImage(with: viewModel.sketch.imageData)
+        topBar.setCloseButtonImage(imageName: viewModel.getCloseButtonImageName())
     }
     
     func setImage(with imageData: Data?) {

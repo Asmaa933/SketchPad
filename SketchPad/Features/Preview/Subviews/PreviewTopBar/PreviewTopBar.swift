@@ -14,8 +14,8 @@ enum PreviewTopBarButton {
 }
 
 class PreviewTopBar: UIView {
-    #warning("change icon to x when presenting")
     @IBOutlet private weak var saveButton: UIButton!
+    @IBOutlet private weak var closeButton: UIButton!
     
     weak var delegate: PreviewTopBarDelegate?
 
@@ -47,5 +47,9 @@ class PreviewTopBar: UIView {
     
     func shouldHideSave(_ isHidden: Bool) {
         saveButton.isHidden = isHidden
+    }
+    
+    func setCloseButtonImage(imageName: AppImage) {
+        closeButton.setImage(.getImage(from: imageName), for: .normal)
     }
 }

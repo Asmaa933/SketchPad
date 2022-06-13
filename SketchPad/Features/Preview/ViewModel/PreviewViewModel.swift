@@ -13,6 +13,7 @@ protocol PreviewViewModelProtocol {
     func viewDidLoad()
     func topBarButtonTapped(_ button: PreviewTopBarButton)
     func saveButtonTapped(imageData: Data?)
+    func getCloseButtonImageName() -> AppImage
 }
 
 class PreviewViewModel {
@@ -36,7 +37,7 @@ extension PreviewViewModel: PreviewViewModelProtocol {
     func topBarButtonTapped(_ button: PreviewTopBarButton) {
         switch button {
         case .back:
-            coordinator.popViewController()
+            coordinator.closeView(canEdit: canEdit)
         
         case .rotateLeft:
             statePresenter?.render(state: PreviewState.rotate(angle: Rotation.rotateLeft.angle),
@@ -56,5 +57,9 @@ extension PreviewViewModel: PreviewViewModelProtocol {
     func viewDidLoad() {
         statePresenter?.render(state: PreviewState.saveButtonIsHidden(!canEdit),
                                mapping: PreviewState.self)
+    }
+    
+    func getCloseButtonImageName() -> AppImage {
+        return canEdit ? .back : .close
     }
 }

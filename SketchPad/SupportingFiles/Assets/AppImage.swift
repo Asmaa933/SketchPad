@@ -14,6 +14,7 @@ enum AppImage: String {
     case colorPicker
     case emptyState = "magnifyingglass"
     case close = "xmark"
+    case back = "arrow.backward"
 }
 
 extension AppImage {
