@@ -177,16 +177,10 @@ extension DrawingViewModel: DrawingViewModelProtocol {
     
     func getImage() {
         let photoLibraryManager: PhotoLibraryManagerProtocol = PhotoLibraryManager()
-        photoLibraryManager.getPermission {[weak self] result in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                switch result {
-                case .success(_):
-                    self.getImageFromCoordinator()
-                case .failure(let error):
-                    self.showPermissionDeniedAlert()
-                }
-            }
+        if photoLibraryManager.permissionIsDenied() {
+            showPermissionDeniedAlert()
+        } else {
+            getImageFromCoordinator()
         }
     }
     
