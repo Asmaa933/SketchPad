@@ -22,11 +22,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yll-ih-GfS" customClass="DrawingBottomBar" customModule="SketchPad" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="520" width="320" height="48"/>
+                    <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                     <color key="backgroundColor" systemColor="systemTealColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="sgX-aw-PJR"/>
+                    </constraints>
                 </view>
                 <view contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="48" translatesAutoresizingMaskIntoConstraints="NO" id="vLW-cJ-F1z" customClass="DrawingTopBar" customModule="SketchPad" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="48"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="70.5"/>
                     <color key="backgroundColor" systemColor="systemTealColor"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ge8-1x-RkD" customClass="DrawingArea" customModule="SketchPad" customModuleProvider="target">
@@ -40,11 +43,10 @@
                 <constraint firstItem="vLW-cJ-F1z" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="7Ow-Wb-m1j"/>
                 <constraint firstItem="yll-ih-GfS" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="AfE-rQ-MPF"/>
                 <constraint firstItem="yll-ih-GfS" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="M2H-5H-zYR"/>
-                <constraint firstItem="vLW-cJ-F1z" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="P2i-Kq-E37"/>
+                <constraint firstItem="vLW-cJ-F1z" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="P2i-Kq-E37"/>
                 <constraint firstItem="Ge8-1x-RkD" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Tmj-3j-TJq"/>
                 <constraint firstItem="yll-ih-GfS" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="XqT-zj-86O"/>
-                <constraint firstItem="vLW-cJ-F1z" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.15" id="Zq7-1X-70z"/>
-                <constraint firstItem="yll-ih-GfS" firstAttribute="height" secondItem="vLW-cJ-F1z" secondAttribute="height" id="bXn-LA-Eac"/>
+                <constraint firstItem="vLW-cJ-F1z" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.22" id="Zq7-1X-70z"/>
                 <constraint firstItem="vLW-cJ-F1z" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="dQt-oG-gwM"/>
                 <constraint firstItem="Ge8-1x-RkD" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="gFF-is-M5M"/>
                 <constraint firstItem="Ge8-1x-RkD" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="xiC-u2-Owg"/>

@@ -28,12 +28,18 @@ class DrawingViewModel {
     private var currentColor: UIColor = .black
     private var currentThickness: CGFloat = 20
     private var sketch: Sketch?
-    private lazy var deletedLines = [LineInfo]()
-    private lazy var linesInfo = [LineInfo]() {
+    private lazy var deletedLines = [LineInfo]() {
         didSet {
-            checkButtonsAppear()
+            checkButtonsAppear(checkedArr: deletedLines, buttons: [.redo])
         }
     }
+    
+    private lazy var linesInfo = [LineInfo]() {
+        didSet {
+            checkButtonsAppear(checkedArr: linesInfo, buttons: [.undo, .delete])
+        }
+    }
+    
     private var currentMode: Mode = .drawing {
         didSet {
             statusChanged()
@@ -94,20 +100,15 @@ fileprivate extension DrawingViewModel {
         }
     }
     
-    func checkButtonsAppear() {
+    func checkButtonsAppear(checkedArr: [LineInfo], buttons: [DrawingTopBarButton]) {
         var hiddenButtons = [DrawingTopBarButton]()
         var notHiddenButtons = [DrawingTopBarButton]()
-        if linesInfo.isEmpty {
-            hiddenButtons = [.redo, .undo, .delete]
+        if checkedArr.isEmpty  {
+            hiddenButtons = buttons
             notHiddenButtons = []
         } else {
-            if deletedLines.isEmpty {
-                hiddenButtons = [.redo]
-                notHiddenButtons = [.undo, .delete]
-            } else {
-                hiddenButtons = []
-                notHiddenButtons = [.redo, .undo, .delete]
-            }
+            hiddenButtons = []
+            notHiddenButtons = buttons
         }
         
         let state = DrawingState.shouldChangeHidden(hiddenButtons: hiddenButtons, notHiddenButtons: notHiddenButtons)
@@ -118,7 +119,7 @@ fileprivate extension DrawingViewModel {
     func statusChanged() {
         switch currentMode {
         case .drawing:
-            checkButtonsAppear()
+            checkButtonsAppear(checkedArr: linesInfo, buttons: [.undo, .delete])
         case .delete:
             statePresenter?.render(state: DrawingState.deleteMode(isOn: true), mapping: DrawingState.self)
             
@@ -133,6 +134,7 @@ fileprivate extension DrawingViewModel {
             guard let self = self else { return }
             self.openSettings()
         }
+        
         let okAlert = UIAlertAction(title: TitleConstant.ok.rawValue, style: .default)
         coordinator.showAlert(error: .photoPermissionDenied,
                               actions: [okAlert, settingsAction])
@@ -151,11 +153,13 @@ fileprivate extension DrawingViewModel {
         }
         let cancelAction = UIAlertAction(title: TitleConstant.cancel.rawValue,
                                          style: .default)
-        coordinator.showAlert(error: .confirmClose, actions: [closeAction, cancelAction])
+        coordinator.showAlert(error: .confirmClose,
+                              actions: [closeAction, cancelAction])
     }
     
     func closeDrawing() {
-        statePresenter?.render(state: DrawingState.close, mapping: DrawingState.self)
+        statePresenter?.render(state: DrawingState.close,
+                               mapping: DrawingState.self)
         resetData()
     }
     
