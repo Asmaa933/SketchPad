@@ -24,7 +24,7 @@ class DrawingTopBar: UIView {
     @IBOutlet private weak var doneButton: UIButton!
     
     var topBarButtonTapped: ((DrawingTopBarButton) -> Void)?
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadNibView()
@@ -53,5 +53,29 @@ class DrawingTopBar: UIView {
     
     @IBAction private func doneButtonAction(_ sender: UIButton) {
         topBarButtonTapped?(.done)
+    }
+    
+    func changeTopButtonsHidden(hiddenButtons: [DrawingTopBarButton],
+                                unhiddenButtons: [DrawingTopBarButton]) {
+        hiddenButtons.forEach { button in
+            isButtonHidden(button, isHidden: true)
+        }
+        
+        unhiddenButtons.forEach { button in
+            isButtonHidden(button, isHidden: false)
+        }
+    }
+    
+    private func isButtonHidden(_ button: DrawingTopBarButton, isHidden: Bool) {
+        switch button {
+        case .undo:
+            undoButton.isHidden = isHidden
+        case .redo:
+            redoButton.isHidden = isHidden
+        case .delete:
+            deleteButton.isHidden = isHidden
+        default:
+            break
+        }
     }
 }

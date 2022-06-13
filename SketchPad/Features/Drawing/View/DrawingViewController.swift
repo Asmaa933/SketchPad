@@ -37,7 +37,7 @@ class DrawingViewController: UIViewController {
         super.viewDidLoad()
         handleViewDidLoad()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = false
@@ -124,17 +124,23 @@ extension DrawingViewController: StatePresentable {
         case .deleteMode(let isOn):
             if isOn {
                 view.showToast(with: TitleConstant.deleteModeOn.rawValue)
-                sketchView.toggleMode(isDelete: true)
+                sketchView.changeTopButtonsHidden(hiddenButtons: [.redo,.undo,.delete],
+                                                  unhiddenButtons: [])
             } else {
                 view.showToast(with: TitleConstant.drawingModeOn.rawValue)
-                sketchView.toggleMode(isDelete: false)
+                sketchView.changeTopButtonsHidden(hiddenButtons: [],
+                                                  unhiddenButtons: [.redo,.undo,.delete])
             }
+            
+        case .shouldChangeHidden(let hiddenButton, let notHiddenButton):
+            sketchView.changeTopButtonsHidden(hiddenButtons: hiddenButton,
+                                              unhiddenButtons: notHiddenButton)
         }
     }
 }
 
 extension DrawingViewController: SketchViewDelegate {
-
+    
     func topBarButtonTapped(_ button: DrawingTopBarButton) {
         viewModel.topBarButtonTapped(button)
     }

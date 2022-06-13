@@ -16,7 +16,8 @@ enum DrawingState: AppState {
     case colorChanged(newColor: UIColor)
     case close
     case deleteMode(isOn: Bool)
-    
+    case shouldChangeHidden(hiddenButtons: [DrawingTopBarButton],
+                            notHiddenButtons: [DrawingTopBarButton])
 }
 
 enum PreviewState: AppState {

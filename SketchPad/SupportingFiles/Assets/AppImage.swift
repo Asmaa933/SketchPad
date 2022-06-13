@@ -13,6 +13,7 @@ enum AppImage: String {
     case history = "paintpalette.fill"
     case colorPicker
     case emptyState = "magnifyingglass"
+    case close = "xmark"
 }
 
 extension AppImage {

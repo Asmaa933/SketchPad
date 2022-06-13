@@ -46,8 +46,10 @@ class SketchView: UIView {
         bottomBar.colorChanged(to: color)
     }
     
-    func toggleMode(isDelete: Bool) {
-        #warning("To do hide buttons ")
+    func changeTopButtonsHidden(hiddenButtons: [DrawingTopBarButton],
+                                unhiddenButtons: [DrawingTopBarButton]) {
+        topBar.changeTopButtonsHidden(hiddenButtons: hiddenButtons,
+                                      unhiddenButtons: unhiddenButtons)
     }
 }
 
@@ -88,5 +90,4 @@ fileprivate extension SketchView {
             self.delegate?.bottomBarActionFired(action)
         }
     }
-    
 }

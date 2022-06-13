@@ -25,12 +25,20 @@ protocol DrawingViewModelProtocol {
 class DrawingViewModel {
     
     private var coordinator: DrawingCoordinatorProtocol
-    private lazy var linesInfo = [LineInfo]()
-    private lazy var deletedLines = [LineInfo]()
     private var currentColor: UIColor = .black
     private var currentThickness: CGFloat = 20
-    private var currentMode: Mode = .drawing
     private var sketch: Sketch?
+    private lazy var deletedLines = [LineInfo]()
+    private lazy var linesInfo = [LineInfo]() {
+        didSet {
+            checkButtonsAppear()
+        }
+    }
+    private var currentMode: Mode = .drawing {
+        didSet {
+            statusChanged()
+        }
+    }
     
     var statePresenter: StatePresentable?
     
@@ -85,6 +93,43 @@ fileprivate extension DrawingViewModel {
             return nil
         }
     }
+    
+    func checkButtonsAppear() {
+        var hiddenButtons = [DrawingTopBarButton]()
+        var notHiddenButtons = [DrawingTopBarButton]()
+        if linesInfo.isEmpty {
+            hiddenButtons = [.redo, .undo, .delete]
+            notHiddenButtons = []
+        } else {
+            if deletedLines.isEmpty {
+                hiddenButtons = [.redo]
+                notHiddenButtons = [.undo, .delete]
+            } else {
+                hiddenButtons = []
+                notHiddenButtons = [.redo, .undo, .delete]
+            }   
+        }
+        
+        let state = DrawingState.shouldChangeHidden(hiddenButtons: hiddenButtons, notHiddenButtons: notHiddenButtons)
+        statePresenter?.render(state: state, mapping: DrawingState.self)
+
+    }
+    
+    func statusChanged() {
+        switch currentMode {
+        case .drawing:
+            statePresenter?.render(state: DrawingState.deleteMode(isOn: true), mapping: DrawingState.self)
+            checkButtonsAppear()
+        case .delete:
+            statePresenter?.render(state: DrawingState.deleteMode(isOn: true), mapping: DrawingState.self)
+            
+            let hideState = DrawingState.shouldChangeHidden(hiddenButtons: [.delete, .undo, .redo],
+                                                        notHiddenButtons: [])
+            statePresenter?.render(state: hideState, mapping: DrawingState.self)
+        }
+    }
+    
+    
 }
 
 extension DrawingViewModel: DrawingViewModelProtocol {
@@ -109,6 +154,8 @@ extension DrawingViewModel: DrawingViewModelProtocol {
         case .close:
             #warning("show warrning")
             linesInfo.removeAll()
+            currentMode = .drawing
+            
             statePresenter?.render(state: DrawingState.close, mapping: DrawingState.self)
             
         case .undo:
@@ -124,8 +171,6 @@ extension DrawingViewModel: DrawingViewModelProtocol {
         case .delete:
             guard currentMode == .drawing, !linesInfo.isEmpty else { return }
             currentMode = .delete
-            statePresenter?.render(state: DrawingState.deleteMode(isOn: true),
-                                   mapping: DrawingState.self)
     
         case .done:
           break
@@ -142,8 +187,6 @@ extension DrawingViewModel: DrawingViewModelProtocol {
             
         case .delete:
             currentMode = .drawing
-            statePresenter?.render(state: DrawingState.deleteMode(isOn: false),
-                                   mapping: DrawingState.self)
         }
     }
     
