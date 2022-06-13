@@ -60,7 +60,7 @@ fileprivate extension DrawingViewController {
         NSLayoutConstraint.activate([addPhotoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                                      addPhotoButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
                                      addPhotoButton.heightAnchor.constraint(equalToConstant: 50),
-                                     addPhotoButton.widthAnchor.constraint(equalToConstant: view.frame.size.width / 2)])
+                                     addPhotoButton.widthAnchor.constraint(equalToConstant: view.frame.size.width * 0.8)])
         addPhotoButton.tapped = {[weak self] in
             guard let self = self else { return }
             self.handleButtonTapped()

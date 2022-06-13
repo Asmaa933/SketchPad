@@ -52,6 +52,9 @@ fileprivate extension HistoryViewController {
     func setupSearchBar() {
         searchBar.delegate = self
         searchBar.searchTextField.clearButtonMode = .never
+        if let cancelButton = searchBar.value(forKey: "cancelButton") as? UIButton {
+            cancelButton.tintColor = .color(for: .tintColor)
+        }
     }
     
     func createSwipeActions(for indexPath: IndexPath) -> UISwipeActionsConfiguration {

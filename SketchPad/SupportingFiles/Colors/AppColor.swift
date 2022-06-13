@@ -14,6 +14,7 @@ enum AppColor: String {
     case sketchBarColor
     case swipeDeleteColor
     case swipeEditColor
+    case containerColor
 }
 
 

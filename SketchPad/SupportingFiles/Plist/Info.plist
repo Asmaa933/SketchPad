@@ -22,6 +22,6 @@
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>SketchPad needs to access Photo to start sketching</string>
 	<key>UIUserInterfaceStyle</key>
-	<string>Light</string>
+	<string>Dark</string>
 </dict>
 </plist>
