@@ -52,9 +52,8 @@ fileprivate extension HistoryViewController {
     func setupSearchBar() {
         searchBar.delegate = self
         searchBar.searchTextField.clearButtonMode = .never
-        if let cancelButton = searchBar.value(forKey: "cancelButton") as? UIButton {
-            cancelButton.tintColor = .color(for: .tintColor)
-        }
+        let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.color(for: .tintColor)]
+         UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
     }
     
     func createSwipeActions(for indexPath: IndexPath) -> UISwipeActionsConfiguration {
@@ -79,7 +78,7 @@ fileprivate extension HistoryViewController {
     func addGestureToView() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(endEditing))
         tapGesture.cancelsTouchesInView = false
-        view.addGestureRecognizer(tapGesture)
+        historyTableView.addGestureRecognizer(tapGesture)
     }
     
     @objc func endEditing() {
@@ -145,8 +144,8 @@ extension HistoryViewController: UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        endEditing()
         searchBar.text = ""
+        endEditing()
         viewModel.searchForSketch(by: "")
     }
     
