@@ -1,4 +1,4 @@
-## Used Design Patterns
+## Architecture Pattern
 
 ### **MVVM**:-
 
@@ -7,9 +7,12 @@ I used the MVVM structure to cleanly achieve separation of concern for the user 
 - Independent of the database and network: I can easily change them without breaking business rules.
 - Testable: The business rules can be tested without the UI, database, web server, or any other external element.
 
+## Used Design Patterns
+
+
 ### **Coordinator Pattern**:-
 
-I used Coordinator to organize app navigation flow and configure controllers and view models. Instead of pushing and presenting view controllers from other view controllers. All the screens navigation will be managed by coordinators.
+Organize app navigation flow and configure controllers and view models. Instead of pushing and presenting view controllers from other view controllers. All the screens navigation will be managed by coordinators which acheives view controllers do no know about their childs nor their parents.
 
 ### **Observer Pattern**:-
 
@@ -21,17 +24,17 @@ I used delegation and callbacks to notify actions from subviews to view controll
 
 ### **Singlton Pattern**:-
 
-I used Singlton to ensure that I have only one isnstance of CachingManager 
+To ensure that I have only one isnstance of CachingManager 
 
 
 ### **State Pattern**:-
 
-I used State to let the view controllers know there is changes in state and they should render or do something
+To let the view controllers know there is changes in state and they should render or do something
 
 
 ### **Chain of Responsibility**:-
 
-passing chain of handlers from subview -> viewController -> viewModel and then make process in the viewModel.
+Passing chain of handlers from subview -> viewController -> viewModel and then make process in the viewModel.
 
 
 
