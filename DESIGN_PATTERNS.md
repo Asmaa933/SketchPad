@@ -11,7 +11,10 @@ I used the MVVM structure to cleanly achieve separation of concern for the user 
 
 I used Coordinator to organize app navigation flow and configure controllers and view models. Instead of pushing and presenting view controllers from other view controllers. All the screens navigation will be managed by coordinators.
 
-### **Delegate Pattern**:-
+### **Observer Pattern**:-
+
+I used the Notification Center to notify the edit cycle and passing the sketch data in the info by adding observer in DrawingViewModel and post the notification from HistoryViewModel
+
 
 
 
