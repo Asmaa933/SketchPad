@@ -24,7 +24,12 @@
 		99527A562853C82A005609F4 /* HistoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99527A552853C82A005609F4 /* HistoryCoordinator.swift */; };
 		99527A592853E099005609F4 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99527A582853E099005609F4 /* HistoryViewModel.swift */; };
 		99527A5E2853EA04005609F4 /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99527A5D2853EA04005609F4 /* HistoryViewController.xib */; };
+		9967EBEF2858D0ED00B70473 /* HistoryViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9967EBEE2858D0EC00B70473 /* HistoryViewModelTest.swift */; };
+		9967EBF12858D18E00B70473 /* FakeHistoryDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9967EBF02858D18E00B70473 /* FakeHistoryDataProvider.swift */; };
 		9967EBF32858D4A400B70473 /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9967EBF22858D4A400B70473 /* DictionaryExtension.swift */; };
+		9967EBF52858D54000B70473 /* FakeHistoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9967EBF42858D54000B70473 /* FakeHistoryCoordinator.swift */; };
+		9967EBF72858D62A00B70473 /* FakeHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9967EBF62858D62A00B70473 /* FakeHistoryViewController.swift */; };
+		9967EBF92858DCF200B70473 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9967EBF82858DCF200B70473 /* StringExtension.swift */; };
 		997D6C6E2854BF37000A2AEE /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997D6C6D2854BF37000A2AEE /* UIImageViewExtension.swift */; };
 		998B026D2852CDF900D58A8F /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B026C2852CDF900D58A8F /* UIViewExtension.swift */; };
 		998B02702852D00800D58A8F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B026F2852D00800D58A8F /* Constants.swift */; };
@@ -105,7 +110,12 @@
 		99527A552853C82A005609F4 /* HistoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCoordinator.swift; sourceTree = "<group>"; };
 		99527A582853E099005609F4 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		99527A5D2853EA04005609F4 /* HistoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
+		9967EBEE2858D0EC00B70473 /* HistoryViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModelTest.swift; sourceTree = "<group>"; };
+		9967EBF02858D18E00B70473 /* FakeHistoryDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeHistoryDataProvider.swift; sourceTree = "<group>"; };
 		9967EBF22858D4A400B70473 /* DictionaryExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryExtension.swift; sourceTree = "<group>"; };
+		9967EBF42858D54000B70473 /* FakeHistoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeHistoryCoordinator.swift; sourceTree = "<group>"; };
+		9967EBF62858D62A00B70473 /* FakeHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeHistoryViewController.swift; sourceTree = "<group>"; };
+		9967EBF82858DCF200B70473 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		997D6C6D2854BF37000A2AEE /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		998B026C2852CDF900D58A8F /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		998B026F2852D00800D58A8F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -219,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				9902C5D32855657900498CD8 /* HistoryDataProvider.swift */,
+				9967EBF02858D18E00B70473 /* FakeHistoryDataProvider.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -263,6 +274,7 @@
 				9931708A2853EE6900573750 /* Cell */,
 				99A71CEA2852ADF70060C1DA /* HistoryViewController.swift */,
 				99527A5D2853EA04005609F4 /* HistoryViewController.xib */,
+				9967EBF62858D62A00B70473 /* FakeHistoryViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -271,6 +283,7 @@
 			isa = PBXGroup;
 			children = (
 				99527A552853C82A005609F4 /* HistoryCoordinator.swift */,
+				9967EBF42858D54000B70473 /* FakeHistoryCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -279,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				99527A582853E099005609F4 /* HistoryViewModel.swift */,
+				9967EBEE2858D0EC00B70473 /* HistoryViewModelTest.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -615,6 +629,7 @@
 				99A34A382855DE4B003FB9E8 /* DateExtension.swift */,
 				99ABDBBA28568A4A00CDA6E3 /* EncodableExtension.swift */,
 				9967EBF22858D4A400B70473 /* DictionaryExtension.swift */,
+				9967EBF82858DCF200B70473 /* StringExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -758,6 +773,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9967EBF72858D62A00B70473 /* FakeHistoryViewController.swift in Sources */,
 				99A71CE82852ADDB0060C1DA /* DrawingViewController.swift in Sources */,
 				998B02702852D00800D58A8F /* Constants.swift in Sources */,
 				998B028C285378D800D58A8F /* DrawingViewModel.swift in Sources */,
@@ -765,6 +781,7 @@
 				998B027A28535E0900D58A8F /* SketchView.swift in Sources */,
 				99A71CF92852B7640060C1DA /* Coordinator.swift in Sources */,
 				998B028328536CF900D58A8F /* DrawingBottomBar.swift in Sources */,
+				9967EBF92858DCF200B70473 /* StringExtension.swift in Sources */,
 				9902C5C02855420400498CD8 /* EnterNameViewController.swift in Sources */,
 				99A71CA328526B860060C1DA /* AppDelegate.swift in Sources */,
 				9931709128542DFE00573750 /* LineInfo.swift in Sources */,
@@ -775,6 +792,7 @@
 				9902C5C62855458500498CD8 /* EnterNameViewModel.swift in Sources */,
 				99A71CEC2852ADF70060C1DA /* HistoryViewController.swift in Sources */,
 				998B0291285393BC00D58A8F /* PhotoLibraryManager.swift in Sources */,
+				9967EBF52858D54000B70473 /* FakeHistoryCoordinator.swift in Sources */,
 				993BF3272854E960004F9E4B /* UIBezierPathExtension.swift in Sources */,
 				997D6C6E2854BF37000A2AEE /* UIImageViewExtension.swift in Sources */,
 				998B02AE2853A92000D58A8F /* PreviewCoordinator.swift in Sources */,
@@ -802,6 +820,7 @@
 				9902C5BC2855402900498CD8 /* UIImageExtension.swift in Sources */,
 				99A71CA528526B860060C1DA /* SceneDelegate.swift in Sources */,
 				99527A562853C82A005609F4 /* HistoryCoordinator.swift in Sources */,
+				9967EBF12858D18E00B70473 /* FakeHistoryDataProvider.swift in Sources */,
 				9931708D2853EE8200573750 /* HistoryTableViewCell.swift in Sources */,
 				998B029A28539EC700D58A8F /* UINavigationControllerExtension.swift in Sources */,
 				998B02AA2853A8D300D58A8F /* PreviewViewController.swift in Sources */,
@@ -813,6 +832,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				99A71CBA28526B8A0060C1DA /* SketchPadTests.swift in Sources */,
+				9967EBEF2858D0ED00B70473 /* HistoryViewModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
