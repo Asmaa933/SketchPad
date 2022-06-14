@@ -13,7 +13,7 @@ class HistoryViewModelTest: XCTestCase {
     func testLoadHistoryIsEmpty() {
         let viewController = FakeHistoryViewController()
         let viewModel = HistoryViewModel(coordinator:  FakeHistoryCoordinator(),
-                                         dataProvider: HistoryDataProvider())
+                                         dataProvider: FakeHistoryDataProvider(sketches: [], shouldReturnError: false))
         viewModel.statePresenter = viewController
         viewModel.loadHistory()
         XCTAssertTrue(viewController.isEmpty)

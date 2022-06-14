@@ -23,8 +23,4 @@ class FakeHistoryCoordinator: HistoryCoordinatorProtocol {
     func goToDrawing() {
         wentToDrawing = true
     }
-    
-    func alertActionWithTitle(message: String,handler: Handler) -> UIAlertAction {
-        
-    }
 }
