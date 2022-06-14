@@ -85,19 +85,8 @@ fileprivate extension DrawingViewModel {
     
     @objc func receivedEditNotification(_ notification: Notification) {
         guard let sketchDict = notification.userInfo,
-              let sketch = decodeToSketch(dict: sketchDict) else { return }
+              let sketch = sketchDict.decodeJSON(mappingClass: Sketch.self) else { return }
         updateSketch(sketch)
-    }
-    
-    func decodeToSketch(dict: [AnyHashable : Any]) -> Sketch? {
-        do {
-            let data = try JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
-            let sketch = try JSONDecoder().decode(Sketch.self, from: data)
-            return sketch
-        } catch(let error) {
-            debugPrint("error in decoding >> \(error)")
-            return nil
-        }
     }
     
     func checkButtonsAppear(checkedArr: [LineInfo], buttons: [DrawingTopBarButton]) {

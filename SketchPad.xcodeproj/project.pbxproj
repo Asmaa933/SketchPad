@@ -24,6 +24,7 @@
 		99527A562853C82A005609F4 /* HistoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99527A552853C82A005609F4 /* HistoryCoordinator.swift */; };
 		99527A592853E099005609F4 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99527A582853E099005609F4 /* HistoryViewModel.swift */; };
 		99527A5E2853EA04005609F4 /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99527A5D2853EA04005609F4 /* HistoryViewController.xib */; };
+		9967EBF32858D4A400B70473 /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9967EBF22858D4A400B70473 /* DictionaryExtension.swift */; };
 		997D6C6E2854BF37000A2AEE /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997D6C6D2854BF37000A2AEE /* UIImageViewExtension.swift */; };
 		998B026D2852CDF900D58A8F /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B026C2852CDF900D58A8F /* UIViewExtension.swift */; };
 		998B02702852D00800D58A8F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998B026F2852D00800D58A8F /* Constants.swift */; };
@@ -104,6 +105,7 @@
 		99527A552853C82A005609F4 /* HistoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCoordinator.swift; sourceTree = "<group>"; };
 		99527A582853E099005609F4 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		99527A5D2853EA04005609F4 /* HistoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
+		9967EBF22858D4A400B70473 /* DictionaryExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryExtension.swift; sourceTree = "<group>"; };
 		997D6C6D2854BF37000A2AEE /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		998B026C2852CDF900D58A8F /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		998B026F2852D00800D58A8F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -612,6 +614,7 @@
 				9902C5BB2855402900498CD8 /* UIImageExtension.swift */,
 				99A34A382855DE4B003FB9E8 /* DateExtension.swift */,
 				99ABDBBA28568A4A00CDA6E3 /* EncodableExtension.swift */,
+				9967EBF22858D4A400B70473 /* DictionaryExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -794,6 +797,7 @@
 				9902C5C8285545B100498CD8 /* EnterNameCoordinator.swift in Sources */,
 				99A34A392855DE4B003FB9E8 /* DateExtension.swift in Sources */,
 				99527A592853E099005609F4 /* HistoryViewModel.swift in Sources */,
+				9967EBF32858D4A400B70473 /* DictionaryExtension.swift in Sources */,
 				993BF33028552F0C004F9E4B /* SketchHistory.xcdatamodeld in Sources */,
 				9902C5BC2855402900498CD8 /* UIImageExtension.swift in Sources */,
 				99A71CA528526B860060C1DA /* SceneDelegate.swift in Sources */,
