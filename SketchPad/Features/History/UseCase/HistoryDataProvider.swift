@@ -52,7 +52,7 @@ fileprivate extension HistoryDataProvider {
     func mapSketchesToGrouped(_ sketches: [Sketch]) -> [HistorySketchSection] {
         let sortedArray = sketches.sorted {($0.createdAt ?? Date()) > ($1.createdAt ?? Date())}
         let grouped = Dictionary(grouping: sortedArray, by: { $0.date ?? "" })
-        let sortedDates = grouped.keys.sorted(by: >)
+        let sortedDates = grouped.keys.sorted(by: <)
         let sections = sortedDates.map { HistorySketchSection(date: $0, SectionData: grouped[$0])}
         return sections
     }
