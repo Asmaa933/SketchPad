@@ -40,16 +40,19 @@ struct DisplayedSketch {
     let imageName: String
     let imageData: Data
     let time: String
+    let id: UUID
 }
 
 extension Sketch {
     var toDisplay: DisplayedSketch? {
         guard let imageName = imageName,
               let imageData = imageData,
-              let time = time else { return nil }
+              let time = time,
+              let id = id else { return nil }
         
         return DisplayedSketch(imageName: imageName,
                                imageData: imageData,
-                               time: time)
+                               time: time,
+                               id: id)
     }
 }

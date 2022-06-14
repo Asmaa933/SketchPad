@@ -7,17 +7,24 @@
 
 import UIKit
 
-struct FakeHistoryCoordinator: HistoryCoordinatorProtocol {
+class FakeHistoryCoordinator: HistoryCoordinatorProtocol {
+    var errorShowed = false
+    var previewedSketchUUID: UUID?
+    var wentToDrawing = false
     
     func showError(message: AppError, actions: [UIAlertAction]) {
-        
+        errorShowed = true
     }
     
     func previewSketch(with sketch: Sketch) {
-        
+        previewedSketchUUID = sketch.id
     }
     
     func goToDrawing() {
+        wentToDrawing = true
+    }
+    
+    func alertActionWithTitle(message: String,handler: Handler) -> UIAlertAction {
         
     }
 }

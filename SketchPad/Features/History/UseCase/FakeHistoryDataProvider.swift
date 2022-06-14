@@ -7,13 +7,17 @@
 
 import Foundation
 
-struct FakeHistoryDataProvider: HistoryDataProviderProtocol {
-
+class FakeHistoryDataProvider: HistoryDataProviderProtocol {
+    
     var sketches: [Sketch]
     var shouldReturnError: Bool
     var error: AppError?
     
-    
+    internal init(sketches: [Sketch], shouldReturnError: Bool, error: AppError? = nil) {
+        self.sketches = sketches
+        self.shouldReturnError = shouldReturnError
+        self.error = error
+    }
     
     func getHistory(_ completion: @escaping (SketchResult) -> Void) {
         if shouldReturnError {
@@ -25,11 +29,12 @@ struct FakeHistoryDataProvider: HistoryDataProviderProtocol {
        
     }
     
-    func deleteSketchFromCaching(id: UUID, _ completion: @escaping (CallBackResult) -> Void) {
+     func deleteSketchFromCaching(id: UUID, _ completion: @escaping (CallBackResult) -> Void) {
         if shouldReturnError {
             completion(.failure(error!))
             return
         }
+        sketches = sketches.filter { $0.id != id }
         completion(.success(true))
     }
     
