@@ -52,6 +52,10 @@ fileprivate extension EnterNameViewController {
     func setupView() {
         alertView.addShadow()
         nameTextField.text = viewModel.getImageName()
+        nameTextField.attributedPlaceholder = NSAttributedString(
+            string: "Name",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.color(for: .sketchBarColor)]
+        )
     }
     
     func dismissView() {
