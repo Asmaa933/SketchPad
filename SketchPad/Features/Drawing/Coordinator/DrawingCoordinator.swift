@@ -67,7 +67,7 @@ extension DrawingCoordinator: DrawingCoordinatorProtocol {
 extension DrawingCoordinator: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let editedImage = info[.editedImage] as? UIImage,
-              let imageData = editedImage.jpegData(compressionQuality: 0.7) else { return }
+              let imageData = editedImage.pngData() else { return }
         imageDidPicked?(Sketch(imageData: imageData))
         navigationController.dismiss(animated: true)
     }
