@@ -22,7 +22,7 @@ Check this link for used [Design Patterns](DESIGN_PATTERNS.md)
 
 I used **CoreData** in caching sketching because I deal with one sketch every time and make CRUD operation on it.
 
-I thought to use **documents directory** or **UserDefaults** but if I want to edit sketch I will get all sketches and edit the sketch then save all sketches again.
+I thought to use **documents directory** but if I want to edit sketch I will get all sketches and edit the sketch then save all sketches again.
 
 # ScreenShots
 
