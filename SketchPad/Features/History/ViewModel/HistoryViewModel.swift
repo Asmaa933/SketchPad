@@ -69,6 +69,9 @@ fileprivate extension HistoryViewModel {
         switch result {
         case .success(_):
             groupedSketches[indexPath.section].SectionData?.remove(at: indexPath.row)
+            if groupedSketches[indexPath.section].SectionData?.isEmpty ?? false {
+                groupedSketches.remove(at: indexPath.section)
+            }
         case .failure(let error):
             showError(message: error)
         }
